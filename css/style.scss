@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+@mixin adjust($judge:'yes') {
+  margin: 3%;
+  @if $judge == 'yes' {
+    margin-bottom: 20%;
+  }
+  @else {
+    margin-bottom: 0;
+  }
+
+}
+@mixin navigater {
+  font-size: 1.5rem;
+  margin: 2%;
+  display: inline-block;
+}
+
+* {
+  text-decoration: none;
+  list-style: none;
+  color: black;
+}
+
+.wrapper {
+  margin: 2%;
+}
+
+.header {
+  @include adjust();
+  width: 100%;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-auto-rows: 10vh;
+  .logo {
+    font-size: 3rem;
+  }
+  .nav {
+    &__list {
+      &__item {
+        @include navigater();
+        &:hover {
+          // border-bottom: 1px solid;
+          // transition: border-bottom 1s;
+        }
+      }
+    }
+  }
+}
+
+.main {
+  @include adjust;
+  .title {
+    text-align: center;
+    &::before {
+      content: " ";
+      border: solid;
+      padding: 1%;
+    } 
+  }
+}
+
+.footer {
+  @include adjust('no');
+  display: grid;
+  .nav {
+    text-align: right;
+    &::before {
+      content: "";
+    }
+    @include navigater();
+  }
+  .copy {
+    text-align: center;
+  }
+}
