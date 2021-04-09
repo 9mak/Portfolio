@@ -4,60 +4,182 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://9mak.github.io/Portfolio/css/ress.css">
-  <link rel="stylesheet" href="https://9mak.github.io/Portfolio/css/style.css">
+  <link rel="stylesheet" href="/css/ress.css">
+  <link rel="stylesheet" href="/css/style.css">
   <title>Kazuki Oguma</title>
 </head>
 <body>
+  <!-- wrapper -->
   <wrapper class="wrapper">
+
+    <!-- header -->
     <header class="header">
       <h1 class="logo">
         <a href="#" class="logo">
           Kazuki Oguma
         </a>
-        <img src="/img/top.JPG" alt="" width="117.5%" height="auto">
       </h1>
 
       <nav class="nav detail">
         <ul class="nav__list">
           <li class="nav__list__item">
-            <a href="#" class="nav__list__item-works">Works</a>
+            <a href="#works" class="nav__list__item-works">Works</a>
           </li>
           <li class="nav__list__item">
-            <a href="#" class="nav__list__item-about">About</a>
+            <a href="#about" class="nav__list__item-about">About</a>
           </li>
           <li class="nav__list__item">
-            <a href="#" class="nav__list__item-contact">Contact</a>
+            <a href="#contact" class="nav__list__item-contact">Contact</a>
           </li>
         </ul>
       </nav>
     </header>
 
+    <!-- img -->
+    <img class="top-image" src="/img/top.JPG" alt="" width="94%" height="100%">
+
+    <!-- main -->
     <main class="main">
-      <h2 class="title">
+      <div class="separate"></div>
+      <h2 id="works" class="title">
         Works
       </h2>
-      <section class="works"></section>
+      <section class="works">
+        <a href="#" class="works__item">
+          <dt>
+            <img src="/img/top.JPG" alt="works__item__image" width="100%">
+          </dt>
+          <dd class="works__item__text"> 
+            <h3>title</h3>
+            <p>test</p>
+          </dd>
+        </a>
 
-      <h2 class="title">
+        <a href="#" class="works__item">
+          <dt>
+            <img src="/img/top.JPG" alt="works__item__image" width="100%">
+          </dt>
+          <dd class="works__item__text">
+            <h3>title</h3>
+            <p>test</p>
+          </dd>
+        </a>
+
+        <a href="#" class="works__item">
+          <dt>
+            <img src="/img/top.JPG" alt="works__item__image" width="100%">
+          </dt>
+          <dd class="works__item__text">
+            <h3>title</h3>
+            <p>test</p>
+          </dd>
+        </a>
+      </section>
+
+      <div class="separate"></div>
+      <h2 id="about" class="title">
         About
       </h2>
-      <section class="About"></section>
+      <section class="about">
+        <h3 class="about__title">Me</h3>
+        <div class="me">
+          <img src="/img/4620693218529317417.3af758330271cf04f47fe49bba703a74.20101410.jpg" alt="" class="me__image" width="90%">
 
-      <h2 class="title">
+          <div class="me__profile">
+            <h3>自己紹介</h3>
+            <p>誕生日：1994年9月19日</p>
+            <p>血液型：A型</p>
+            <p>趣味：落語、文楽、読書、スポーツ観戦</p>
+            <p>尊敬する人物：ジョン・F・ケネディ</p>
+            <p>好きな言葉：「器用貧乏」</p>
+            <p>長所：粘り強いこと</p>
+            <p>短所：涙もろいところ</p>
+          </div>
+
+          <div class="me__history">
+            <h3>自己紹介</h3>
+            <p>誕生日：1994年9月19日</p>
+            <p>血液型：A型</p>
+            <p>趣味：落語、文楽、読書、スポーツ観戦</p>
+            <p>尊敬する人物：ジョン・F・ケネディ</p>
+            <p>好きな言葉：「器用貧乏」</p>
+            <p>長所：粘り強いこと</p>
+            <p>短所：涙もろいところ</p>
+          </div>
+        </div>
+
+        <h3 class="about__title">Skill</h3>
+        <div class="skill">
+          <div class="skill__HTML">
+            <h3>HTML</h3>
+            <p></p>
+          </div>
+
+          <div class="skill__CSS">
+            <h3>CSS</h3>
+            <p></p>
+          </div>
+
+          <div class="slill__JavaScript">
+            <h3>JavaScript</h3>
+            <p></p>
+          </div>
+
+          <div class="skill__Sass">
+            <h3>Sass</h3>
+            <p></p>
+          </div>
+
+          <div class="skill__Git">
+            <h3>Git</h3>
+            <p></p>
+          </div>
+
+          <div class="slill__Python">
+            <h3>Python</h3>
+            <p></p>
+          </div>
+        </div>
+      </section>
+
+      <div class="separate"></div>
+      <h2 id="contact" class="title">
         Contact
       </h2>
-      <section class="contact"></section>
+      <section class="contact">
+        <p class="contact__text">制作の依頼・ご相談などお気軽にお問い合わせください。</p>
+        <p class="contact__text">下記フォームよりわかる範囲でご記入ください。必須の項目は必ずご記入お願いします。</p>
+
+        <form class="contact__form">
+          <label class="contact__form__label" for="name">
+            お名前
+          </label>
+          <input class="contact__form__input" type="text" id="name" name="firstname" placeholder="Your name..">
+
+          <label class="contact__form__label" for="address">
+            ご連絡先
+          </label>
+          <input class="contact__form__input" type="text" id="mail" name="firstname" placeholder="Your address..">
+
+          <label class="contact__form__label" for="subject">
+            お問い合わせ内容
+          </label>
+          <textarea class="contact__form__input" id="subject" name="subject" placeholder="Write something.."></textarea>
+          
+          <input class="contact__form__submit" type="submit" value="内容を送信">
+        </form>
+      </section>
     </main>
 
+    <!-- footer -->
     <footer class="footer">
       <nav class="nav social">
         <ul class="nav__list">
           <li class="nav__list___item">
-            <a href="#" class="nav__list__item-insta">Instagram</a>
+            <a href="https://www.instagram.com/_9ma.k___" class="nav__list__item-insta">Instagram</a>
           </li>
           <li class="nav__list___item">
-            <a href="#" class="nav__list__item-twitter">Twitter</a>
+            <a href="https://twitter.com/_9mak___" class="nav__list__item-twitter">Twitter</a>
           </li>
         </ul>
       </nav>

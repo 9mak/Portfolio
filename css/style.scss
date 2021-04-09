@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+// mixin
 @mixin adjust($judge:'yes') {
   margin: 3%;
   @if $judge == 'yes' {
@@ -15,48 +16,145 @@
   margin: 2%;
   display: inline-block;
 }
+@mixin title {
+  margin: 5% 0 5% 5%;
+  font-size: 3rem;
+  &::before {
+    content: " ";
+    border: solid;
+    margin-right: 2%;
+    padding: 1% 1.2% 0 2.4%;
+  }
+}
 
+.top-image {
+  display: inline-block;
+  margin: -20% 0 0 3%;
+}
+
+.separate {
+  border-top: 0.1px solid black;
+  position: sticky;
+  margin-left: 2%;
+  top: 2vh;
+}
+
+section {
+  margin: 10%;
+}
+
+// all
 * {
   text-decoration: none;
   list-style: none;
   color: black;
 }
 
+// wrapper
 .wrapper {
   margin: 2%;
 }
 
+// header
 .header {
-  @include adjust();
-  width: 100%;
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  grid-auto-rows: 10vh;
-  .logo {
-    font-size: 3rem;
+  position: relative;
+  pointer-events: none;
+  &:hover {
+    background: black;
+    color: white;
   }
+  @include adjust();
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 3fr 1fr;
+
+  @media(max-width: 800px){
+    grid-template-columns: 1fr;
+  }
+
+  @media(max-width: 400px){
+    grid-template-columns: 1fr;
+  }
+
+  .logo {
+    font-size: 5rem;
+  }
+
   .nav {
+    margin-top: 5%;
     &__list {
       &__item {
         @include navigater();
-        &:hover {
-          // border-bottom: 1px solid;
-          // transition: border-bottom 1s;
+        pointer-events: auto;
+        &:hover > * {
+          background: black;
+          color: white;
+          margin: 10%;
+          transition: color 0.5s, margin 1s;
+        }
         }
       }
-    }
+  }
+  &::after {
+    position: absolute;
+    content: " ";
+    border-bottom: 1px solid white;
+    top: 50%;
+    right: 0;
+    left: 0;
   }
 }
 
+// main
 .main {
   @include adjust;
+
   .title {
-    text-align: center;
-    &::before {
-      content: " ";
-      border: solid;
-      padding: 1%;
-    } 
+    @include title;
+  }
+
+  .works {
+    display: grid;
+    grid-template-columns: repeat(3,36%);
+    &__item {
+      padding: 0 5%;
+    }
+  }
+
+  .about {
+    &__title {
+      font-size: 2rem;
+      border-left: 0.1px solid black;
+      padding: 2%;
+      margin: 5% 0 5% 0;
+    }
+    & .me {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);  
+    }
+
+    & .skill {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);  
+    }
+  }
+
+  .contact {
+    &__text {
+      font-size: 1.5rem;
+    }
+
+    &__form {
+      margin: 2%;
+      display: flex;
+      flex-direction: column;
+      &__label {
+      }
+      &__input {
+      }
+      &__submit {
+      }
+    }
   }
 }
 
@@ -65,9 +163,6 @@
   display: grid;
   .nav {
     text-align: right;
-    &::before {
-      content: "";
-    }
     @include navigater();
   }
   .copy {
