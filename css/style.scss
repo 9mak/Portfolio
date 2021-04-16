@@ -1,6 +1,18 @@
 @charset "UTF-8";
 
 // mixin
+$breakpoints: (
+  'sm': 'screen and (min-width: 400px)',
+  'md': 'screen and (min-width: 768px)',
+  'lg': 'screen and (min-width: 1000px)',
+  'xl': 'screen and (min-width: 1200px)',
+) !default;
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
 @mixin adjust($judge:'yes') {
   margin: 3%;
   @if $judge == 'yes' {
@@ -63,18 +75,14 @@ section {
     background: black;
     color: white;
   }
+
+  @include mq(xl) {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 4fr 1fr;
+  }
+
   @include adjust();
-  display: grid;
-  gap: 10px;
-  grid-template-columns: 3fr 1fr;
-
-  @media(max-width: 800px){
-    grid-template-columns: 1fr;
-  }
-
-  @media(max-width: 400px){
-    grid-template-columns: 1fr;
-  }
 
   .logo {
     font-size: 5rem;
@@ -113,31 +121,32 @@ section {
     @include title;
   }
 
+  // !!!! Edit Now !!!!
   .works {
     display: grid;
     grid-template-columns: repeat(3,36%);
     &__item {
       padding: 0 5%;
+      &:hover {
+        opacity: 0.8;
+      }
+      &__text {
+        text-align: center;
+      }
     }
   }
 
-  .about {
-    &__title {
-      font-size: 2rem;
-      border-left: 0.1px solid black;
-      padding: 2%;
-      margin: 5% 0 5% 0;
-    }
-    & .me {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);  
-    }
+  // .about {
+  //   & .me {
+  //     display: grid;
+  //     grid-template-columns: repeat(3,1fr);  
+  //   }
 
-    & .skill {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);  
-    }
-  }
+  //   & .skill {
+  //     display: grid;
+  //     grid-template-columns: repeat(3,1fr);  
+  //   }
+  // }
 
   .contact {
     &__text {
