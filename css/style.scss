@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 // mixin
 $breakpoints: (
   'sm': 'screen and (min-width: 400px)',
@@ -121,10 +120,9 @@ section {
     @include title;
   }
 
-  // !!!! Edit Now !!!!
   .works {
     display: grid;
-    grid-template-columns: repeat(3,36%);
+    grid-template-columns: repeat(3,33%);
     &__item {
       padding: 0 5%;
       &:hover {
@@ -136,17 +134,45 @@ section {
     }
   }
 
-  // .about {
-  //   & .me {
-  //     display: grid;
-  //     grid-template-columns: repeat(3,1fr);  
-  //   }
+  // Edit Now !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  //   & .skill {
-  //     display: grid;
-  //     grid-template-columns: repeat(3,1fr);  
-  //   }
-  // }
+  .about {
+    &__me {
+      display: grid;
+      gap: 2%;
+      @include mq(sm){
+        grid-template-columns: repeat(1,1fr);
+      }
+      @include mq(md){
+        grid-template-columns: repeat(2,1fr);
+      }
+      @include mq(lg){
+        grid-template-columns: repeat(2,1fr);
+      }
+      @include mq(xl){
+        grid-template-columns: repeat(3,1fr);
+      }
+    }
+
+    &__skill {
+      margin: 3%;
+      margin-top: 10%;
+      display: grid;
+      @include mq(sm){
+        grid-template-columns: repeat(2,1fr);
+      }
+      @include mq(md){
+        grid-template-columns: repeat(2,1fr);
+      }
+      @include mq(lg){
+        grid-template-columns: repeat(2,1fr);
+      }
+      @include mq(xl){
+        grid-template-columns: repeat(3,1fr);
+      }    }
+  }
+
+  // Edit Now !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   .contact {
     &__text {

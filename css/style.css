@@ -99,8 +99,8 @@ section {
 .main .works {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (36%)[3];
-      grid-template-columns: repeat(3, 36%);
+  -ms-grid-columns: (33%)[3];
+      grid-template-columns: repeat(3, 33%);
 }
 
 .main .works__item {
@@ -113,6 +113,75 @@ section {
 
 .main .works__item__text {
   text-align: center;
+}
+
+.main .about__me {
+  display: -ms-grid;
+  display: grid;
+  gap: 2%;
+}
+
+@media screen and (min-width: 400px) {
+  .main .about__me {
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .main .about__me {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .main .about__me {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .main .about__me {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.main .about__skill {
+  margin: 3%;
+  margin-top: 10%;
+  display: -ms-grid;
+  display: grid;
+}
+
+@media screen and (min-width: 400px) {
+  .main .about__skill {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .main .about__skill {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .main .about__skill {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .main .about__skill {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .main .contact__text {
