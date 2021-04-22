@@ -1,0 +1,391 @@
+
+
+.header {
+  position: relative;
+  .image {
+    z-index: -1;
+  }
+
+  .text {
+    color: white;
+    position: absolute;
+    top: 30%;
+    bottom: 40%;
+    right: 20%;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+  }
+
+  .container {
+    padding: 1%;
+    background-color: white;
+    width: 90%;
+    position: sticky;
+    left: 5%;
+    bottom: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    align-items: center;
+    .logo {
+      margin: 4%;
+    }
+    .nav {
+      &__list {
+        &__item {
+          margin-left: 2%;
+          padding-bottom: 2%;
+          display: inline;
+          list-style: none;
+          &--nomal {
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: rgb(38,157,129);
+            font-weight: bold;
+            padding: 2% 1%;
+            &:hover {
+              border-bottom: rgb(38,157,129) solid;
+              transition: border 0.1s;
+              }
+          }
+          &--black {
+            text-decoration: none;
+            background-color: black;
+            color: white;
+            padding: 2% 4%;
+            &:hover {
+              opacity: 0.6;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.main {
+  background-color: rgb(237,248,246);
+  .state {
+    &__container {
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      &__text {
+        &-title {
+          font-size: 13px;
+          display: flex;
+          align-items: center;
+          &::before {
+            content: " ";
+            border-top: 0.5px black solid;
+            margin-left: 15%;
+            padding: 0 5%;
+          }
+        }
+        &-item {
+          margin-left: 15%;
+        }
+      }
+    }
+  }
+  .business {
+    &__container {
+      &-first {
+        margin: 5%;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        text-align: center;
+        align-items: center;
+        h2 {
+
+        }
+        h3 {
+          font-size: 13px;
+          display: flex;
+          align-items: center;
+          &::before {
+            content: " ";
+            border-top: 0.5px black solid;
+            margin-left: 15%;
+            padding: 0 5%;
+          }
+        }
+        a {
+          text-decoration: none;
+          color: black;
+        }
+      }
+      &-second {
+        display: grid;
+        img:hover {
+          opacity: 0.5;
+          z-index: -1;
+          transition: opacity 0.5s;
+        }
+        .prod {
+          grid-column: 1/3;
+          position: relative;
+          a::before {
+            z-index: 1;
+            position: absolute;
+            content: "生産";
+            font-size: 1.3rem;
+            color: white;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+          }
+        }
+        .serv {
+          grid-column: 3/5;
+          position: relative;
+          a::before {
+            z-index: 1;
+            position: absolute;
+            content: "農業サービス";
+            font-size: 1.3rem;
+            color: white;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+          }
+        }
+        .agri {
+          grid-column: 5/7;
+          position: relative;
+          a::before {
+            z-index: 1;
+            position: absolute;
+            content: "アグリテクノロジー";
+            font-size: 1.3rem;
+            color: white;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+          }
+        }
+        .cons {
+          grid-column: 1/4;
+          position: relative;
+          a::before {
+            z-index: 1;
+            position: absolute;
+            content: "農業コンサルティング";
+            font-size: 1.3rem;
+            color: white;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+          }
+        }
+        .deve {
+          grid-column: 4/7;
+          position: relative;
+          a::before {
+            z-index: 1;
+            position: absolute;
+            content: "商品開発";
+            font-size: 1.3rem;
+            color: white;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+    }
+  }
+  .about {
+    &__container {
+      &-first {
+        margin: 5%;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        text-align: center;
+        align-items: center;
+        h2 {
+
+        }
+        h3 {
+          font-size: 13px;
+          display: flex;
+          align-items: center;
+          &::before {
+            content: "";
+            border-top: 0.5px black solid;
+            margin-left: 15%;
+            padding: 0 5%;
+          }
+        }
+      }
+      &-second {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        .toha {
+          position: relative;
+          &::before {
+            z-index: 1;
+            position: absolute;
+            content: "舞台ファームとは";
+            font-size: 1.3rem;
+            color: white;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+          }
+        }
+        .mirai {
+          position: relative;
+          &::before {
+            z-index: 1;
+            position: absolute;
+            content: "舞台ファームが考える農業の未来とは？";
+            font-size: 1.3rem;
+            color: white;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+          }
+        }
+        .riku {
+          position: relative;
+          &::before {
+            z-index: 1;
+            position: absolute;
+            content: "採用情報";
+            font-size: 1.3rem;
+            color: white;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+          }
+        }
+        img:hover {
+          opacity: 0.5;
+          z-index: -1;
+          transition: opacity 0.5s;
+        }
+      }
+    }
+  }
+  .news {
+    &__container {
+      &-first {
+        margin: 5%;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        text-align: center;
+        align-items: center;
+        h2 {
+
+        }
+        h3 {
+          font-size: 13px;
+          display: flex;
+          align-items: center;
+          &::before {
+            content: " ";
+            border-top: 0.5px black solid;
+            margin-left: 15%;
+            padding: 0 5%;
+          }
+        }
+        a {
+          text-decoration: none;
+          color: black;
+        }
+      }
+      &-second {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+      }
+    }
+  }
+  .contact {
+    padding-bottom: 10%;
+    background-color: rgb(38,157,129);
+    &__container {
+      justify-content: center;
+      display: grid;
+      grid-template-columns: 500px 1fr 1fr;
+      grid-template-rows: 200px;
+      &__items {
+        &-first {
+          margin: 5% 0 0 20%;
+          color: white;
+          h2 {
+            font-size: 34px;
+            &::before {
+              content: "";
+              padding-right: 10%;
+              border-left: 10px white solid;
+            }
+          }
+          p {
+            font-size: 14px;
+          }
+        }
+        &-second {
+          margin: 15% 0 15% 30%;
+        }
+        &-third {
+          margin: 15% 15% 15% 20%;
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  background-color: rgb(237,248,246);
+  &__container {
+    &-first {
+      margin: 5% 10%;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      h2 {
+        color: rgb(38,157,129);
+      }
+      ul {
+        .sns {
+          a {
+            text-decoration: none;
+            color: rgb(38,157,129);
+          }
+        }
+        li {
+          list-style: none;
+          a {
+            text-decoration: none;
+            color: rgb(38,157,129);
+          }
+        }
+      }
+    }
+    &-second {
+      margin: 10%;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      .kanren {
+
+      }
+      .sityo {
+
+      }
+      .sentei {
+
+      }
+    }
+  }
+  .copy {
+    text-align: center;
+    padding: 2% 10%;
+  }
+}
