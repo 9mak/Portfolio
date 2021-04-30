@@ -1,0 +1,254 @@
+@charset "UTF-8";
+* {
+  margin: 0 auto;
+  padding: 0;
+  font-family: Verdana, Arial, Helvetica, meirio, メイリオ, "Hiragino Maru Gothic Pro", "ヒラギノ丸ゴ Pro W4", Osaka, "ＭＳ Ｐゴシック", sans-serif;
+  background-color: #f6f6f6;
+}
+
+header {
+  color: #565656;
+}
+
+header .top--border {
+  margin: 0 0 1% 0;
+  padding: 0;
+}
+
+header .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .tel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: right;
+}
+
+header .tel .massage {
+  font-size: 0.6em;
+  margin: 0.5% 0;
+}
+
+header .tel .number {
+  font-size: 1.5em;
+  margin: 4% 0;
+}
+
+header .tel .time {
+  font-size: 0.6em;
+  border: 0.1em #cfcfcf solid;
+  margin: 0 0 0 auto;
+  padding: 2% 4%;
+}
+
+nav {
+  margin: 1.5% auto;
+  width: 70%;
+  font-size: 0.8em;
+}
+
+nav .container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+}
+
+nav .container button {
+  border: 1px solid;
+  border-radius: none;
+  background: none;
+  width: 20%;
+  padding: 2%;
+  background: #97e0de;
+  color: white;
+  background-image: -moz-linear-gradient(top, #9be3e1 0%, #6dc6c4);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#9be3e1), to(#6dc6c4));
+}
+
+nav .container button.item-1 {
+  border-radius: 10px 0 0 10px;
+}
+
+nav .container button.item-5 {
+  border-radius: 0 10px 10px 0;
+}
+
+nav .container .item-1:after {
+  content: "\A TOP";
+  white-space: pre;
+}
+
+nav .container .item-2:after {
+  content: "\A CLINIC";
+  white-space: pre;
+}
+
+nav .container .item-3:after {
+  content: "\A SERVICE";
+  white-space: pre;
+}
+
+nav .container .item-4:after {
+  content: "\A STAFF";
+  white-space: pre;
+}
+
+nav .container .item-5:after {
+  content: "\A ACCESS";
+  white-space: pre;
+}
+
+nav .container :hover {
+  background: red;
+}
+
+nav.footer--nav {
+  width: 72%;
+  border: solid #6cc6c4;
+  border-radius: 5px 5px 5px 5px;
+}
+
+nav.footer--nav ul {
+  background-color: #6cc6c4;
+  color: white;
+}
+
+nav.footer--nav ul li {
+  background-color: inherit;
+  padding: 0 1% 0 1%;
+  display: inline;
+}
+
+nav.footer--nav ul li:hover {
+  border-bottom: solid;
+  cursor: pointer;
+}
+
+nav.footer--nav ul li::before {
+  content: "◯";
+  padding: 1%;
+}
+
+main {
+  width: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main aside {
+  width: 30%;
+}
+
+main aside .ippan > li:not(:first-child):before {
+  content: "◆";
+  padding: 0 0.3em;
+}
+
+main aside .sinbi > li:not(:first-child):before {
+  content: "◆";
+}
+
+main aside .ippan, main aside .sinbi {
+  list-style: none;
+}
+
+main aside .ippan :first-child, main aside .sinbi :first-child {
+  border-radius: 0.3em 0.3em 0 0;
+  list-style: none;
+  background: #97e0de;
+  color: white;
+  background-image: -moz-linear-gradient(top, #9be3e1 0%, #6dc6c4);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#9be3e1), to(#6dc6c4));
+  padding: 0.3em 1em 0.3em 0.5em;
+}
+
+main aside .ippan :not(:first-child), main aside .sinbi :not(:first-child) {
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  font-size: 14px;
+  border: 0.1em solid;
+}
+
+main article::before {
+  position: absolute;
+  content: " ";
+  background-color: white;
+  margin-right: 1%;
+  top: 16.5em;
+  right: -1em;
+  bottom: -2em;
+  left: 0;
+  opacity: 0.2;
+}
+
+main article {
+  position: relative;
+  margin-left: 2%;
+  margin-bottom: 3%;
+  width: 70%;
+}
+
+main article .news--title {
+  margin: 2%;
+  font-size: 1em;
+}
+
+main article .news div {
+  border-bottom: 0.1em dotted gray;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 0.8em;
+  width: 100%;
+  padding: 2%;
+}
+
+main article .news div .date {
+  width: 25%;
+}
+
+main article .news div .naiyou {
+  width: 70%;
+}
+
+address h4 {
+  width: 75%;
+  text-align: right;
+  font-style: normal;
+  font-size: 0.7em;
+  color: gray;
+  padding-bottom: 1%;
+}
+
+.footer {
+  text-align: center;
+}
+
+.footer .foot--border {
+  width: 75%;
+}
+
+.footer .copy {
+  display: inline-block;
+  margin: 2%;
+  font-size: 0.7em;
+  color: grey;
+}
+/*# sourceMappingURL=style.css.map */

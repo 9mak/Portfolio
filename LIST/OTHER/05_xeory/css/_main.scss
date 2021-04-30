@@ -1,0 +1,129 @@
+main {
+    text-align: center;
+
+    .first {
+
+        .news {
+            font-size: 3.8em;
+            margin: 8rem;
+        }
+
+        .news__items {
+            a {
+                font-size: 1.8rem;
+                padding: 2% 0;
+                display: flex;
+                margin: 0 auto;
+                border-bottom:0.1px solid;
+                color: black;
+                text-decoration: none;
+                width: 55%;
+                transition-property: opacity;
+                transition-duration: 0.5s;
+                &:hover {
+                    opacity: 0.5;
+                }
+
+                .news__day {
+                    padding-right: 2%;
+                }
+
+                .news__item {
+                    display: flex;
+                    width: 100%;
+                    .news__item--button {
+                        border: 0.1rem solid;
+                        font-size: 0.2rem;
+                        margin-left: 3%;
+                        padding: 1%;
+                    }
+
+                    p { 
+                        padding: 0 6%;
+                    }
+                }
+
+            }
+        }
+
+    }
+
+    .second {
+
+        .sekou {
+            font-size: 3.8rem;
+            margin: 8rem;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            .item__one {
+                h3 ,p ,button {
+                    padding: 0 0 0 15%;
+                }
+            }
+            .item__two {
+                h3 ,p ,button {
+                    padding: 0 15% 0 0;
+                }            
+            }
+            img {
+                margin: 2rem;
+                &[alt='ビル１'] {
+                    padding: 0 0 0 15%;
+                }
+
+                &[alt='ビル２'] {
+                    padding: 0 15% 0 0;
+                }
+            }
+            h3 {
+                font-size: 2.4rem;
+            }
+            p {
+                margin-top: 1rem;
+                font-size: 1.4rem;
+            }
+            button {
+                img {
+                    transition-property: opacity;
+                    transition-duration: 0.5s;
+                    &:hover {
+                        opacity: 0.5;
+                    }
+                    width: 50%;
+                }
+            }
+        }
+        .itiran {
+            button {
+                font-size: 2rem;
+                border: 0.1rem solid;
+                margin: 5rem;
+                padding: 0.8rem 4rem;
+                transition-property: opacity;
+                transition-duration: 0.5s;
+                &:hover {
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+
+    .third {
+        width: 100%;
+        .container {
+            display: flex;
+            img {
+                transition-property: opacity;
+                transition-duration: 0.5s;
+                &:hover {
+                    opacity: 0.5;
+                }
+                width: 100%;
+            }
+        }
+    }
+}

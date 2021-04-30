@@ -1,0 +1,43 @@
+.footer {
+    background-color: black;
+    margin-top: -0.4rem;
+    .container {
+        display: flex;
+        align-items: center;
+        .logo {
+            margin: 2rem auto 5rem 10rem;
+            transition-property: opacity;
+            transition-duration: 0.5s;
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+        .nav {
+            .nav__list {
+                display: flex;
+                justify-content: space-between;
+                align-content: center;
+                font-size: 1.8rem;
+                margin: 0 10rem;
+                .nav__list--items {
+                    margin: -3rem 0 0 5rem;
+                    .nav__list--item {
+                        transition-property: opacity;
+                        transition-duration: 0.5s;
+                        &:hover {
+                            opacity: 0.5;
+                        }
+                        color: white;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+    .copy {
+        text-align: center;
+        font-weight: bold;
+        padding: 1rem;
+        color: white;
+    }
+}
