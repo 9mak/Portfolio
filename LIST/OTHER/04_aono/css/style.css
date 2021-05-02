@@ -7,9 +7,9 @@
 header {
   margin-bottom: 10%;
   padding-bottom: 30%;
-  background-image: url("/img/main.png");
+  background-image: url("../img/main.png");
   background-size: cover;
-  background-size: 100% 80%;
+  background-size: 100% 90%;
   background-attachment: fixed;
 }
 

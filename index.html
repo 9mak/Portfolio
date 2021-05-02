@@ -1,197 +1,173 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/ress.css">
-  <link rel="stylesheet" href="./css/style.css">
-  <script src="./script.js"></script>
-  <link rel="icon" type="image/x-icon" href="./img/icon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <meta property='og:type' content='website'>
+  <meta property='og:title' content='WebデザイナーKazuki Oguma ポートフォリオ'>
+  <meta property='og:url' content='URLが入る'>
+  <meta property='og:description' content='Kazuki Ogumaのポートフォリオサイトです。'>
+  <meta property="og:image" content="img/ogp.png">
+  <meta name="description" content="Kazuki Ogumaのポートフォリオサイトです" />
   <title>Kazuki Oguma</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+  <link href="css/ress.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" media="all" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="img/favicon.ico" />
+  <!-- <link rel=”canonical” href=”URLが入る” /> -->
 </head>
+
 <body>
-  <!-- wrapper -->
-  <wrapper class="wrapper">
+  <div class="wrapper">
 
     <!-- header -->
     <header class="header">
-      <h1 class="logo">
-        <a href="#" class="logo">
-          Kazuki Oguma
-        </a>
-      </h1>
-
-      <nav class="nav detail">
-        <ul class="nav__list">
-          <li class="nav__list__item">
-            <a href="#works" class="nav__list__item-works">Works</a>
-          </li>
-          <li class="nav__list__item">
-            <a href="#about" class="nav__list__item-about">About</a>
-          </li>
-          <li class="nav__list__item">
-            <a href="#contact" class="nav__list__item-contact">Contact</a>
-          </li>
-        </ul>
-      </nav>
+      <div class="header-inner">
+        <h1 class="header-logo">
+          <a href=".">Kazuki's Portfolio</a>
+        </h1>
+        <nav class="header-nav">
+          <ul class="header-nav-list">
+            <li class="header-nav-item"><a href="#works">Works</a></li>
+            <li class="header-nav-item"><a href="#skill">Skill</a></li>
+            <li class="header-nav-item"><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
+    <!-- /header -->
 
-    <!-- img -->
-    <img class="top-image" src="./img/top.JPG" alt="" width="94%" height="100%">
+    <main class="content">
 
-    <!-- main -->
-    <main class="main">
-      <div class="separate"></div>
+      <!-- main-visual -->
+      <div class="main-visual">
+        <div class="main-visual-img"></div>
+      </div>
+      <!-- /main-visual -->
+
+      <div class="service">
+        <div class="inner">
+          <p class="service-title">Service</p>
+          <p class="service-text">
+            デザイン、コーディング、ライティング、SEOなどWeb領域全般に対応できるのが私の強みです。
+            サイト制作はお客様の夢を叶える仕事だと思っています。
+            夢を持っている方と一緒にお仕事ができたら嬉しいです。
+          </p>
+        </div>
+      </div>
 
       <!-- works -->
-      <h2 id="works" class="title">
-        Works
-      </h2>
-      <section class="works">
-        <a href="#" class="works__item">
-          <dt>
-            <img src="./img/neko.JPG" alt="works__item__image" width="100%">
-          </dt>
-          <dd class="works__item__text"> 
-            <h3>One</h3>
-          </dd>
-        </a>
-
-        <a href="#" class="works__item">
-          <dt>
-            <img src="./img/neko.JPG" alt="works__item__image" width="100%">
-          </dt>
-          <dd class="works__item__text">
-            <h3>Two</h3>
-          </dd>
-        </a>
-
-        <a href="#" class="works__item">
-          <dt>
-            <img src="./img/neko.JPG" alt="works__item__image" width="100%">
-          </dt>
-          <dd class="works__item__text">
-            <h3>Three</h3>
-          </dd>
-        </a>
-      </section>
-
-      <!-- about -->
-      <div class="separate"></div>
-      <h2 id="about" class="title">
-        About
-      </h2>
-
-      <section class="about">
-        <div class="about__me">
-
-          <div class="about__me__profile">
-            <h3>自己紹介</h3>
-            <p>誕生日：1994年9月19日</p>
-            <p>血液型：A型</p>
-            <p>趣味：多趣味</p>
-            <p>尊敬する人物：ひいばあちゃん</p>
-            <p>好きな言葉：「器用貧乏」</p>
-            <p>長所：誰にでも優しく粘り強いこと</p>
-            <p>短所：涙もろいところ</p>
-          </div>
-
-          <div class="about__me__history">
-            <h3>自己紹介</h3>
-            <p>誕生日：1994年9月19日</p>
-            <p>血液型：A型</p>
-            <p>趣味：多趣味</p>
-            <p>尊敬する人物：ひいばあちゃん</p>
-            <p>好きな言葉：「器用貧乏」</p>
-            <p>長所：誰にでも優しく粘り強いこと</p>
-            <p>短所：涙もろいところ</p>
-          </div>
-          <img src="./img/me.jpg" alt="" class="about__img" width="100%" height="auto">
-        </div>
-
-        <!-- <h3 class="about__title">Skill</h3> -->
-        <div class="about__skill">
-          <!-- HTML -->
-          <div class="about__skill-HTML">
-            <img src="./img/skill/html5.svg" alt="" width="230" height="auto">
-          </div>
-
-          <!-- CSS -->
-          <div class="about__skill-CSS">
-            <img src="./img/skill/css3.svg" alt="" width="200" height="auto">
-          </div>
-
-          <!-- JavaScript -->
-          <div class="about__skill-JavaScript">
-            <img src="./img/skill/javascript.svg" alt="" width="200" height="auto">
-          </div>
-
-          <!-- Sass -->
-          <div class="about__skill-Sass">
-            <img src="./img/skill/sass.svg" alt="" width="200" height="100%">
-          </div>
-
-          <!-- Git -->
-          <div class="about__skill-Git">
-            <img src="./img/skill/github.svg" alt="" width="200" height="100%">
-          </div>
-
-          <!-- python -->
-          <div class="about__slill-Python">
-            <img src="./img/skill/python.svg" alt="" width="200" height="100%">
+      <section class="works section" id="works">
+        <div class="inner">
+          <h2 class="title">Works</h2>
+          <div class="works-list">
+            <a class="works-item" href="#">
+              <p class="works-img"><img src="./img/works/aono.png" alt="" /></p>
+              <p class="works-name">蒼乃建設</p>
+              <p class="works-info">Design / Coding(Responsive)</p>
+            </a>
+            <a class="works-item" href="#">
+              <p class="works-img"><img src="./img/works/progate.png" alt="" /></p>
+              <p class="works-name">Progate</p>
+              <p class="works-info">Design / Coding(Responsive) / WordPress</p>
+            </a>
+            <a class="works-item" href="#">
+              <p class="works-img"><img src="./img/works/xeory.png" alt="" /></p>
+              <p class="works-name">xeory</p>
+              <p class="works-info">Design / Coding(Responsive)</p>
+            </a>
           </div>
         </div>
       </section>
+      <!-- /works -->
+
+      <!-- skill -->
+      <section class="skill section" id="skill">
+        <div class="inner">
+          <h2 class="title">Skill</h2>
+          <div class="skill-list">
+            <div class="skill-item">
+              <p class="skill-img"><img src="img/skill/html5.svg" alt="" width="100%"></p>
+              <div class="skill-body">
+                <h3 class="skill-name">HTML5</h3>
+                <p class="skill-text">
+                  <!-- テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります。</p> -->
+              </div>
+            </div>
+            <div class="skill-item">
+              <p class="skill-img"><img src="img/skill/css3.svg" alt="" width="88%"></p>
+              <div class="skill-body">
+                <h3 class="skill-name">CSS</h3>
+                <p class="skill-text">
+                  <!-- テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります。</p> -->
+              </div>
+            </div>
+            <div class="skill-item">
+              <p class="skill-img"><img src="img/skill/javascript.svg" alt=""></p>
+              <div class="skill-body">
+                <h3 class="skill-name">JavaScript</h3>
+                <p class="skill-text">
+                  <!-- テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります。</p> -->
+              </div>
+            </div>
+            <div class="skill-item">
+              <p class="skill-img"><img src="img/skill/sass.svg" alt=""></p>
+              <div class="skill-body">
+                <h3 class="skill-name">Sass</h3>
+                <p class="skill-text">
+                  <!-- テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります。</p> -->
+              </div>
+            </div>
+            <div class="skill-item">
+              <p class="skill-img"><img src="img/skill/bootstrap.svg" alt=""></p>
+              <div class="skill-body">
+                <h3 class="skill-name">Bootstrap</h3>
+                <p class="skill-text">
+                  <!-- テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります。</p> -->
+              </div>
+            </div>
+            <div class="skill-item">
+              <p class="skill-img"><img src="img/skill/python.svg" alt=""></p>
+              <div class="skill-body">
+                <h3 class="skill-name">Python</h3>
+                <p class="skill-text">
+                  <!-- テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります。</p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /skill -->
 
       <!-- contact -->
-      <div class="separate"></div>
-      <h2 id="contact" class="title">
-        Contact
-      </h2>
-      <section class="contact">
-        <p class="contact__text">制作の依頼・ご相談などお気軽にお問い合わせください。</p>
-        <p class="contact__text">下記フォームよりわかる範囲でご記入ください。必須の項目は必ずご記入お願いします。</p>
-
-        <form class="contact__form">
-          <label class="contact__form__label" for="name">
-            お名前
-          </label>
-          <input class="contact__form__input" type="text" id="name" name="firstname" placeholder="Your name..">
-
-          <label class="contact__form__label" for="address">
-            ご連絡先
-          </label>
-          <input class="contact__form__input" type="text" id="address" name="firstname" placeholder="Your address..">
-
-          <label class="contact__form__label" for="subject">
-            お問い合わせ内容
-          </label>
-          <textarea class="contact__form__input" id="subject" name="subject" placeholder="Write something.."></textarea>
-          
-          <input class="contact__form__submit" type="submit" value="内容を送信">
-        </form>
+      <section class="contact section" id="contact">
+        <div class="inner">
+          <h2 class="title">Contact</h2>
+          <p class="lead">
+            お問い合わせは、<br class="sp-only">SNSにてお願いいたします。
+          </p>
+          <div class="contact-list">
+            <a class="contact-item" href="https://twitter.com/_9mak___" target="_blank" rel="noopener">Twitter</a>
+            <a class="contact-item" href="https://www.instagram.com/svtltv2" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
       </section>
+      <!-- /contact -->
+      <div class="page-top" id="js-page-top">
+        <span class="material-icons-outlined">expand_less</span>
+      </div>
     </main>
 
     <!-- footer -->
     <footer class="footer">
-      <nav class="nav social">
-        <ul class="nav__list">
-          <li class="nav__list___item">
-            <a href="https://www.instagram.com/svtltv2" class="nav__list__item-insta">Instagram</a>
-          </li>
-          <li class="nav__list___item">
-            <a href="https://twitter.com/_9mak___" class="nav__list__item-twitter">Twitter</a>
-          </li>
-        </ul>
-      </nav>
-
-      <!-- copyright -->
-      <div class="copy">
-        <small>© Kazuki Oguma All rights reserved.</small>
-      </div>
+      <div class="copyright">&copy;Kazuki Oguma</div>
     </footer>
-  </wrapper>
+    <!-- /footer -->
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type='text/javascript' src="js/script.js"></script>
 </body>
 </html>
