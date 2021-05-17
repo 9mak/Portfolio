@@ -1,466 +1,551 @@
 @charset "UTF-8";
-.header {
-  position: relative;
+html {
+  font-size: 62.5%;
+  font-family: 'Noto Serif JP', serif;
 }
 
-.header .image {
-  z-index: -1;
-}
-
-.header .text {
-  color: white;
-  position: absolute;
-  top: 30%;
-  bottom: 40%;
-  right: 20%;
-  -ms-writing-mode: tb-rl;
-  -webkit-writing-mode: vertical-rl;
-          writing-mode: vertical-rl;
-}
-
-.header .container {
-  padding: 1%;
-  background-color: white;
-  width: 90%;
-  position: -webkit-sticky;
-  position: sticky;
-  left: 5%;
-  bottom: 80%;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1.5fr;
-      grid-template-columns: 1fr 1.5fr;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.header .container .logo {
-  margin: 4%;
-}
-
-.header .container .nav__list__item {
-  margin-left: 2%;
-  padding-bottom: 2%;
-  display: inline;
+ul, li {
   list-style: none;
 }
 
-.header .container .nav__list__item--nomal {
-  font-size: 0.9rem;
+a {
   text-decoration: none;
-  color: #269d81;
-  font-weight: bold;
-  padding: 2% 1%;
+  color: black;
 }
 
-.header .container .nav__list__item--nomal:hover {
-  border-bottom: #269d81 solid;
-  -webkit-transition: border 0.1s;
-  transition: border 0.1s;
+.header {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 300px 1fr;
+      grid-template-columns: 300px 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  background-color: #FFFFFF;
 }
 
-.header .container .nav__list__item--black {
-  text-decoration: none;
-  background-color: black;
-  color: white;
-  padding: 2% 4%;
-}
-
-.header .container .nav__list__item--black:hover {
-  opacity: 0.6;
-}
-
-.main {
-  background-color: #edf8f6;
-}
-
-.main .state__container {
+.header__img {
+  position: absolute;
+  z-index: -1;
   margin: 0;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[2];
-      grid-template-columns: repeat(2, 1fr);
+  padding: 0;
 }
 
-.main .state__container__text-title {
-  font-size: 13px;
+.header__message {
+  position: absolute;
+  font-size: 6rem;
+  color: white;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+}
+
+.header__logo {
+  font-size: 5rem;
+  color: #1688BF;
+}
+
+.header__nav {
+  font-size: 2rem;
+  margin: 0 30px 0 auto;
+}
+
+.header__nav__item {
+  margin: 0 10px;
+  display: inline-block;
+  border-bottom: 1px solid white;
+  -webkit-transition: border 0.5s;
+  transition: border 0.5s;
+}
+
+.header__nav__item:hover {
+  border-bottom: 1px solid black;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.header__nav__item::before {
+  content: "/";
+  color: #1688BF;
+}
+
+.news {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.main .state__container__text-title::before {
-  content: " ";
-  border-top: 0.5px black solid;
-  margin-left: 15%;
-  padding: 0 5%;
-}
-
-.main .state__container__text-item {
-  margin-left: 15%;
-}
-
-.main .business__container-first {
-  margin: 5%;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
-  text-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.main .business__container-first h3 {
-  font-size: 13px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.main .business__container-first h3::before {
-  content: " ";
-  border-top: 0.5px black solid;
-  margin-left: 15%;
-  padding: 0 5%;
-}
-
-.main .business__container-first a {
-  text-decoration: none;
-  color: black;
-}
-
-.main .business__container-second {
-  display: -ms-grid;
-  display: grid;
-}
-
-.main .business__container-second img:hover {
-  opacity: 0.5;
-  z-index: -1;
-  -webkit-transition: opacity 0.5s;
-  transition: opacity 0.5s;
-}
-
-.main .business__container-second .prod {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-column: 1/3;
-  position: relative;
-}
-
-.main .business__container-second .prod a::before {
-  z-index: 1;
-  position: absolute;
-  content: "生産";
-  font-size: 1.3rem;
-  color: white;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.main .business__container-second .serv {
-  -ms-grid-column: 3;
-  -ms-grid-column-span: 2;
-  grid-column: 3/5;
-  position: relative;
-}
-
-.main .business__container-second .serv a::before {
-  z-index: 1;
-  position: absolute;
-  content: "農業サービス";
-  font-size: 1.3rem;
-  color: white;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.main .business__container-second .agri {
-  -ms-grid-column: 5;
-  -ms-grid-column-span: 2;
-  grid-column: 5/7;
-  position: relative;
-}
-
-.main .business__container-second .agri a::before {
-  z-index: 1;
-  position: absolute;
-  content: "アグリテクノロジー";
-  font-size: 1.3rem;
-  color: white;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.main .business__container-second .cons {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 3;
-  grid-column: 1/4;
-  position: relative;
-}
-
-.main .business__container-second .cons a::before {
-  z-index: 1;
-  position: absolute;
-  content: "農業コンサルティング";
-  font-size: 1.3rem;
-  color: white;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.main .business__container-second .deve {
-  -ms-grid-column: 4;
-  -ms-grid-column-span: 3;
-  grid-column: 4/7;
-  position: relative;
-}
-
-.main .business__container-second .deve a::before {
-  z-index: 1;
-  position: absolute;
-  content: "商品開発";
-  font-size: 1.3rem;
-  color: white;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.main .about__container-first {
-  margin: 5%;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
-  text-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.main .about__container-first h3 {
-  font-size: 13px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.main .about__container-first h3::before {
-  content: "";
-  border-top: 0.5px black solid;
-  margin-left: 15%;
-  padding: 0 5%;
-}
-
-.main .about__container-second {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
-}
-
-.main .about__container-second .toha {
-  position: relative;
-}
-
-.main .about__container-second .toha::before {
-  z-index: 1;
-  position: absolute;
-  content: "舞台ファームとは";
-  font-size: 1.3rem;
-  color: white;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.main .about__container-second .mirai {
-  position: relative;
-}
-
-.main .about__container-second .mirai::before {
-  z-index: 1;
-  position: absolute;
-  content: "舞台ファームが考える農業の未来とは？";
-  font-size: 1.3rem;
-  color: white;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.main .about__container-second .riku {
-  position: relative;
-}
-
-.main .about__container-second .riku::before {
-  z-index: 1;
-  position: absolute;
-  content: "採用情報";
-  font-size: 1.3rem;
-  color: white;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.main .about__container-second img:hover {
-  opacity: 0.5;
-  z-index: -1;
-  -webkit-transition: opacity 0.5s;
-  transition: opacity 0.5s;
-}
-
-.main .news__container-first {
-  margin: 5%;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
-  text-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.main .news__container-first h3 {
-  font-size: 13px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.main .news__container-first h3::before {
-  content: " ";
-  border-top: 0.5px black solid;
-  margin-left: 15%;
-  padding: 0 5%;
-}
-
-.main .news__container-first a {
-  text-decoration: none;
-  color: black;
-}
-
-.main .news__container-second {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
-}
-
-.main .contact {
-  padding-bottom: 10%;
-  background-color: #269d81;
-}
-
-.main .contact__container {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 500px 1fr 1fr;
-      grid-template-columns: 500px 1fr 1fr;
-  -ms-grid-rows: 200px;
-      grid-template-rows: 200px;
+  margin: 100vh 0 0 0;
 }
 
-.main .contact__container__items-first {
-  margin: 5% 0 0 20%;
+.news .title {
+  margin: 0 auto;
+}
+
+.news .title__txt {
+  font-size: 5rem;
+}
+
+.news .title__txt::after {
+  content: "\Aお知らせ";
+  white-space: pre;
+  font-size: 1.5rem;
+}
+
+.news .title__button {
+  font-size: 3rem;
+  border: 1px solid black;
+  background: black;
   color: white;
+  -webkit-transition: all 1s;
+  transition: all 1s;
 }
 
-.main .contact__container__items-first h2 {
-  font-size: 34px;
+.news .title__button:hover {
+  color: black;
+  background: white;
+  -webkit-border-start: 40px solid;
+          border-inline-start: 40px solid;
+  -webkit-writing-mode: horizontal-tb;
+      -ms-writing-mode: lr-tb;
+          writing-mode: horizontal-tb;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
-.main .contact__container__items-first h2::before {
+.news .article {
+  margin: 0 10vw 0 0;
+}
+
+.news .article__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 1px solid black;
+  margin: 3% 0 0 0;
+  padding: 0 500px 0 0;
+}
+
+.news .article__item__date {
+  font-size: 1rem;
+}
+
+.news .article__item__kind {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.news .article__item__info {
+  font-size: 1.5rem;
+}
+
+.news .article__item:hover {
+  opacity: 0.5;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+
+.mission {
+  background-color: #F0F5F9;
+  margin: 5% 0;
+  padding: 10% 0;
+}
+
+.mission .title {
+  font-size: 5rem;
+  text-align: center;
+}
+
+.mission .title::after {
+  content: "\A企業理念";
+  white-space: pre;
+  font-size: 1.5rem;
+}
+
+.mission .message {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.buisiness .container {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "title title" "first second" "third forth";
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.buisiness .container .title {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: title;
+  font-size: 5rem;
+  text-align: center;
+}
+
+.buisiness .container .title::after {
+  content: "\A事業内容";
+  white-space: pre;
+  font-size: 1.5rem;
+}
+
+.buisiness .container .item-first {
+  margin: 5% 100px 0 auto;
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: first;
+  width: 50%;
+  text-align: center;
+}
+
+.buisiness .container .item-first__ttl {
+  color: #1688BF;
+  font-size: 3rem;
+}
+
+.buisiness .container .item-second {
+  margin: 5% auto 0 100px;
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: second;
+  width: 50%;
+  text-align: center;
+}
+
+.buisiness .container .item-second__ttl {
+  color: #1688BF;
+  font-size: 3rem;
+}
+
+.buisiness .container .item-third {
+  margin: 5% 100px 10% auto;
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: third;
+  width: 50%;
+  text-align: center;
+}
+
+.buisiness .container .item-third__ttl {
+  color: #1688BF;
+  font-size: 3rem;
+}
+
+.buisiness .container .item-forth {
+  margin: 5% auto 10% 100px;
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: forth;
+  width: 50%;
+  text-align: center;
+}
+
+.buisiness .container .item-forth__ttl {
+  color: #1688BF;
+  font-size: 3rem;
+}
+
+.recruit {
+  background-color: #F0F5F9;
+}
+
+.recruit .container {
+  padding: 10% 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.recruit .container .title {
+  width: 100%;
+  font-size: 5rem;
+  text-align: center;
+}
+
+.recruit .container .title::after {
+  content: "\A採用情報";
+  white-space: pre;
+  font-size: 1.5rem;
+}
+
+.recruit .container .item-first {
+  width: 30%;
+  text-align: center;
+  margin: 0 auto;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.recruit .container .item-first::before {
+  content: "新卒採用";
+  position: absolute;
+  color: white;
+  z-index: 1;
+  font-size: large;
+  margin: 9% 0 0 12%;
+}
+
+.recruit .container .item-first__img {
+  position: relative;
+}
+
+.recruit .container .item-first:hover {
   content: "";
-  padding-right: 10%;
-  border-left: 10px white solid;
+  opacity: 0.5;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
-.main .contact__container__items-first p {
-  font-size: 14px;
+.recruit .container .item-second {
+  width: 30%;
+  text-align: center;
+  margin: 0 auto;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
-.main .contact__container__items-second {
-  margin: 15% 0 15% 30%;
+.recruit .container .item-second::before {
+  content: "中途採用";
+  position: absolute;
+  color: white;
+  z-index: 1;
+  font-size: large;
+  margin: 9% 0 0 12%;
 }
 
-.main .contact__container__items-third {
-  margin: 15% 15% 15% 20%;
+.recruit .container .item-second__img {
+  position: relative;
 }
 
-.footer {
-  background-color: #edf8f6;
+.recruit .container .item-second:hover {
+  content: "";
+  opacity: 0.5;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
-.footer__container-first {
-  margin: 5% 10%;
+.recruit .container .item-third {
+  width: 30%;
+  text-align: center;
+  margin: 0 auto;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.recruit .container .item-third::before {
+  content: "障害者採用";
+  position: absolute;
+  color: white;
+  z-index: 1;
+  font-size: large;
+  margin: 9% 0 0 12%;
+}
+
+.recruit .container .item-third__img {
+  position: relative;
+}
+
+.recruit .container .item-third:hover {
+  content: "";
+  opacity: 0.5;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.recruit .button {
+  display: inline-block;
+  margin: 0 40% 3% 40%;
+  padding: 2% 0.5%;
+  width: 20%;
+  font-size: 3rem;
+  border: 1px solid black;
+  background: #4B4B4B;
+  color: white;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+.recruit .button:hover {
+  color: black;
+  background: white;
+  -webkit-border-start: 40px solid;
+          border-inline-start: 40px solid;
+  -webkit-writing-mode: horizontal-tb;
+      -ms-writing-mode: lr-tb;
+          writing-mode: horizontal-tb;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.about {
+  margin: 5% auto;
+}
+
+.about .title {
+  font-size: 5rem;
+  text-align: center;
+}
+
+.about .title::after {
+  content: "\A DWLinkについて";
+  white-space: pre;
+  font-size: 1.5rem;
+}
+
+.about .container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[4];
-      grid-template-columns: repeat(4, 1fr);
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  justify-items: center;
 }
 
-.footer__container-first h2 {
-  color: #269d81;
+.about .container .inner__list__title {
+  color: gray;
+  float: left;
+  width: 50%;
+  margin: 2% 0 0 0;
+  font-size: 1.5rem;
+  background: #F0F5F9;
 }
 
-.footer__container-first ul .sns a {
-  text-decoration: none;
-  color: #269d81;
+.about .container .inner__list__item {
+  margin: 2% 0 0 300px;
+  font-size: 1.5rem;
 }
 
-.footer__container-first ul li {
-  list-style: none;
+.contact {
+  background-color: #F0F5F9;
+  padding: 100px;
 }
 
-.footer__container-first ul li a {
-  text-decoration: none;
-  color: #269d81;
+.contact .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
 }
 
-.footer__container-second {
-  margin: 10%;
+.contact .container .title {
+  width: 100%;
+  text-align: center;
+  font-size: 5rem;
+}
+
+.contact .container .title::after {
+  content: "\A お問い合わせ";
+  white-space: pre;
+  font-size: 1.5rem;
+}
+
+.contact .container .name {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  width: 30%;
+  margin: 0 20% 3% 20%;
+  font-size: 2rem;
+}
+
+.contact .container .name__ttl::after {
+  content: " ※必須";
+  color: red;
+}
+
+.contact .container .cname {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  width: 30%;
+  margin: 0 20% 3% 20%;
+  font-size: 2rem;
+}
+
+.contact .container .mail {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  width: 30%;
+  margin: 0 20% 3% 20%;
+  font-size: 2rem;
+}
+
+.contact .container .mail__ttl::after {
+  content: " ※必須";
+  color: red;
+}
+
+.contact .container .message {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  width: 30%;
+  margin: 0 20% 4% 20%;
+  font-size: 2rem;
+}
+
+.contact .container .message__txt {
+  padding: 100px 0;
+}
+
+.contact .container .button {
+  display: inline-block;
+  margin: 0 40% 3% 40%;
+  padding: 2% 0.5%;
+  width: 20%;
+  font-size: 3rem;
+  border: 1px solid black;
+  background: #4B4B4B;
+  color: white;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+.contact .container .button:hover {
+  color: black;
+  background: white;
+  -webkit-border-start: 40px solid;
+          border-inline-start: 40px solid;
+  -webkit-writing-mode: horizontal-tb;
+      -ms-writing-mode: lr-tb;
+          writing-mode: horizontal-tb;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
 .footer .copy {
   text-align: center;
-  padding: 2% 10%;
+  background: black;
+  color: white;
+  padding: 2% 0;
 }
 /*# sourceMappingURL=style.css.map */

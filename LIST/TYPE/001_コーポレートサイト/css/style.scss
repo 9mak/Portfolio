@@ -1,391 +1,445 @@
+// all
+// ========================================================
+html {
+  font-size: 62.5%;
+  font-family: 'Noto Serif JP', serif;
+}
 
+ul,li {
+  list-style: none;
+}
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
+// header
+// ========================================================
 .header {
-  position: relative;
-  .image {
-    z-index: -1;
-  }
-
-  .text {
-    color: white;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  align-items: center;
+  justify-items: center;
+  background-color: #FFFFFF;
+  &__img {
     position: absolute;
-    top: 30%;
-    bottom: 40%;
-    right: 20%;
-    -ms-writing-mode: tb-rl;
-    writing-mode: vertical-rl;
+    z-index: -1;
+    margin: 0;
+    padding: 0;
   }
+  &__message {
+    position: absolute;
+    font-size: 6rem;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+  }
+  &__logo {
+    font-size: 5rem;
+    color: #1688BF;
+  }
+  &__nav {
+    font-size: 2rem;
+    margin: 0 30px 0 auto;
+    &__item {
+      margin: 0 10px;
+      display: inline-block;
+      border-bottom: 1px solid white;
+      transition: border 0.5s;
+      &:hover {
+        border-bottom: 1px solid black;
+        transition: all 0.5s;
+      }
+      &::before {
+        content: "/";
+        color: #1688BF;
 
+      }
+    }
+  }
+}
+
+// main
+// ========================================================
+// - news
+.news {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 100vh 0 0 0;
+  .title {
+    margin: 0 auto;
+    &__txt {
+      font-size: 5rem;
+      &::after {
+        content: "\Aお知らせ";
+        white-space: pre;
+        font-size: 1.5rem;
+      }
+    }
+    &__button {
+      font-size: 3rem;
+      border: 1px solid black;
+      background: black;
+      color: white;
+      transition: all 1s;
+      &:hover {
+        color: black;
+        background: white;
+        border-inline-start: 40px solid;
+        writing-mode: horizontal-tb;
+        transition: 1s;
+      }
+    }
+  }
+  .article {
+    margin: 0 10vw 0 0;
+    &__item {
+      display: flex;
+      border-bottom: 1px solid black;
+      margin: 3% 0 0 0;
+      padding: 0 500px 0 0;
+      &__date {
+        font-size: 1rem;
+      }
+      &__kind {
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid black;
+      }
+      &__info {
+        font-size: 1.5rem;
+      }
+      &:hover {
+        opacity: 0.5;
+        transition: opacity 0.2s;
+      }
+    }
+  }
+}
+
+// - mission
+.mission {
+  background-color: #F0F5F9;
+  margin: 5% 0;
+  padding: 10% 0;
+  .title {
+    font-size: 5rem;
+    text-align: center;
+    &::after {
+      content: "\A企業理念";
+      white-space: pre;
+      font-size: 1.5rem;
+    }
+  }
+  .message {
+    font-size: 3rem;
+    text-align: center;
+  }
+}
+
+// - buisiness
+.buisiness {
   .container {
-    padding: 1%;
-    background-color: white;
-    width: 90%;
-    position: sticky;
-    left: 5%;
-    bottom: 80%;
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-areas:
+    "title title"
+    "first second"
+    "third forth"
+    ;
+    justify-content: center;
+    .title {
+      grid-area: title;
+      font-size: 5rem;
+      text-align: center;
+      &::after {
+        content: "\A事業内容";
+        white-space: pre;
+        font-size: 1.5rem;
+      }
+    }
+    .item {
+      &-first {
+        margin: 5% 100px 0 auto;
+        grid-area: first;
+        width: 50%;
+        text-align: center;
+        &__ttl {
+          color: #1688BF;
+          font-size: 3rem;
+        }
+      }
+      &-second {
+        margin: 5% auto 0 100px;
+        grid-area: second;
+        width: 50%;
+        text-align: center;
+        &__ttl {
+          color: #1688BF;
+
+          font-size: 3rem;
+        }
+      }
+      &-third {
+        margin: 5% 100px 10% auto;
+        grid-area: third;
+        width: 50%;
+        text-align: center;
+        &__ttl {
+          color: #1688BF;
+          font-size: 3rem;
+        }
+      }
+      &-forth {
+        margin: 5% auto 10% 100px;
+        grid-area: forth;
+        width: 50%;
+        text-align: center;
+        &__ttl {
+          color: #1688BF;
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+}
+
+// - recruit
+.recruit {
+  background-color: #F0F5F9;
+  .container {
+    padding: 10% 0;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    .logo {
-      margin: 4%;
-    }
-    .nav {
-      &__list {
-        &__item {
-          margin-left: 2%;
-          padding-bottom: 2%;
-          display: inline;
-          list-style: none;
-          &--nomal {
-            font-size: 0.9rem;
-            text-decoration: none;
-            color: rgb(38,157,129);
-            font-weight: bold;
-            padding: 2% 1%;
-            &:hover {
-              border-bottom: rgb(38,157,129) solid;
-              transition: border 0.1s;
-              }
-          }
-          &--black {
-            text-decoration: none;
-            background-color: black;
-            color: white;
-            padding: 2% 4%;
-            &:hover {
-              opacity: 0.6;
-            }
-          }
-        }
+    justify-content: center;
+    .title {
+      width: 100%;
+      font-size: 5rem;
+      text-align: center;
+      &::after {
+        content: "\A採用情報";
+        white-space: pre;
+        font-size: 1.5rem;
       }
     }
-  }
-}
-
-.main {
-  background-color: rgb(237,248,246);
-  .state {
-    &__container {
-      margin: 0;
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      &__text {
-        &-title {
-          font-size: 13px;
-          display: flex;
-          align-items: center;
-          &::before {
-            content: " ";
-            border-top: 0.5px black solid;
-            margin-left: 15%;
-            padding: 0 5%;
-          }
-        }
-        &-item {
-          margin-left: 15%;
-        }
-      }
-    }
-  }
-  .business {
-    &__container {
+    .item {
       &-first {
-        margin: 5%;
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
+        width: 30%;
         text-align: center;
-        align-items: center;
-        h2 {
-
-        }
-        h3 {
-          font-size: 13px;
-          display: flex;
-          align-items: center;
-          &::before {
-            content: " ";
-            border-top: 0.5px black solid;
-            margin-left: 15%;
-            padding: 0 5%;
-          }
-        }
-        a {
-          text-decoration: none;
-          color: black;
-        }
-      }
-      &-second {
-        display: grid;
-        img:hover {
-          opacity: 0.5;
-          z-index: -1;
-          transition: opacity 0.5s;
-        }
-        .prod {
-          grid-column: 1/3;
-          position: relative;
-          a::before {
-            z-index: 1;
-            position: absolute;
-            content: "生産";
-            font-size: 1.3rem;
-            color: white;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-          }
-        }
-        .serv {
-          grid-column: 3/5;
-          position: relative;
-          a::before {
-            z-index: 1;
-            position: absolute;
-            content: "農業サービス";
-            font-size: 1.3rem;
-            color: white;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-          }
-        }
-        .agri {
-          grid-column: 5/7;
-          position: relative;
-          a::before {
-            z-index: 1;
-            position: absolute;
-            content: "アグリテクノロジー";
-            font-size: 1.3rem;
-            color: white;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-          }
-        }
-        .cons {
-          grid-column: 1/4;
-          position: relative;
-          a::before {
-            z-index: 1;
-            position: absolute;
-            content: "農業コンサルティング";
-            font-size: 1.3rem;
-            color: white;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-          }
-        }
-        .deve {
-          grid-column: 4/7;
-          position: relative;
-          a::before {
-            z-index: 1;
-            position: absolute;
-            content: "商品開発";
-            font-size: 1.3rem;
-            color: white;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-          }
-        }
-      }
-    }
-  }
-  .about {
-    &__container {
-      &-first {
-        margin: 5%;
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        text-align: center;
-        align-items: center;
-        h2 {
-
-        }
-        h3 {
-          font-size: 13px;
-          display: flex;
-          align-items: center;
-          &::before {
-            content: "";
-            border-top: 0.5px black solid;
-            margin-left: 15%;
-            padding: 0 5%;
-          }
-        }
-      }
-      &-second {
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        .toha {
-          position: relative;
-          &::before {
-            z-index: 1;
-            position: absolute;
-            content: "舞台ファームとは";
-            font-size: 1.3rem;
-            color: white;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-          }
-        }
-        .mirai {
-          position: relative;
-          &::before {
-            z-index: 1;
-            position: absolute;
-            content: "舞台ファームが考える農業の未来とは？";
-            font-size: 1.3rem;
-            color: white;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-          }
-        }
-        .riku {
-          position: relative;
-          &::before {
-            z-index: 1;
-            position: absolute;
-            content: "採用情報";
-            font-size: 1.3rem;
-            color: white;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-          }
-        }
-        img:hover {
-          opacity: 0.5;
-          z-index: -1;
-          transition: opacity 0.5s;
-        }
-      }
-    }
-  }
-  .news {
-    &__container {
-      &-first {
-        margin: 5%;
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        text-align: center;
-        align-items: center;
-        h2 {
-
-        }
-        h3 {
-          font-size: 13px;
-          display: flex;
-          align-items: center;
-          &::before {
-            content: " ";
-            border-top: 0.5px black solid;
-            margin-left: 15%;
-            padding: 0 5%;
-          }
-        }
-        a {
-          text-decoration: none;
-          color: black;
-        }
-      }
-      &-second {
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-      }
-    }
-  }
-  .contact {
-    padding-bottom: 10%;
-    background-color: rgb(38,157,129);
-    &__container {
-      justify-content: center;
-      display: grid;
-      grid-template-columns: 500px 1fr 1fr;
-      grid-template-rows: 200px;
-      &__items {
-        &-first {
-          margin: 5% 0 0 20%;
+        margin: 0 auto;
+        transition: 0.5s;
+        &::before {
+          content: "新卒採用";
+          position: absolute;
           color: white;
-          h2 {
-            font-size: 34px;
-            &::before {
-              content: "";
-              padding-right: 10%;
-              border-left: 10px white solid;
-            }
-          }
-          p {
-            font-size: 14px;
-          }
+          z-index: 1;
+          font-size: large;
+          margin: 9% 0 0 12%;
         }
-        &-second {
-          margin: 15% 0 15% 30%;
+        &__img {
+          position: relative;
         }
-        &-third {
-          margin: 15% 15% 15% 20%;
+        &:hover {
+          content: "";
+          opacity: 0.5;
+          transition: 0.5s;
+        }
+      }
+      &-second {
+        width: 30%;
+        text-align: center;
+        margin: 0 auto;
+        transition: 0.5s;
+        &::before {
+          content: "中途採用";
+          position: absolute;
+          color: white;
+          z-index: 1;
+          font-size: large;
+          margin: 9% 0 0 12%;
+        }
+        &__img {
+          position: relative;
+        }
+        &:hover {
+          content: "";
+          opacity: 0.5;
+          transition: 0.5s;
+        }
+      }
+      &-third {
+        width: 30%;
+        text-align: center;
+        margin: 0 auto;
+        transition: 0.5s;
+        &::before {
+          content: "障害者採用";
+          position: absolute;
+          color: white;
+          z-index: 1;
+          font-size: large;
+          margin: 9% 0 0 12%;
+        }
+        &__img {
+          position: relative;
+        }
+        &:hover {
+          content: "";
+          opacity: 0.5;
+          transition: 0.5s;
+        }
+      }
+    }
+  }
+  .button {
+    display: inline-block;
+    margin: 0 40% 3% 40%;
+    padding: 2% 0.5%;
+    width: 20%;
+    font-size: 3rem;
+    border: 1px solid black;
+    background: #4B4B4B;
+    color: white;
+    transition: all 1s;
+    &:hover {
+      color: black;
+      background: white;
+      border-inline-start: 40px solid;
+      writing-mode: horizontal-tb;
+      transition: 1s;
+    }
+  }
+}
+
+// - about
+.about {
+  margin: 5% auto;
+  .title {
+    font-size: 5rem;
+    text-align: center;
+    &::after {
+      content: "\A DWLinkについて";
+      white-space: pre;
+      font-size: 1.5rem;
+    }
+  }
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    .inner {
+      &__list {
+        &__title{
+          color: gray;
+          float: left;
+          width: 50%;
+          margin: 2% 0 0 0;
+          font-size: 1.5rem;
+          background: #F0F5F9;
+        }
+        &__item {
+          margin: 2% 0 0 300px;
+          font-size: 1.5rem;
         }
       }
     }
   }
 }
 
-.footer {
-  background-color: rgb(237,248,246);
-  &__container {
-    &-first {
-      margin: 5% 10%;
-      display: grid;
-      grid-template-columns: repeat(4,1fr);
-      h2 {
-        color: rgb(38,157,129);
+// - contact
+.contact {
+  background-color: #F0F5F9;
+  padding: 100px;
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    .title {
+      width: 100%;
+      text-align: center;
+      font-size: 5rem;
+      &::after {
+        content: "\A お問い合わせ";
+        white-space: pre;
+        font-size: 1.5rem;
       }
-      ul {
-        .sns {
-          a {
-            text-decoration: none;
-            color: rgb(38,157,129);
-          }
-        }
-        li {
-          list-style: none;
-          a {
-            text-decoration: none;
-            color: rgb(38,157,129);
-          }
+    }
+    .name {
+      display: grid;
+      grid-template-columns: 1fr;
+      width: 30%;
+      margin: 0 20% 3% 20%;
+      font-size: 2rem;
+      &__ttl {
+        &::after {
+          content: " ※必須";
+          color: red;
         }
       }
     }
-    &-second {
-      margin: 10%;
+    .cname {
       display: grid;
-      grid-template-columns: repeat(3,1fr);
-      .kanren {
-
+      grid-template-columns: 1fr;
+      width: 30%;
+      margin: 0 20% 3% 20%;
+      font-size: 2rem;
+    }
+    .mail {
+      display: grid;
+      grid-template-columns: 1fr;
+      width: 30%;
+      margin: 0 20% 3% 20%;
+      font-size: 2rem;
+      &__ttl {
+        &::after {
+          content: " ※必須";
+          color: red;
+        }
       }
-      .sityo {
-
+    }
+    .message {
+      display: grid;
+      grid-template-columns: 1fr;
+      width: 30%;
+      margin: 0 20% 4% 20%;
+      font-size: 2rem;
+      &__txt {
+        padding: 100px 0;
       }
-      .sentei {
-
+    }
+    .button {
+      display: inline-block;
+      margin: 0 40% 3% 40%;
+      padding: 2% 0.5%;
+      width: 20%;
+      font-size: 3rem;
+      border: 1px solid black;
+      background: #4B4B4B;
+      color: white;
+      transition: all 1s;
+      &:hover {
+        color: black;
+        background: white;
+        border-inline-start: 40px solid;
+        writing-mode: horizontal-tb;
+        transition: 1s;
       }
     }
   }
+}
+
+// footer
+// ========================================================
+.footer {
   .copy {
     text-align: center;
-    padding: 2% 10%;
+    background: black;
+    color: white;
+    padding: 2% 0;
   }
 }
