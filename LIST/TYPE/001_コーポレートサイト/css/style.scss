@@ -162,7 +162,7 @@ a {
     }
     .item {
       &-first {
-        margin: 5% 100px 0 auto;
+        margin: 0 90px 0 auto;
         grid-area: first;
         width: 50%;
         text-align: center;
@@ -170,20 +170,25 @@ a {
           color: #1688BF;
           font-size: 3rem;
         }
+        &__txt {
+          font-size: 1.5rem;
+        }
       }
       &-second {
-        margin: 5% auto 0 100px;
+        margin: 2% 0 0 50px;
         grid-area: second;
         width: 50%;
         text-align: center;
         &__ttl {
           color: #1688BF;
-
           font-size: 3rem;
+        }
+        &__txt {
+          font-size: 1.5rem;
         }
       }
       &-third {
-        margin: 5% 100px 10% auto;
+        margin: 8% 90px 0 auto;
         grid-area: third;
         width: 50%;
         text-align: center;
@@ -191,15 +196,21 @@ a {
           color: #1688BF;
           font-size: 3rem;
         }
+        &__txt {
+          font-size: 1.5rem;
+        }
       }
       &-forth {
-        margin: 5% auto 10% 100px;
+        margin: 10% 0 10% 50px;
         grid-area: forth;
         width: 50%;
         text-align: center;
         &__ttl {
           color: #1688BF;
           font-size: 3rem;
+        }
+        &__txt {
+          font-size: 1.5rem;
         }
       }
     }
