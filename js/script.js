@@ -2,8 +2,8 @@
 window.addEventListener('load', init);
 function init() {
     // サイズを指定
-    const width = 500;
-    const height = 500;
+    const width = 1440;
+    const height = 700;
 
     // レンダラーを作成
     const canvasElement = document.querySelector('#myCanvas')

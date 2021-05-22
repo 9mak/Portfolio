@@ -64,10 +64,10 @@
       <div class="ware__num">01</div>
       <div class="ware__about">
         <div class="ware__about__title">Me</div>
-        <p>このページでは、</p>
-        <p>弊社のサービスをご紹介しております。</p>
-        <p>幅広いサービスを行っております。</p>
-        <button type="button">aaa</button>
+        <p class="ware__about__message">自分だけじゃなくて</p>
+        <p class="ware__about__message">誰かにとっての大切も、</p>
+        <p class="ware__about__message">大事にしていこう。</p>
+        <button class="ware__about__more" type="button">View More</button>
       </div>
     </section>
     <section class="skill">
@@ -75,39 +75,50 @@
       <div class="skill__about">
         <div class="skill__about__title">Skill</div>
         <div class="skill__about__set">
-          <img src="./img/skill/html5.svg" alt="" width="10%">
-          <img src="./img/skill/css3.svg" alt="" width="10%">
-          <img src="./img/skill/javascript.svg" alt="" width="10%">
-          <img src="./img/skill/sass.svg" alt="" width="10%">
-          <img src="./img/skill/bootstrap.svg" alt="" width="10%">
-          <img src="./img/skill/github.svg" alt="" width="10%">
-          <img src="./img/skill/python.svg" alt="" width="10%">
-          <img src="./img/skill/django.svg" alt="" width="10%">
-          <img src="./img/skill/linux.svg" alt="" width="10%">
-          <img src="./img/skill/jquery.svg" alt="" width="10%">
+          <img src="./img/skill/html5.svg" alt="" width="82%">
+          <img src="./img/skill/css3.svg" alt="" width="80%" height="80%">
+          <img src="./img/skill/javascript.svg" alt="" width="80%">
+          <img src="./img/skill/sass.svg" alt="" width="80%" height="80%">
+          <img src="./img/skill/bootstrap.svg" alt="" width="80%">
+          <img src="./img/skill/github.svg" alt="" width="80%">
+          <img src="./img/skill/python.svg" alt="" width="80%">
+          <img src="./img/skill/django.svg" alt="" width="80%">
         </div>
-        <div class="skill__about__learn">Learning now...
-          <img src="./img/skill/vue.svg" alt="" width="10%">
-          <img src="./img/skill/react.svg" alt="" width="10%">
-          <img src="./img/skill/photoshop.svg" alt="" width="10%">
-          <img src="./img/skill/lightroom.svg" alt="" width="10%">
+        <div class="skill__about__learn">Learning now...</div>
+        <div class="skill__about__set">
+          <img src="./img/skill/vue.svg" alt="" width="80%">
+          <img src="./img/skill/react.svg" alt="" width="80%">
+          <img src="./img/skill/photoshop.svg" alt="" width="80%">
+          <img src="./img/skill/lightroom.svg" alt="" width="80%">
         </div>
       </div>
     </section>
     <section class="works">
       <div class="works__num">03</div>
       <div class="works__about">
-        <div class="works__about__1">1</div>
-        <div class="works__about__2">2</div>
-        <div class="works__about__3">3</div>
+        <div class="works__about__title">Works</div>
+        <div class="works__about__container">
+          <div class="works__about__container-left">◀︎</div>
+          <img class="works__about__container-image" src="./img/works-sample.jpg" alt="" width="100%">
+          <div class="works__about__container-right">▶︎</div>
+        </div>
       </div>
     </section>
     <section class="contact">
       <div class="contact__num">04</div>
       <div class="contact__about">
-        <div class="contact__about__1">1</div>
-        <div class="contact__about__2">2</div>
-        <div class="contact__about__3">3</div>
+        <div class="contact__about__title">Contact</div>
+        <div class="contact__about__container">
+          <div class="contact__about__container-twitter">
+            Twitter
+          </div>
+          <div class="contact__about__container-instagram">
+            Instagram
+          </div>
+          <div class="contact__about__container-wantedly">
+            Wantedly
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -115,14 +126,8 @@
   <!-- footer -->
   <footer class="footer">
     <canvas id="myCanvas" class="three"></canvas>
-    <div class="nav">
-      <ul class="nav__item">
-        <li class="nav__item__home">HOME</li>
-        <li class="nav__item__me">01 - Me</li>
-        <li class="nav__item__skill">02 - Skill</li>
-        <li class="nav__item__works">03 - Works</li>
-        <li class="nav__item__contact">04 - Contact</li>
-      </ul>
+    <div class="top">
+      <a href="#">⬆︎</a>
     </div>
     <div class="copy">
       &copy Kazuki <a class="encore" href="#">O</a>guma

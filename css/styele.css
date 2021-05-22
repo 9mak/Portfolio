@@ -472,10 +472,29 @@ ul, li {
   height: 81.4vh;
   width: 100%;
   font-size: 2rem;
-  padding: 20.9% 22%;
+  padding: 10.9% 0 0 10%;
   color: white;
   background-color: #393e46;
   opacity: 0.8;
+}
+
+.main .ware__about__title {
+  font-size: 5rem;
+  margin: 3% auto;
+  border-bottom: 3px dotted;
+}
+
+.main .ware__about__message {
+  font-size: 3rem;
+  margin: 2% auto;
+}
+
+.main .ware__about__more {
+  font-size: 2rem;
+  width: 20%;
+  margin: 2% auto;
+  text-align: center;
+  background-color: #00adb5;
 }
 
 .main .skill {
@@ -510,10 +529,27 @@ ul, li {
   height: 100%;
   width: 100%;
   font-size: 2rem;
-  padding: 20.9% 22%;
+  padding: 10.9% 0 0 10%;
   color: #eeeeee;
   background-color: #393e46;
   opacity: 0.8;
+}
+
+.main .skill__about__title {
+  font-size: 5rem;
+  margin: 3% auto;
+  border-bottom: 3px dotted;
+}
+
+.main .skill__about__set {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[8];
+      grid-template-columns: repeat(8, 1fr);
+}
+
+.main .skill__about__learn {
+  margin: 2% auto;
 }
 
 .main .works {
@@ -548,10 +584,38 @@ ul, li {
   height: 100%;
   width: 100%;
   font-size: 2rem;
-  padding: 20.9% 22%;
+  padding: 10.9% 0 0 10%;
   color: #eeeeee;
   background-color: #393e46;
   opacity: 0.8;
+}
+
+.main .works__about__title {
+  font-size: 5rem;
+  margin: 3% auto;
+  border-bottom: 3px dotted;
+}
+
+.main .works__about__container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 2fr 1fr;
+      grid-template-columns: 1fr 2fr 1fr;
+}
+
+.main .works__about__container-left {
+  font-size: 6rem;
+  margin: 50% auto 30% auto;
+}
+
+.main .works__about__container-right {
+  font-size: 6rem;
+  margin: 50% auto 30% auto;
+}
+
+.main .works__about__container-image {
+  margin: 0 auto;
+  width: 74%;
 }
 
 .main .contact {
@@ -586,31 +650,57 @@ ul, li {
   height: 100%;
   width: 100%;
   font-size: 2rem;
-  padding: 20.9% 22%;
+  padding: 10.9% 0 0 10%;
   color: #eeeeee;
   background-color: #393e46;
   opacity: 0.8;
 }
 
+.main .contact__about__title {
+  font-size: 5rem;
+  margin: 3% auto;
+  border-bottom: 3px dotted;
+}
+
+.main .contact__about__container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+}
+
+.main .contact__about__container-twitter, .main .contact__about__container-instagram, .main .contact__about__container-wantedly {
+  margin: 0 auto;
+}
+
 .footer {
   height: 100vh;
   background-color: #222831;
+  position: relative;
 }
 
-.footer .nav {
-  height: 10%;
-  background-color: #00adb5;
+.footer .three {
+  height: 95%;
 }
 
-.footer .nav__item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+.footer .top {
+  position: absolute;
+  top: 89vh;
+  left: 95vw;
+  color: #00adb5;
+  background-color: #222831;
+  font-size: 5rem;
+  margin: 0 5% 0 0;
+}
+
+.footer .top a {
+  color: #00adb5;
+}
+
+.footer .top a:hover {
+  color: white;
+  -webkit-transition: all 1s;
+  transition: all 1s;
 }
 
 .footer .copy {
@@ -618,7 +708,7 @@ ul, li {
   height: 5%;
   width: 100%;
   font-size: 1.5rem;
-  padding-top: 0.5%;
+  padding-top: 2%;
   color: #00adb5;
   background-color: #222831;
   text-align: center;
