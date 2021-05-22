@@ -1,10 +1,9 @@
 // ページの読み込みを待つ
 window.addEventListener('load', init);
-
 function init() {
     // サイズを指定
-    const width = 1440;
-    const height = 671;
+    const width = 500;
+    const height = 500;
 
     // レンダラーを作成
     const canvasElement = document.querySelector('#myCanvas')
@@ -33,7 +32,6 @@ function init() {
     // 毎フレーム時に実行されるループイベントです
     function tick() {
         // レンダリング
-        box.rotation.y += 0.01;
         renderer.render(scene, camera);
         requestAnimationFrame(tick);
     }
