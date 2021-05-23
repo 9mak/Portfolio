@@ -311,14 +311,14 @@ $breakpoints: (
         width: 3%;
         display: block;
         line-height: 1rem;
-        border: 4px #00adb5 solid;
+        border: 4px #222831 solid;
         margin: 2px 0 0 96%;
       }
       &-3 {
         width: 3%;
         display: block;
         line-height: 1rem;
-        border: 4px #00adb5 solid;
+        border: 4px #222831 solid;
         margin: 2px 0 0 96%;
       }
     }
@@ -331,192 +331,101 @@ $breakpoints: (
       z-index: -1;
     }
     &__num {
-      box-shadow: inset 0 10px 25px 0 rgba(238,238,238, .8);
       position: absolute;
       z-index: 1;
       top: 0;
       left: 0;
       height: 10%;
       width: 100%;
-      font-size: 15rem;
-      padding: 0 8% 10% 0;
-      text-align: right;
       color: #eeeeee;
+      font-size: 10rem;
+      text-align: right;
+      padding-right: 5%;
       background-color: #00adb5;
+      box-shadow: inset 0 10px 25px 0 rgba(238,238,238, .8);
+      @include mq(sm) {
+        font-size: 9rem;
+      }
+      @include mq(md) {
+        font-size: 10rem;
+      }
     }
     &__about {
-      box-shadow: inset 0 10px 25px 0 rgba(238,238,238, .8);
       position: absolute;
       top: 0;
       left: 0;
-      height: 81.4vh;
+      height: 92vh;
       width: 100%;
-      font-size: 2rem;
-      padding: 10.9% 0 0 10%;
-      color: white;
+      padding: 0 0 0 10%;
+      color: #eeeeee;
       background-color: #393e46;
-      opacity: 0.8;
+      box-shadow: inset 0 10px 25px 0 rgba(238,238,238, .8);
       &__title {
-        font-size: 5rem;
-        margin: 3% auto;
+        font-size: 3rem;
+        margin: 50% auto 0 auto;
         border-bottom: 3px dotted;
+        @include mq(sm) {
+          font-size: 3rem;
+          margin: 25% auto 0 auto;
+        }
+        @include mq(md) {
+          font-size: 6rem;
+          margin: 20% auto 0 auto;
+        }
+        @include mq(lg) {
+          font-size: 6rem;
+          margin: 15% auto 0 auto;
+        }
+        @include mq(xl) {
+          font-size: 6rem;
+          margin: 10% auto 0 auto;
+        }
       }
       &__message {
-        font-size: 3rem;
-        margin: 2% auto;
+        width: 100%;
+        font-size: 1rem;
+        margin: 30% auto 10% auto;
+        @include mq(sm) {
+          font-size: 1.5rem;
+          margin: 20% auto;
+        }
+        @include mq(md) {
+          font-size: 2rem;
+          margin: 5% auto;
+        }
+        @include mq(md) {
+          font-size: 2rem;
+          margin: 5% auto;
+        }
+        @include mq(md) {
+          font-size: 2rem;
+          margin: 10% auto;
+        }
       }
       &__more {
+        color: #eeeeee;
         font-size: 2rem;
-        width: 20%;
-        margin: 2% auto;
         text-align: center;
-        background-color: #00adb5;
-      }
-    }
-  }
-  .skill {
-    height: 92vh;
-    background-color: #222831;
-    position: relative;
-    margin: 5%;
-    &__num {
-      box-shadow: inset 0 10px 25px 0 rgba(238,238,238, .8);
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      height: 10%;
-      width: 100%;
-      font-size: 15rem;
-      padding: 0 8% 10% 0;
-      text-align: right;
-      color: #eeeeee;
-      background-color: #00adb5;
-    }
-    &__about {
-      box-shadow: inset 0 10px 25px 0 rgba(238,238,238, .8);
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      font-size: 2rem;
-      padding: 10.9% 0 0 10%;
-      color: #eeeeee;
-      background-color: #393e46;
-      opacity: 0.8;
-      &__title {
-        font-size: 5rem;
-        margin: 3% auto;
-        border-bottom: 3px dotted;
-      }
-      &__set {
-        display: grid;
-        grid-template-columns: repeat(8,1fr);
-      }
-      &__learn {
-        margin: 2% auto;
+        border: 1px solid #eeeeee;
+        transform: scale(1);
+        transition: all 1s;
+        height: 10%;
+        width: 90%;
+        &:hover {
+          opacity: 0.8;
+          transform: scale(0.9);
+          color: #393e46;
+          background-color: #eeeeee;
+          transition: all 1s;
+        }
       }
     }
   }
   .works {
-    height: 92vh;
-    position: relative;
-    background-color: #222831;
-    margin: 10% 5% 5% 5%;
-    &__num {
-      box-shadow: inset 0 10px 25px 0 rgba(238,238,238, .8);
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      height: 10%;
-      width: 100%;
-      font-size: 15rem;
-      padding: 0 8% 10% 0;
-      text-align: right;
-      color: #eeeeee;
-      background-color: #00adb5;
-    }
-    &__about {
-      box-shadow: inset 0 10px 25px 0 rgba(238,238,238, .8);
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      font-size: 2rem;
-      padding: 10.9% 0 0 10%;
-      color: #eeeeee;
-      background-color: #393e46;
-      opacity: 0.8;
-      &__title {
-        font-size: 5rem;
-        margin: 3% auto;
-        border-bottom: 3px dotted;
-      }
-      &__container {
-        display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
-        &-left {
-          font-size: 6rem;
-          margin: 50% auto 30% auto;
-        }
-        &-right {
-          font-size: 6rem;
-          margin: 50% auto 30% auto;
-        }
-        &-image {
-          margin: 0 auto;
-          width: 74%;
-        }
-      }
-    }
+  }
+  .skill {
   }
   .contact {
-    height: 92vh;
-    position: relative;
-    background-color: #222831;
-    margin: 10% 5% 5% 5%;
-    &__num {
-      box-shadow: inset 0 10px 25px 0 rgba(238,238,238, .8);
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      height: 10%;
-      width: 100%;
-      font-size: 15rem;
-      padding: 0 8% 10% 0;
-      text-align: right;
-      color: #eeeeee;
-      background-color: #00adb5;
-    }
-    &__about {
-      box-shadow: inset 0 10px 25px 0 rgba(238,238,238, .8);
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      font-size: 2rem;
-      padding: 10.9% 0 0 10%;
-      color: #eeeeee;
-      background-color: #393e46;
-      opacity: 0.8;
-      &__title {
-        font-size: 5rem;
-        margin: 3% auto;
-        border-bottom: 3px dotted;
-      }
-      &__container {
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        &-twitter,&-instagram,&-wantedly {
-          margin: 0 auto;
-        }
-      }
-    }
   }
 }
 
@@ -528,19 +437,13 @@ $breakpoints: (
     height: 95%;
   }
   .top {
-    position: absolute;
-    top: 89vh;
-    left: 95vw;
-    color: #00adb5;
-    background-color: #222831;
-    font-size: 5rem;
-    margin: 0 5% 0 0;
-    a {
-      color: #00adb5;
-      &:hover {
-        color: white;
-        transition: all 1s;
-      }
+    height: 5%;
+    width: 100%;
+    background-color: #eeeeee;
+    &::after {
+      content: "⬆︎";
+      font-size: 2rem;
+      margin-left: 50%;
     }
   }
   .copy {
@@ -548,7 +451,6 @@ $breakpoints: (
     height: 5%;
     width: 100%;
     font-size: 1.5rem;
-    padding-top: 2%;
     color: #00adb5;
     background-color: #222831;
     text-align: center;

@@ -47,6 +47,8 @@
   
   <!-- main -->
   <main id="main" class="main">
+
+    <!-- - nav -->
     <div class="nav">
       <div class="nav__burger">
         <span class="nav__burger-1"></span>
@@ -54,26 +56,41 @@
         <span class="nav__burger-3"></span>
       </div>
     </div>
+
+    <!-- - ware -->
     <section class="ware">
-      <picture class="sample">
-        <source srcset="./img/mv.jpg" media="(min-width: 300px)" /><!-- ○○px以上で表示する画像 -->
-        <source srcset="./img/mv.jpg" media="(min-width: 768px)" /><!-- △△px以上で表示する画像 -->
-        <source srcset="./img/mv.jpg" media="(min-width: 1000px)" /><!-- △△px以上で表示する画像 -->
-        <img class="ware__ware" src="./img/mv.jpg" alt="" width="100%">
-      </picture>
       <div class="ware__num">01</div>
       <div class="ware__about">
-        <div class="ware__about__title">Me</div>
-        <p class="ware__about__message">自分だけじゃなくて</p>
-        <p class="ware__about__message">誰かにとっての大切も、</p>
-        <p class="ware__about__message">大事にしていこう。</p>
-        <button class="ware__about__more" type="button">View More</button>
+        <div class="ware__about__title">about</div>
+        <div class="ware__about__message">
+          <p>26歳のドカタエンジニアです。</p>
+          <p>インフラに関する実務を行う傍ら</p>
+          <p>フロントエンドやPythonを独学し</p>
+          <p>幅広い分野の対応、橋渡し役になれるのが私の強みです。</p>
+          <p>"ダンスするように生きる"ことがモットーです。</p>
+        </div>
+        <button class="ware__about__more" type="button" onclick="location.href='http://github.com/9mak'">View More</button>
       </div>
     </section>
+
+    <!-- - works -->
+    <section class="works">
+      <div class="works__num">02</div>
+      <div class="works__about">
+        <div class="works__about__title">works</div>
+        <div class="works__about__container">
+          <img class="works__about__container-image" src="./img/works-sample.jpg" alt="" width="100%">
+          <img class="works__about__container-image" src="./img/works-sample.jpg" alt="" width="100%">
+          <img class="works__about__container-image" src="./img/works-sample.jpg" alt="" width="100%">
+        </div>
+      </div>
+    </section>
+
+    <!-- - skill -->
     <section class="skill">
-      <div class="skill__num">02</div>
+      <div class="skill__num">03</div>
       <div class="skill__about">
-        <div class="skill__about__title">Skill</div>
+        <div class="skill__about__title">skill</div>
         <div class="skill__about__set">
           <img src="./img/skill/html5.svg" alt="" width="82%">
           <img src="./img/skill/css3.svg" alt="" width="80%" height="80%">
@@ -93,21 +110,14 @@
         </div>
       </div>
     </section>
-    <section class="works">
-      <div class="works__num">03</div>
-      <div class="works__about">
-        <div class="works__about__title">Works</div>
-        <div class="works__about__container">
-          <div class="works__about__container-left">◀︎</div>
-          <img class="works__about__container-image" src="./img/works-sample.jpg" alt="" width="100%">
-          <div class="works__about__container-right">▶︎</div>
-        </div>
-      </div>
-    </section>
     <section class="contact">
       <div class="contact__num">04</div>
       <div class="contact__about">
         <div class="contact__about__title">Contact</div>
+        <form action="">
+          <label for="name"></label>
+          <input id="name"type="text">
+        </form>
         <div class="contact__about__container">
           <div class="contact__about__container-twitter">
             Twitter
@@ -125,10 +135,9 @@
 
   <!-- footer -->
   <footer class="footer">
-    <canvas id="myCanvas" class="three"></canvas>
-    <div class="top">
-      <a href="#">⬆︎</a>
-    </div>
+    <!-- <canvas id="myCanvas" class="three"></canvas> -->
+    <div class="three"></div>
+    <div class="top"></div>
     <div class="copy">
       &copy Kazuki <a class="encore" href="#">O</a>guma
     </div>
