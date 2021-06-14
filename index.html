@@ -1,151 +1,201 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-  <!-- meta -->
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- title -->
-  <title>Kazuki Oguma | Portfolio</title>
-
-  <!-- og -->
-
-  <!-- css -->
-  <link rel="stylesheet" href="./css/ress.css">
-  <link rel="stylesheet" href="./css/styele.css">
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <meta property='og:type' content='website'>
+  <meta property='og:title' content='WebデザイナーKAZUKI OGUMA ポートフォリオ'>
+  <meta property='og:url' content='URLが入る'>
+  <meta property='og:description' content='KAZUKI OGUMAのポートフォリオサイトです。'>
+  <meta property="og:image" content="./img/favicon.svg">
+  <meta name="description" content="KAZUKI OGUMAのポートフォリオサイトです" />
+  <title>KAZUKI OGUMA ポートフォリオ</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+  <link href="./css/ress.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="./css/style.css" media="all" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="./img/favicon.svg" />
+  <link rel=”canonical” href=”URLが入る” />
 </head>
+
 <body>
-  <!-- header -->
-  <header class="header">
-    <div class="container">
-      <div class="left">
-        <div class="left__item">Kazuki Oguma</div>
-      </div>
-      <div class="middle"></div>
-      <div class="right">
-        <div class="right__item__three">
-          <a href="#"><img src="./img/menu.svg" alt="" width="100%"></a>
-        </div>
-        <div class="right__item__sns">
-          <div class="right__item__sns-github">
-            <a href="https://github.com/9mak"><img src="./img/sns/github.svg" alt="" width="100%"></a>
-          </div>
-          <div class="right__item__sns-twitter">
-            <a href="https://twitter.com/home?lang=ja"><img src="./img/sns/twitter.svg" alt="" width="100%"></a>
-          </div>
-          <div class="right__item__sns-instagram">
-            <a href="https://www.instagram.com/_9mak___"><img src="./img/sns/instagram.svg" alt="" width="100%"></a>
-          </div>
-        </div>
-        <a class="right__item__arrow" href="#main">
-            <img class="right__item__arrow-1" src="./img/arrow.svg" alt="" width="100%"></div>
-        </a>
-    </div>
-  </header>
-  
-  <!-- main -->
-  <main id="main" class="main">
+  <div class="wrapper">
 
-    <!-- - nav -->
-    <div class="nav">
-      <div class="nav__burger">
-        <span class="nav__burger-1"></span>
-        <span class="nav__burger-2"></span>
-        <span class="nav__burger-3"></span>
+    <!-- header -->
+    <header class="header">
+      <div class="header-inner">
+        <h1 class="header-logo">
+          <a href=".">KAZUKI OGUMA</a>
+        </h1>
+        <nav class="header-nav">
+          <ul class="header-nav-list">
+            <li class="header-nav-item"><a href="#profile">PROFILE</a></li>
+            <li class="header-nav-item"><a href="#works">WORKS</a></li>
+            <li class="header-nav-item"><a href="#skill">SKILL</a></li>
+            <li class="header-nav-item"><a href="#contact">CONTACT</a></li>
+          </ul>
+        </nav>
       </div>
-    </div>
+    </header>
+    <!-- /header -->
 
-    <!-- - ware -->
-    <section class="ware">
-      <div class="ware__num">01</div>
-      <div class="ware__about">
-        <div class="ware__about__title">about</div>
-        <div class="ware__about__message">
-          <p>26歳のドカタエンジニアです。</p>
-          <p>インフラに関する実務を行う傍ら</p>
-          <p>フロントエンドやPythonを独学し</p>
-          <p>幅広い分野の対応、橋渡し役になれるのが私の強みです。</p>
-          <p>"ダンスするように生きる"ことがモットーです。</p>
-        </div>
-        <button class="ware__about__more" type="button" onclick="location.href='http://github.com/9mak'">View More</button>
-      </div>
-    </section>
+    <main class="content">
 
-    <!-- - works -->
-    <section class="works">
-      <div class="works__num">02</div>
-      <div class="works__about">
-        <div class="works__about__title">works</div>
-        <div class="works__about__container">
-          <img class="works__about__container-image" src="./img/works-sample.jpg" alt="" width="100%">
-          <img class="works__about__container-image" src="./img/works-sample.jpg" alt="" width="100%">
-          <img class="works__about__container-image" src="./img/works-sample.jpg" alt="" width="100%">
+      <!-- split -->
+      <div class="split">
+        <div class="split-body">
+          <p class="split-title">Portfolio</p>
+          <p class="split-text">
+            「人を調和する」人間です。
+          </p>
         </div>
+        <div class="split-img"></div>
       </div>
-    </section>
+      <!-- /split -->
 
-    <!-- - skill -->
-    <section class="skill">
-      <div class="skill__num">03</div>
-      <div class="skill__about">
-        <div class="skill__about__title">skill</div>
-        <div class="skill__about__set">
-          <img src="./img/skill/html5.svg" alt="" width="82%">
-          <img src="./img/skill/css3.svg" alt="" width="80%" height="80%">
-          <img src="./img/skill/javascript.svg" alt="" width="80%">
-          <img src="./img/skill/sass.svg" alt="" width="80%" height="80%">
-          <img src="./img/skill/bootstrap.svg" alt="" width="80%">
-          <img src="./img/skill/github.svg" alt="" width="80%">
-          <img src="./img/skill/python.svg" alt="" width="80%">
-          <img src="./img/skill/django.svg" alt="" width="80%">
-        </div>
-        <div class="skill__about__learn">Learning now...</div>
-        <div class="skill__about__set">
-          <img src="./img/skill/vue.svg" alt="" width="80%">
-          <img src="./img/skill/react.svg" alt="" width="80%">
-          <img src="./img/skill/photoshop.svg" alt="" width="80%">
-          <img src="./img/skill/lightroom.svg" alt="" width="80%">
-        </div>
-      </div>
-    </section>
-    <section class="contact">
-      <div class="contact__num">04</div>
-      <div class="contact__about">
-        <div class="contact__about__title">Contact</div>
-        <form action="">
-          <label for="name"></label>
-          <input id="name"type="text">
-        </form>
-        <div class="contact__about__container">
-          <div class="contact__about__container-twitter">
-            Twitter
-          </div>
-          <div class="contact__about__container-instagram">
-            Instagram
-          </div>
-          <div class="contact__about__container-wantedly">
-            Wantedly
+      <!-- profile -->
+      <section class="profile section" id="profile">
+        <div class="inner">
+          <h2 class="title">Profile</h2>
+          <div class="profile-list">
+            <div class="profile-item">
+              <p class="shy">
+                Phasellus felis nisl, posuere vitae sodales eget, hendrerit at mi. 1994年生まれ Morbi semper vulputate leo. Mauris eu malesuada nibh. Curabitur at ex dolor. Nullam vestibulum laoreet libero lobortis sagittis.
+                Mauris sodales gravida varius. Nunc fermentum elementum dui. Nulla tempus bibendum nisi vel sagittis. Aenean tellus lorem, tristique non pretium a, bibendum in sem.
+                Mauris commodo 人と動物が好きで壁を作らない。justo at erat auctor, in fringilla nulla dictum. Ut euismod convallis arcu et semper. Vestibulum sem mauris, fringilla vitae vestibulum sit amet, sodales eget mi.
+                Cras placerat, est quis feugiat rutrum, プライベートでは多趣味で「とりあえずやってみる」がモットー。turpis nibh mollis diam, volutpat congue massa tortor ac erat.Nunc dapibus ullamcorper lectus, ut
+              </p>
+            </div>  
+            <div class="profile-item">
+              <p class="shy">
+                Lorem ipsum dolor sit amet, Mauris eu orci dui. Vivamus vehicula imperdiet elit eu pretium. consectetur adipiscing elit.　「人と人を調和する」人間だと評価された。 Nam interdum felis purus, non tincidunt felis accumsan eu. Ut fermentum risus eleifend tincidunt commodo. Proin eu elit et elit venenatis laoreet. Donec egestas aliquam lacus at malesuada. Fusce sit amet leo elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras ac metus velit. Vestibulum cursus eleifend efficitur. Mauris semper orci ut odio dictum, tincidunt porta nisl ultricies.
+                Aliquam ante ante, ネットワークで例えるならばバカハブと思ってる。fermentum et velit et, faucibus dignissim purus. 現在は企業で勤務している傍ら Aliquam iaculis nunc eget dui viverra risus.
+              </p>
+            </div>
+            <div class="profile-item">
+              <p class="shy">
+                Duis tempus condimentum lectus, vitae フロントエンドエンジニアを目指し独学で技術を習得。efficitur mi euismod ullamcorper. Nulla facilisi. Duis lobortis erat in neque sodales,
+                non imperdiet nisi iaculis. Sed purus mauris, facilisis placerat mattis eget, tristique eget sapien.
+                Donec pretium velit ut massa dignissim tincidunt quis a massa. Duis consequat sem et dictum aliquam. 若見えする26歳 Vivamus ut elit quis massa venenatis blandit. Vivamus blandit est quam, vitae pulvinar purus vulputate id. Phasellus auctor posuere risus eget cursus. Nam a sollicitudin purus. Nulla facilisi. Fusce eu euismod augue, et iaculis neque. Curabitur cursus velit vel iaculis commodo. In in nunc quam.
+                Duis in ultricies quam, non sagittis dolor. 特技は知らない人に話しかける、話しかけられること。
+              </p>
+            </div>
           </div>
         </div>
+      </section>
+      <!-- /profile -->
+
+      <!-- works -->
+      <section class="works section" id="works">
+        <div class="inner">
+          <h2 class="title">WORKS</h2>
+          <div class="works-list">
+            <a class="works-item" href="#">
+              <p class="works-img"><img src="./img/works/aono_thumb.png" alt="" /></p>
+              <p class="works-name">蒼乃建設</p>
+              <p class="works-info">Coding(Responsive)</p>
+            </a>
+            <a class="works-item" href="#">
+              <p class="works-img"><img src="./img/works/xeory_thumb.png" alt="" /></p>
+              <p class="works-name">Xeory</p>
+              <p class="works-info">Coding</p>
+            </a>
+            <a class="works-item" href="#">
+              <p class="works-img"><img src="./img/works/ONECO_thumb.png" alt="" /></p>
+              <p class="works-name">ONECO</p>
+              <p class="works-info">Design</p>
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- /works -->
+
+      <!-- skill -->
+      <section class="skill section" id="skill">
+        <div class="inner">
+          <h2 class="title">SKILL</h2>
+          <div class="skill-list">
+            <div class="skill-item">
+              <p class="skill-img"><img src="./img/skill/html5.svg" alt=""></p>
+              <p class="skill-img"><img src="./img/skill/css3.svg" alt="" width="87%"></p>
+              <div class="skill-body">
+                <h3 class="skill-name">HTML5/CSS3</h3>
+                <p class="skill-text">
+                  基本的なコーディングは問題ありません。<br>
+                  Sass、BEM設計でのコーディングやBoilerTemplateの使用経験があります。<br>
+                  使用エディタはVisualStudioCodeです。
+                </p>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p class="skill-img"><img src="./img/skill/javascript.svg" alt=""></p>
+              <p class="skill-img"><img src="./img/skill/react.svg" alt=""></p>
+              <div class="skill-body">
+                <h3 class="skill-name">JavaScript/React/Vue.js</h3>
+                <p class="skill-text">
+                  基本的なコーディングが可能です。<br>
+                  UdemyやMDNリファレンスにて独学で習得しました。<br>
+                  コンポーネント思考が好きです。
+                </p>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p class="skill-img"><img src="./img/skill/photoshop.svg" alt=""></p>
+              <p class="skill-img"><img src="./img/skill/xd.svg" alt=""></p>
+              <div class="skill-body">
+                <h3 class="skill-name">Photoshop</h3>
+                <p class="skill-text">
+                  主にサイトデザイン制作やロゴ制作等で使用しています。<br>
+                  フィルムカメラで写真を取ることが好きで画像の現像で使用した経験もあります。<br>
+                  デザインについてはまだ苦手意識があるため、トレースや参考サイトを模写をしたりスキルアップを図っています。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /skill -->
+
+      <!-- contact -->
+      <section class="contact section" id="contact">
+        <div class="inner">
+          <h2 class="title">CONTACT</h2>
+          <p class="contact-text">ご連絡は以下からよろしくお願いします。</p>
+          <div class="contact-list">
+            <a class="contact-item" href="https://www.wantedly.com/id/kazuki_oguma" target="_blank" rel="noopener">
+              <div class="neumo">
+                Wantedly
+              </div>
+            </a>
+            <a class="contact-item" href="https://instagram.com/" target="_blank" rel="noopener">
+              <div class="neumo">
+                Instagram
+              </div>
+            </a>
+            <a class="contact-item" href="https://twitter.com/_9mak___" target="_blank" rel="noopener">
+              <div class="neumo">
+                Twitter
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- /contact -->
+      <div class="page-top" id="js-page-top">
+        <span class="material-icons-outlined">expand_less</span>
       </div>
-    </section>
-  </main>
+    </main>
 
-  <!-- footer -->
-  <footer class="footer">
-    <!-- <canvas id="myCanvas" class="three"></canvas> -->
-    <div class="three"></div>
-    <div class="top"></div>
-    <div class="copy">
-      &copy Kazuki <a class="encore" href="#">O</a>guma
-    </div>
-  </footer>
+    <!-- footer -->
+    <footer class="footer">
+      <div class="copyright">&copy;KAZUKI OGUMA</div>
+    </footer>
+    <!-- /footer -->
 
-  <!-- JavaScript -->
-  <script src="./js/three/three.min.js"></script>
-  <script src="./js/three/OrbitControls.js"></script>
-  <script type="text/javascript" src="./js/script.js"></script>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type='text/javascript' src="./js/script.js"></script>
 </body>
 </html>

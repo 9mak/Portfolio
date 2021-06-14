@@ -1,38 +1,39 @@
-// ページの読み込みを待つ
-window.addEventListener('load', init);
-function init() {
-    // サイズを指定
-    const width = 1440;
-    const height = 700;
+$(function () {
 
-    // レンダラーを作成
-    const canvasElement = document.querySelector('#myCanvas')
-    const renderer = new THREE.WebGLRenderer({
-        canvas: canvasElement,
-    });
-    renderer.setSize(width, height);
+  //ページ内スクロール
+  var $nav = $(".header");
 
-    // シーンを作成
-    const scene = new THREE.Scene();
+  $('a[href^="#"]').on("click", function () {
+    var href = $(this).attr("href");
+    var target = $(href == "#" || href == "" ? "html" : href);
+    var position = target.offset().top;
+    $("html, body").animate(
+      {
+        scrollTop: position,
+      },
+      300,
+      "swing"
+    );
+    return false;
+  });
 
-    // カメラを作成
-    const camera = new THREE.PerspectiveCamera(45, width / height);
-    // カメラの初期座標を設定
-    camera.position.set(0, 0, 1000);
+  //ページトップ
+  $("#js-page-top").on("click", function () {
+    $("body,html").animate(
+      {
+        scrollTop: 0,
+      },
+      300
+    );
+    return false;
+  });
+});
 
-    // カメラコントローラーを作成
-    const controls = new THREE.OrbitControls(camera, canvasElement);
+function highLight() {
+  const shyTxt = document.querySelectorAll('.shy');
+  shyTxt.forEach(
+    element => console.log(element.innerHTML)
+  );
+};
 
-    // 形状とマテリアルからメッシュを作成します
-    const mesh = new THREE.Mesh(new THREE.BoxGeometry(300, 300, 300), new THREE.MeshNormalMaterial());
-    scene.add(mesh);
-
-    tick();
-
-    // 毎フレーム時に実行されるループイベントです
-    function tick() {
-        // レンダリング
-        renderer.render(scene, camera);
-        requestAnimationFrame(tick);
-    }
-}
+highLight();
