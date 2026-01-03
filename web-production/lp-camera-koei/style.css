@@ -1,0 +1,29 @@
+/* style.css */
+
+/* スムーズスクロールを有効化（アンカーリンク移動用） */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Material Symbols の基本設定 */
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* フォントの適用確認（Tailwindが読み込まれない場合への備え） */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ヘッダーのぼかし効果の調整 */
+header {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
