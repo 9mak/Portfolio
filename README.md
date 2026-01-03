@@ -38,5 +38,5 @@
 ## ✉️ お問い合わせ
 ご相談は各プラットフォームのメッセージ機能よりお願いいたします。
 
-- **Lancers**: https://www.lancers.jp/profile/_9mak___
-- **ココナラ**: https://coconala.com/users/4590843
+- [Lancers](https://www.lancers.jp/profile/_9mak___)
+- [ココナラ](https://coconala.com/users/4590843)
