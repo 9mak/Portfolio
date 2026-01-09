@@ -1,0 +1,55 @@
+/* NexTech Solutions - Corporate Site Styles */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+}
+
+/* Header blur effect */
+header {
+    backdrop-filter: blur(10px);
+}
+
+/* Gradient utilities */
+.gradient-text {
+    background: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%);
+}
+
+/* Form focus states */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+/* Button hover effects */
+button:hover,
+a:hover {
+    transition: all 0.3s ease;
+}
+
+/* Card hover effects */
+.group:hover .group-hover\:scale-110 {
+    transform: scale(1.1);
+}
