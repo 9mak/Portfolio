@@ -1,0 +1,40 @@
+/* KURO COFFEE - EC Site Styles */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 300,
+        'GRAD' 0,
+        'opsz' 24;
+}
+
+/* Header blur effect */
+header {
+    backdrop-filter: blur(10px);
+}
+
+/* Form focus states */
+input:focus {
+    outline: none;
+}
+
+/* Product card hover */
+.group:hover img {
+    transform: scale(1.05);
+}
+
+/* Button transitions */
+button,
+a {
+    transition: all 0.3s ease;
+}

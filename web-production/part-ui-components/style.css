@@ -1,0 +1,60 @@
+/* UI Components Library - Styles */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+}
+
+/* Sidebar scroll */
+aside {
+    scrollbar-width: thin;
+    scrollbar-color: #e5e7eb transparent;
+}
+
+aside::-webkit-scrollbar {
+    width: 6px;
+}
+
+aside::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+aside::-webkit-scrollbar-thumb {
+    background-color: #e5e7eb;
+    border-radius: 3px;
+}
+
+/* Header blur */
+header {
+    backdrop-filter: blur(10px);
+}
+
+/* Focus states */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+/* Toggle switch custom styling */
+.peer:checked ~ div {
+    background-color: #2563eb;
+}
+
+.peer:checked ~ div::after {
+    transform: translateX(100%);
+}
