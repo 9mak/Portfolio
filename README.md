@@ -3,12 +3,12 @@
 エンジニアリングとデザインの両面から、ビジネスの課題を解決するソリューションを提供します。
 本リポジトリでは、Web制作およびシステム開発の実績を公開しています。
 
-## 🚀 ポートフォリオサイト（デモ）
+## ポートフォリオサイト（デモ）
 **[こちらのURLから全実績を一覧でご確認いただけます](https://9mak.github.io/Portfolio/)**
 
 ---
 
-## 📂 ディレクトリ構成と命名規則
+## ディレクトリ構成と命名規則
 
 メンテナンス性と拡張性を考慮し、以下の規則に従ってプロジェクトを管理しています。
 
@@ -26,12 +26,19 @@
 
 ---
 
-## 🛠 主な制作実績
+## 主な制作実績
 
-### 【Web制作】中古カメラ買取専門店「光影堂」LP
-- **概要**: 信頼感と専門性を重視した、高コンバージョン設計のランディングページ。
-- **技術**: HTML5 / Tailwind CSS / Responsive Design
-- **[デモを見る](https://9mak.github.io/Portfolio/web-production/lp-camera-koei/index.html)**
+### Web制作
+
+| プロジェクト | 種別 | 概要 | デモ |
+|------------|------|------|------|
+| 光影堂 | LP | 中古カメラ買取専門店のランディングページ | [Demo](https://9mak.github.io/Portfolio/web-production/lp-camera-koei/) |
+| NexTech Solutions | SITE | テック企業のコーポレートサイト | [Demo](https://9mak.github.io/Portfolio/web-production/site-tech-company/) |
+| KURO COFFEE | EC | スペシャルティコーヒー専門店のECサイト | [Demo](https://9mak.github.io/Portfolio/web-production/ec-coffee-shop/) |
+| UI Components | PARTS | 再利用可能なUIパーツ集 | [Demo](https://9mak.github.io/Portfolio/web-production/part-ui-components/) |
+
+### システム開発
+現在準備中
 
 ### 【システム開発】タスク管理アプリ (app-task-manager)
 - **概要**: 優先度管理・フィルタ機能・進捗可視化を備えたタスク管理アプリ。
@@ -60,7 +67,16 @@
 
 ---
 
-## ✉️ お問い合わせ
+## 使用技術
+
+- **フロントエンド**: HTML5, Tailwind CSS, JavaScript
+- **デザイン**: Figma
+- **バージョン管理**: Git, GitHub
+- **ホスティング**: GitHub Pages
+
+---
+
+## お問い合わせ
 ご相談は各プラットフォームのメッセージ機能よりお願いいたします。
 
 - [Lancers](https://www.lancers.jp/profile/_9mak___)
