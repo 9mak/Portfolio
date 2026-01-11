@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ef4444">
+    <title>ポモドーロタイマー | Pomodoro Timer</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <h1>🍅 ポモドーロタイマー</h1>
+            <p class="subtitle">集中力を高める時間管理術</p>
+        </header>
+
+        <main class="container">
+            <section class="timer-section">
+                <div class="timer-card">
+                    <div class="mode-selector">
+                        <button class="mode-btn active" data-mode="pomodoro">
+                            ポモドーロ
+                        </button>
+                        <button class="mode-btn" data-mode="short">
+                            短い休憩
+                        </button>
+                        <button class="mode-btn" data-mode="long">
+                            長い休憩
+                        </button>
+                    </div>
+
+                    <div class="timer-display">
+                        <svg class="progress-ring" width="300" height="300">
+                            <circle
+                                class="progress-ring-circle-bg"
+                                cx="150"
+                                cy="150"
+                                r="135"
+                            />
+                            <circle
+                                class="progress-ring-circle"
+                                cx="150"
+                                cy="150"
+                                r="135"
+                                id="progressCircle"
+                            />
+                        </svg>
+                        <div class="timer-text">
+                            <div id="timeDisplay" class="time">25:00</div>
+                            <div id="sessionInfo" class="session-info">作業時間</div>
+                        </div>
+                    </div>
+
+                    <div class="timer-controls">
+                        <button id="startBtn" class="btn btn-start">
+                            ▶ 開始
+                        </button>
+                        <button id="pauseBtn" class="btn btn-pause" style="display: none;">
+                            ⏸ 一時停止
+                        </button>
+                        <button id="resetBtn" class="btn btn-reset">
+                            ↻ リセット
+                        </button>
+                    </div>
+
+                    <div class="pomodoro-counter">
+                        <span>完了したポモドーロ:</span>
+                        <div class="tomato-icons" id="tomatoIcons">
+                            🍅🍅🍅🍅
+                        </div>
+                        <span id="pomodoroCount">0 / 4</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="settings-section">
+                <h2>⚙️ 設定</h2>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label for="pomodoroTime">ポモドーロ時間（分）</label>
+                        <input
+                            type="number"
+                            id="pomodoroTime"
+                            value="25"
+                            min="1"
+                            max="60"
+                            class="input-field"
+                        >
+                    </div>
+                    <div class="setting-item">
+                        <label for="shortBreakTime">短い休憩（分）</label>
+                        <input
+                            type="number"
+                            id="shortBreakTime"
+                            value="5"
+                            min="1"
+                            max="30"
+                            class="input-field"
+                        >
+                    </div>
+                    <div class="setting-item">
+                        <label for="longBreakTime">長い休憩（分）</label>
+                        <input
+                            type="number"
+                            id="longBreakTime"
+                            value="15"
+                            min="1"
+                            max="60"
+                            class="input-field"
+                        >
+                    </div>
+                    <div class="setting-item">
+                        <label for="autoStart">
+                            <input type="checkbox" id="autoStart">
+                            自動開始
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label for="soundEnabled">
+                            <input type="checkbox" id="soundEnabled" checked>
+                            サウンド通知
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label for="notificationEnabled">
+                            <input type="checkbox" id="notificationEnabled" checked>
+                            デスクトップ通知
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stats-section">
+                <h2>📊 統計</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalPomodoros">0</div>
+                        <div class="stat-label">総ポモドーロ数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalFocusTime">0分</div>
+                        <div class="stat-label">総集中時間</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="todayPomodoros">0</div>
+                        <div class="stat-label">今日のポモドーロ</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="streak">0日</div>
+                        <div class="stat-label">連続記録</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="history-section">
+                <div class="history-header">
+                    <h3>📅 履歴</h3>
+                    <button id="clearHistory" class="btn-secondary">
+                        クリア
+                    </button>
+                </div>
+                <div id="historyList" class="history-list">
+                    <p class="empty-state">履歴がありません</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

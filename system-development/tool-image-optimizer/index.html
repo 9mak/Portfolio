@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画像最適化ツール | Image Optimizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <h1>🖼️ 画像最適化ツール</h1>
+            <p class="subtitle">ドラッグ&ドロップで簡単に画像を最適化</p>
+        </header>
+
+        <main class="container">
+            <section class="upload-section">
+                <div id="dropZone" class="drop-zone">
+                    <div class="drop-zone-content">
+                        <svg class="upload-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <p class="drop-text">画像をドラッグ&ドロップ</p>
+                        <p class="drop-text-sub">または</p>
+                        <label for="fileInput" class="file-label">
+                            ファイルを選択
+                            <input type="file" id="fileInput" accept="image/*" multiple hidden>
+                        </label>
+                        <p class="supported-formats">対応形式: JPG, PNG, GIF, WebP</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="options-section">
+                <h2>最適化オプション</h2>
+                <div class="options-grid">
+                    <div class="option-card">
+                        <label class="option-label">
+                            <input type="checkbox" id="convertWebP" checked>
+                            <span>WebPに変換</span>
+                        </label>
+                        <p class="option-desc">ファイルサイズを大幅削減</p>
+                    </div>
+
+                    <div class="option-card">
+                        <label class="option-label">画質</label>
+                        <div class="slider-container">
+                            <input type="range" id="qualitySlider" min="1" max="100" value="80" class="slider">
+                            <span id="qualityValue" class="slider-value">80%</span>
+                        </div>
+                        <p class="option-desc">推奨: 70-85%</p>
+                    </div>
+
+                    <div class="option-card">
+                        <label class="option-label">リサイズ</label>
+                        <select id="resizeOption" class="select-field">
+                            <option value="none">リサイズしない</option>
+                            <option value="1920">幅1920px（フルHD）</option>
+                            <option value="1280">幅1280px（HD）</option>
+                            <option value="800">幅800px（Web標準）</option>
+                            <option value="400">幅400px（サムネイル）</option>
+                        </select>
+                    </div>
+
+                    <div class="option-card">
+                        <label class="option-label">
+                            <input type="checkbox" id="removeMetadata" checked>
+                            <span>メタデータを削除</span>
+                        </label>
+                        <p class="option-desc">EXIF情報を削除してサイズ削減</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="imagesSection" class="images-section" style="display: none;">
+                <div class="section-header">
+                    <h2>処理結果</h2>
+                    <button id="downloadAll" class="btn btn-primary">
+                        すべてダウンロード
+                    </button>
+                </div>
+                <div id="imagesList" class="images-list"></div>
+            </section>
+
+            <section class="stats-section">
+                <h2>統計情報</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalImages">0</div>
+                        <div class="stat-label">処理画像数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalOriginalSize">0 KB</div>
+                        <div class="stat-label">元のサイズ</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalOptimizedSize">0 KB</div>
+                        <div class="stat-label">最適化後</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number stat-success" id="totalSaved">0%</div>
+                        <div class="stat-label">削減率</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

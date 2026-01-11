@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI文章作成アシスタント | AI Writing Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <h1>✍️ AI文章作成アシスタント</h1>
+            <p class="subtitle">AIが文章作成をサポートします</p>
+        </header>
+
+        <main class="container">
+            <section class="api-key-section" id="apiKeySection">
+                <div class="api-key-card">
+                    <h2>🔑 APIキー設定</h2>
+                    <p class="info-text">
+                        OpenAI APIキーを入力してください。<br>
+                        キーは安全にブラウザのLocalStorageに保存されます（サーバーには送信されません）
+                    </p>
+                    <div class="api-key-form">
+                        <input
+                            type="password"
+                            id="apiKeyInput"
+                            placeholder="sk-..."
+                            class="api-key-input"
+                        >
+                        <button id="saveApiKey" class="btn btn-primary">
+                            保存
+                        </button>
+                    </div>
+                    <p class="help-text">
+                        APIキーは <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI Platform</a> で取得できます
+                    </p>
+                </div>
+            </section>
+
+            <section class="main-section" id="mainSection" style="display: none;">
+                <div class="settings-bar">
+                    <button id="changeApiKey" class="btn-secondary">
+                        🔑 APIキー変更
+                    </button>
+                    <div class="model-select">
+                        <label for="modelSelect">モデル:</label>
+                        <select id="modelSelect" class="select-field">
+                            <option value="gpt-4">GPT-4 (高品質)</option>
+                            <option value="gpt-3.5-turbo" selected>GPT-3.5 Turbo (高速・低コスト)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="templates-section">
+                    <h2>📝 テンプレート</h2>
+                    <div class="templates-grid">
+                        <button class="template-btn" data-template="blog">
+                            📰 ブログ記事
+                        </button>
+                        <button class="template-btn" data-template="product">
+                            🛍️ 商品説明文
+                        </button>
+                        <button class="template-btn" data-template="sns">
+                            📱 SNS投稿
+                        </button>
+                        <button class="template-btn" data-template="email">
+                            ✉️ ビジネスメール
+                        </button>
+                        <button class="template-btn" data-template="press">
+                            📰 プレスリリース
+                        </button>
+                        <button class="template-btn" data-template="ad">
+                            📢 広告コピー
+                        </button>
+                    </div>
+                </div>
+
+                <div class="editor-section">
+                    <div class="editor-grid">
+                        <div class="input-panel">
+                            <h3>入力</h3>
+                            <textarea
+                                id="inputText"
+                                placeholder="文章のテーマやキーワードを入力してください..."
+                                class="text-area"
+                                rows="10"
+                            ></textarea>
+                            <div class="input-controls">
+                                <div class="tone-select">
+                                    <label for="toneSelect">トーン:</label>
+                                    <select id="toneSelect" class="select-field">
+                                        <option value="professional">フォーマル</option>
+                                        <option value="casual" selected>カジュアル</option>
+                                        <option value="friendly">フレンドリー</option>
+                                        <option value="persuasive">説得的</option>
+                                    </select>
+                                </div>
+                                <div class="length-select">
+                                    <label for="lengthSelect">長さ:</label>
+                                    <select id="lengthSelect" class="select-field">
+                                        <option value="short">短い（100字程度）</option>
+                                        <option value="medium" selected>中程度（300字程度）</option>
+                                        <option value="long">長い（500字以上）</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="generateBtn" class="btn btn-primary btn-large">
+                                ✨ AI生成
+                            </button>
+                        </div>
+
+                        <div class="output-panel">
+                            <div class="output-header">
+                                <h3>生成結果</h3>
+                                <button id="copyBtn" class="btn-copy" style="display: none;">
+                                    📋 コピー
+                                </button>
+                            </div>
+                            <div id="outputText" class="output-area">
+                                <p class="placeholder-text">
+                                    テンプレートを選択して、テーマを入力後「AI生成」をクリックしてください
+                                </p>
+                            </div>
+                            <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                                <div class="spinner"></div>
+                                <p>AIが文章を生成中...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="history-section">
+                    <div class="history-header">
+                        <h3>📜 生成履歴</h3>
+                        <button id="clearHistory" class="btn-secondary">
+                            クリア
+                        </button>
+                    </div>
+                    <div id="historyList" class="history-list">
+                        <p class="empty-state">履歴がありません</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

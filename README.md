@@ -33,6 +33,31 @@
 - **技術**: HTML5 / Tailwind CSS / Responsive Design
 - **[デモを見る](https://9mak.github.io/Portfolio/web-production/lp-camera-koei/index.html)**
 
+### 【システム開発】タスク管理アプリ (app-task-manager)
+- **概要**: 優先度管理・フィルタ機能・進捗可視化を備えたタスク管理アプリ。
+- **技術**: Vanilla JavaScript / LocalStorage / Responsive Design
+- **[詳細を見る](./system-development/app-task-manager/)**
+
+### 【システム開発】画像最適化ツール (tool-image-optimizer)
+- **概要**: ブラウザ上で完結する画像最適化・WebP変換・リサイズツール。
+- **技術**: Canvas API / File API / Blob API
+- **[詳細を見る](./system-development/tool-image-optimizer/)**
+
+### 【システム開発】AI文章作成アシスタント (ai-writing-assistant)
+- **概要**: OpenAI APIを活用した複数テンプレート対応の文章生成ツール。
+- **技術**: OpenAI API / Fetch API / LocalStorage
+- **[詳細を見る](./system-development/ai-writing-assistant/)**
+
+### 【システム開発】天気情報ダッシュボード (api-weather-dashboard)
+- **概要**: リアルタイム天気情報と5日間予報を表示するダッシュボード。
+- **技術**: OpenWeatherMap API / Geolocation API
+- **[詳細を見る](./system-development/api-weather-dashboard/)**
+
+### 【システム開発】ポモドーロタイマー (app-pomodoro-timer)
+- **概要**: PWA対応、オフライン動作可能な生産性向上タイマー。
+- **技術**: PWA / Service Worker / Notification API / Web Audio API
+- **[詳細を見る](./system-development/app-pomodoro-timer/)**
+
 ---
 
 ## ✉️ お問い合わせ

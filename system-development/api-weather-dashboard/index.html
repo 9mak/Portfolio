@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天気ダッシュボード | Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <h1>⛅ 天気ダッシュボード</h1>
+            <p class="subtitle">リアルタイム天気情報と5日間予報</p>
+        </header>
+
+        <main class="container">
+            <section class="search-section">
+                <div class="search-card">
+                    <div class="search-form">
+                        <input
+                            type="text"
+                            id="cityInput"
+                            placeholder="都市名を入力（例: Tokyo, Osaka, New York）"
+                            class="search-input"
+                        >
+                        <button id="searchBtn" class="btn btn-primary">
+                            🔍 検索
+                        </button>
+                        <button id="geoBtn" class="btn btn-secondary">
+                            📍 現在地
+                        </button>
+                    </div>
+                    <div class="popular-cities">
+                        <button class="city-btn" data-city="Tokyo">東京</button>
+                        <button class="city-btn" data-city="Osaka">大阪</button>
+                        <button class="city-btn" data-city="Kyoto">京都</button>
+                        <button class="city-btn" data-city="Fukuoka">福岡</button>
+                        <button class="city-btn" data-city="Sapporo">札幌</button>
+                        <button class="city-btn" data-city="Okinawa">沖縄</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="currentWeather" class="current-weather" style="display: none;">
+                <div class="current-card">
+                    <div class="current-header">
+                        <div class="location">
+                            <h2 id="cityName">-</h2>
+                            <p id="currentTime">-</p>
+                        </div>
+                        <div class="weather-icon-large">
+                            <img id="weatherIcon" src="" alt="Weather">
+                        </div>
+                    </div>
+
+                    <div class="current-temp">
+                        <span id="temperature">-</span>°C
+                    </div>
+
+                    <div class="current-desc">
+                        <p id="weatherDescription">-</p>
+                    </div>
+
+                    <div class="current-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">💧</span>
+                            <div class="detail-content">
+                                <span class="detail-label">湿度</span>
+                                <span class="detail-value" id="humidity">-</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">💨</span>
+                            <div class="detail-content">
+                                <span class="detail-label">風速</span>
+                                <span class="detail-value" id="windSpeed">-</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">🌡️</span>
+                            <div class="detail-content">
+                                <span class="detail-label">体感温度</span>
+                                <span class="detail-value" id="feelsLike">-</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">☁️</span>
+                            <div class="detail-content">
+                                <span class="detail-label">雲量</span>
+                                <span class="detail-value" id="clouds">-</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">🌅</span>
+                            <div class="detail-content">
+                                <span class="detail-label">日の出</span>
+                                <span class="detail-value" id="sunrise">-</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">🌇</span>
+                            <div class="detail-content">
+                                <span class="detail-label">日の入</span>
+                                <span class="detail-value" id="sunset">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="forecast" class="forecast-section" style="display: none;">
+                <h2>5日間の天気予報</h2>
+                <div id="forecastList" class="forecast-list"></div>
+            </section>
+
+            <section id="favorites" class="favorites-section">
+                <div class="favorites-header">
+                    <h3>📌 お気に入りの都市</h3>
+                    <button id="addFavorite" class="btn-add" style="display: none;">
+                        ➕ 追加
+                    </button>
+                </div>
+                <div id="favoritesList" class="favorites-list">
+                    <p class="empty-state">お気に入りの都市がありません</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
