@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家計簿アプリ - Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 家計簿アプリ</h1>
+            <p>支出を記録して、賢く管理しよう</p>
+        </header>
+
+        <!-- タブナビゲーション -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="input">入力</button>
+            <button class="tab-btn" data-tab="list">一覧</button>
+            <button class="tab-btn" data-tab="stats">統計</button>
+            <button class="tab-btn" data-tab="settings">設定</button>
+        </div>
+
+        <!-- 入力タブ -->
+        <div class="tab-content active" id="input">
+            <div class="card">
+                <h2>支出を追加</h2>
+                <form id="expense-form">
+                    <div class="form-group">
+                        <label for="amount">金額 (円)</label>
+                        <input type="number" id="amount" required min="0" step="1" placeholder="1000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">カテゴリ</label>
+                        <select id="category" required>
+                            <option value="">選択してください</option>
+                            <option value="食費">🍔 食費</option>
+                            <option value="交通費">🚃 交通費</option>
+                            <option value="住居費">🏠 住居費</option>
+                            <option value="光熱費">⚡ 光熱費</option>
+                            <option value="娯楽費">🎮 娯楽費</option>
+                            <option value="衣服費">👕 衣服費</option>
+                            <option value="医療費">💊 医療費</option>
+                            <option value="教育費">📚 教育費</option>
+                            <option value="通信費">📱 通信費</option>
+                            <option value="その他">💳 その他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">日付</label>
+                        <input type="date" id="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="memo">メモ（任意）</label>
+                        <input type="text" id="memo" placeholder="ランチ代、電車代など">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">追加</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 一覧タブ -->
+        <div class="tab-content" id="list">
+            <div class="card">
+                <div class="list-header">
+                    <h2>支出一覧</h2>
+                    <div class="filter-controls">
+                        <select id="filter-category">
+                            <option value="">全カテゴリ</option>
+                            <option value="食費">食費</option>
+                            <option value="交通費">交通費</option>
+                            <option value="住居費">住居費</option>
+                            <option value="光熱費">光熱費</option>
+                            <option value="娯楽費">娯楽費</option>
+                            <option value="衣服費">衣服費</option>
+                            <option value="医療費">医療費</option>
+                            <option value="教育費">教育費</option>
+                            <option value="通信費">通信費</option>
+                            <option value="その他">その他</option>
+                        </select>
+                        <button id="export-csv" class="btn btn-secondary">CSV出力</button>
+                    </div>
+                </div>
+                <div id="expense-list"></div>
+                <div class="total-summary">
+                    <strong>合計:</strong> <span id="total-amount">¥0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 統計タブ -->
+        <div class="tab-content" id="stats">
+            <div class="card">
+                <h2>月次統計</h2>
+                <div class="stats-controls">
+                    <select id="stats-month">
+                        <option value="">今月</option>
+                    </select>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">今月の支出</div>
+                        <div class="stat-value" id="monthly-total">¥0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">1日平均</div>
+                        <div class="stat-value" id="daily-average">¥0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">最大支出</div>
+                        <div class="stat-value" id="max-expense">¥0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">記録数</div>
+                        <div class="stat-value" id="expense-count">0件</div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="category-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- 設定タブ -->
+        <div class="tab-content" id="settings">
+            <div class="card">
+                <h2>設定</h2>
+
+                <div class="setting-group">
+                    <h3>データ管理</h3>
+                    <button id="export-json" class="btn btn-secondary">JSONエクスポート</button>
+                    <button id="import-json" class="btn btn-secondary">JSONインポート</button>
+                    <input type="file" id="import-file" accept=".json" style="display: none;">
+                    <button id="clear-data" class="btn btn-danger">全データ削除</button>
+                </div>
+
+                <div class="setting-group">
+                    <h3>アプリについて</h3>
+                    <p>Version: 1.0.0</p>
+                    <p>データはブラウザ内に保存されます</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

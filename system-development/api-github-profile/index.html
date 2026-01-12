@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Profile Viewer - GitHub統計ビューアー</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐙 GitHub Profile Viewer</h1>
+            <p>GitHub統計を可視化</p>
+        </header>
+
+        <div class="search-card">
+            <input type="text" id="username-input" placeholder="GitHubユーザー名を入力..." value="octocat">
+            <button class="btn btn-primary" id="search-btn">検索</button>
+        </div>
+
+        <div id="profile-section" style="display: none;">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img id="avatar" src="" alt="Avatar">
+                    <div class="profile-info">
+                        <h2 id="name"></h2>
+                        <p id="username"></p>
+                        <p id="bio"></p>
+                        <div class="profile-meta">
+                            <span id="location"></span>
+                            <span id="company"></span>
+                            <a id="website" href="" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="repos">0</div>
+                        <div class="stat-label">リポジトリ</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="followers">0</div>
+                        <div class="stat-label">フォロワー</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="following">0</div>
+                        <div class="stat-label">フォロー中</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="gists">0</div>
+                        <div class="stat-label">Gist</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>言語統計</h2>
+                <div class="chart-container">
+                    <canvas id="languages-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>リポジトリ一覧</h2>
+                <div class="repo-controls">
+                    <select id="sort-select">
+                        <option value="stars">スター数順</option>
+                        <option value="updated">更新日順</option>
+                        <option value="name">名前順</option>
+                    </select>
+                </div>
+                <div id="repos-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
