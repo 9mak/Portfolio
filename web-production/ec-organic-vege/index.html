@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訳あり野菜直売所「泥付き」</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Yomogi&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 段ボールテクスチャ（CSSパターンで簡易再現） */
+        body {
+            background-color: #cbbfa3;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.02) 10px, rgba(0,0,0,0.02) 20px),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
+            font-family: 'Zen Maru Gothic', sans-serif;
+            color: #5d4037;
+        }
+
+        .hand-font {
+            font-family: 'Yomogi', cursive;
+        }
+
+        /* ガムテープ風見出し */
+        .gum-tape {
+            background: #d4a066;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            display: inline-block;
+            padding: 0.5rem 2rem;
+            position: relative;
+            opacity: 0.95;
+            border-left: 2px dashed rgba(255,255,255,0.3);
+            border-right: 2px dashed rgba(255,255,255,0.3);
+        }
+
+        /* 商品カード（ポラロイド風 + 影） */
+        .vege-card {
+            background: white;
+            padding: 10px 10px 40px 10px;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+            position: relative;
+        }
+        .vege-card:hover {
+            transform: scale(1.03) rotate(1deg);
+            z-index: 10;
+        }
+        
+        /* 値札シール */
+        .price-tag {
+            position: absolute;
+            bottom: 15px;
+            right: 10px;
+            background: #ffecb3;
+            border: 2px solid #ffca28;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Yomogi', cursive;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #d84315;
+            transform: rotate(-15deg);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* 泥汚れ（アクセント） */
+        .mud-splash {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: #5d4037;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="p-6 text-center border-b-4 border-dashed border-[#8d6e63]/30 bg-[#fbf8f1]">
+        <h1 class="text-4xl md:text-5xl font-bold hand-font text-[#5d4037] mb-2 transform rotate-1">
+            🍅 訳あり野菜直売所「泥付き」
+        </h1>
+        <p class="text-sm md:text-base font-bold text-[#8d6e63]">
+            形はわるいけど、味はピカイチ。畑から直送！
+        </p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto p-6 md:p-12">
+        
+        <div class="mb-12 text-center">
+            <h2 class="gum-tape text-2xl font-bold text-[#3e2723]">本日の収穫（早い者勝ち！）</h2>
+        </div>
+
+        <!-- 商品リスト (あえてグリッドを崩すためにマージンを使用) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+            
+            <!-- Item 1 -->
+            <div class="vege-card transform rotate-2">
+                <img src="https://images.unsplash.com/photo-1592500823293-9c8df1b5f259?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover sepia-[0.2]">
+                <h3 class="font-bold text-xl mt-4 hand-font">曲がったキュウリ (5kg)</h3>
+                <p class="text-xs mt-2 text-gray-500">
+                    市場には出せないけど、漬物にしたら最高だよ。<br>
+                    おばあちゃんのレシピ付き。
+                </p>
+                <div class="price-tag">
+                    ¥980
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="vege-card transform -rotate-1 mt-0 md:mt-12">
+                <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover sepia-[0.2]">
+                <h3 class="font-bold text-xl mt-4 hand-font">泥付き人参 (詰め放題)</h3>
+                <p class="text-xs mt-2 text-gray-500">
+                    洗ってないから日持ちするよ。<br>
+                    甘みが強くてジュースに最適！
+                </p>
+                <div class="price-tag">
+                    ¥1,200
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="vege-card transform rotate-3">
+                <img src="https://images.unsplash.com/photo-1528641662-841f4e138a49?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover sepia-[0.2]">
+                <h3 class="font-bold text-xl mt-4 hand-font">ふぞろいトマト箱</h3>
+                <p class="text-xs mt-2 text-gray-500">
+                    大きさバラバラ。<br>
+                    完熟してるから配送中に割れるかも（笑）
+                </p>
+                <div class="price-tag">
+                    ¥1,500
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="vege-card transform -rotate-2 md:mt-[-40px]">
+                <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover sepia-[0.2]">
+                <h3 class="font-bold text-xl mt-4 hand-font">双子のじゃがいも</h3>
+                <p class="text-xs mt-2 text-gray-500">
+                    くっついちゃったレアな芋。<br>
+                    ポテトサラダにどうぞ。
+                </p>
+                <div class="price-tag">
+                    ¥800
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="vege-card transform rotate-1 mt-8">
+                <img src="https://images.unsplash.com/photo-1629831519349-f538d3864016?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover sepia-[0.2]">
+                <h3 class="font-bold text-xl mt-4 hand-font">巨大かぼちゃ</h3>
+                <p class="text-xs mt-2 text-gray-500">
+                    大きすぎてスーパーの棚に入らなかった。<br>
+                    味はホックホク。
+                </p>
+                <div class="price-tag">
+                    ¥600
+                </div>
+            </div>
+        </div>
+
+        <!-- カートボタン -->
+        <div class="fixed bottom-6 right-6 z-50">
+            <button class="bg-[#d84315] text-white font-bold hand-font text-xl px-8 py-4 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center gap-2 border-4 border-white">
+                <span>🛒 カゴを見る</span>
+                <span class="bg-white text-[#d84315] rounded-full w-8 h-8 flex items-center justify-center text-sm">3</span>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- 背景装飾（泥） -->
+    <div class="mud-splash" style="top: 20%; left: 5%;"></div>
+    <div class="mud-splash" style="top: 60%; right: 10%; width: 80px; height: 80px;"></div>
+
+</body>
+</html>

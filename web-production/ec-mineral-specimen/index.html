@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Specimen | Mineral & Fossil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0f172a; /* Slate 900 */
+            color: #e2e8f0;
+            font-family: 'Lato', sans-serif;
+            cursor: crosshair;
+        }
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* 標本箱のグリッド */
+        .specimen-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1px;
+            background-color: #334155; /* 枠線の色 */
+            padding: 1px;
+            border: 10px solid #1e293b;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+        }
+
+        .specimen-cell {
+            background-color: #0f172a;
+            position: relative;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            group: group;
+        }
+
+        /* ルーペ効果（マスク） */
+        .loupe-mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle 100px at var(--x, 50%) var(--y, 50%), transparent 0%, rgba(0,0,0,0.8) 100%);
+            pointer-events: none;
+            z-index: 10;
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+        .specimen-cell:hover .loupe-mask {
+            opacity: 1;
+        }
+
+        /* 画像のキラキラ反射（Specular） */
+        .specular-shine {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle 50px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.3) 0%, transparent 60%);
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .label-plate {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #e2e8f0;
+            color: #0f172a;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.1em;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border: 1px solid #94a3b8;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="py-12 text-center relative z-10">
+        <h1 class="text-4xl md:text-5xl text-slate-200 tracking-[0.2em] mb-4 border-b border-slate-700 inline-block pb-4">
+            THE SPECIMEN
+        </h1>
+        <p class="text-xs text-slate-500 uppercase tracking-widest">Curated Minerals & Fossils</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 pb-24">
+        <div class="specimen-grid">
+            
+            <!-- Item 1 -->
+            <div class="specimen-cell" onmousemove="updateLight(event, this)">
+                <img src="https://images.unsplash.com/photo-1598556776374-39906d0c2429?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Amethyst">
+                <div class="loupe-mask"></div>
+                <div class="specular-shine"></div>
+                <div class="label-plate">Amethyst / Brazil</div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="specimen-cell" onmousemove="updateLight(event, this)">
+                <img src="https://images.unsplash.com/photo-1617652702175-924b11e2f9b8?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Pyrite">
+                <div class="loupe-mask"></div>
+                <div class="specular-shine"></div>
+                <div class="label-plate">Pyrite / Peru</div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="specimen-cell" onmousemove="updateLight(event, this)">
+                <img src="https://images.unsplash.com/photo-1596500989010-02354c49d605?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Quartz">
+                <div class="loupe-mask"></div>
+                <div class="specular-shine"></div>
+                <div class="label-plate">Clear Quartz / USA</div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="specimen-cell" onmousemove="updateLight(event, this)">
+                <img src="https://images.unsplash.com/photo-1567634267233-a3b048037380?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Malachite">
+                <div class="loupe-mask"></div>
+                <div class="specular-shine"></div>
+                <div class="label-plate">Malachite / Congo</div>
+            </div>
+             <!-- Item 5 -->
+            <div class="specimen-cell" onmousemove="updateLight(event, this)">
+                <img src="https://images.unsplash.com/photo-1615486971167-33e13d5af547?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Fluorite">
+                <div class="loupe-mask"></div>
+                <div class="specular-shine"></div>
+                <div class="label-plate">Fluorite / China</div>
+            </div>
+             <!-- Item 6 -->
+            <div class="specimen-cell" onmousemove="updateLight(event, this)">
+                <img src="https://images.unsplash.com/photo-1566318991475-407b4618776b?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Ammonite">
+                <div class="loupe-mask"></div>
+                <div class="specular-shine"></div>
+                <div class="label-plate">Ammonite / Morocco</div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function updateLight(e, element) {
+            const rect = element.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            element.style.setProperty('--x', `${x}px`);
+            element.style.setProperty('--y', `${y}px`);
+        }
+    </script>
+</body>
+</html>

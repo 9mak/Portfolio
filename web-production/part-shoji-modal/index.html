@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoji Modal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #333;
+            background-image: url('https://images.unsplash.com/photo-1623860882329-373955639912?q=80&w=1000&auto=format&fit=crop'); /* 和風庭園など */
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Hina Mincho', serif;
+        }
+
+        /* モーダルコンテナ */
+        .shoji-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 300px;
+            overflow: hidden; /* はみ出した障子を隠す */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            display: none; /* JSで表示 */
+            background: transparent;
+        }
+
+        .shoji-container.active {
+            display: block;
+        }
+
+        /* 障子（左右） */
+        .shoji-door {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: #fff; /* 障子紙 */
+            border: 8px solid #5d4037; /* 木枠 */
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 10;
+            box-shadow: 5px 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* 桟（さん）のグリッド */
+        .shoji-grid {
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(#5d4037 2px, transparent 2px),
+                linear-gradient(90deg, #5d4037 2px, transparent 2px);
+            background-size: 100% 33.3%, 50% 100%;
+            opacity: 0.8;
+        }
+
+        /* 左の障子 */
+        .shoji-left {
+            left: 0;
+            transform: translateX(-100%); /* 最初は隠れている */
+            border-right: 2px solid #5d4037;
+        }
+        /* 右の障子 */
+        .shoji-right {
+            right: 0;
+            transform: translateX(100%); /* 最初は隠れている */
+            border-left: 2px solid #5d4037;
+        }
+
+        /* 閉じた状態 */
+        .shoji-container.active .shoji-left {
+            transform: translateX(0);
+        }
+        .shoji-container.active .shoji-right {
+            transform: translateX(0);
+        }
+
+        /* コンテンツ（障子の上に浮かぶ文字） */
+        .shoji-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+            display: flex;
+            flex-col;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s 0.6s; /* 障子が閉まってから表示 */
+            text-align: center;
+            color: #3e2723;
+        }
+        
+        .shoji-container.active .shoji-content {
+            opacity: 1;
+        }
+
+        /* 影の演出 */
+        .leaf-shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20,20 Q40,5 60,20 T100,20' stroke='black' fill='none' opacity='0.1' stroke-width='5'/%3E%3C/svg%3E");
+            z-index: 11;
+            pointer-events: none;
+            filter: blur(4px);
+            opacity: 0;
+            transition: opacity 1s 0.6s;
+        }
+        .shoji-container.active .leaf-shadow {
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+
+    <button onclick="toggleShoji()" class="bg-white px-6 py-3 rounded shadow font-serif hover:bg-gray-100">
+        お知らせを開く
+    </button>
+
+    <div class="shoji-container" id="modal">
+        <!-- 左障子 -->
+        <div class="shoji-door shoji-left">
+            <div class="shoji-grid"></div>
+        </div>
+        <!-- 右障子 -->
+        <div class="shoji-door shoji-right">
+            <div class="shoji-grid"></div>
+        </div>
+        
+        <!-- 影 -->
+        <div class="leaf-shadow"></div>
+
+        <!-- 中身 -->
+        <div class="shoji-content">
+            <h2 class="text-2xl mb-4 font-bold border-b border-[#5d4037] pb-2">春の特別懐石</h2>
+            <p class="mb-6">
+                旬の筍と桜鯛をご用意いたしました。<br>
+                季節の移ろいをお楽しみください。
+            </p>
+            <button onclick="toggleShoji()" class="border border-[#5d4037] px-4 py-1 text-xs hover:bg-[#5d4037] hover:text-white transition-colors">
+                閉じる
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modal');
+        
+        function toggleShoji() {
+            if (modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 600); // アニメーション待機
+            } else {
+                modal.style.display = 'block';
+                // display:blockの直後にclass付与だとアニメーションしないため微遅延
+                setTimeout(() => {
+                    modal.classList.add('active');
+                }, 10);
+            }
+        }
+    </script>
+</body>
+</html>

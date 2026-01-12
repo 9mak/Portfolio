@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迷宮古書店 積読 | 本の森を彷徨う</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #2c241b;
+            color: #d7ccc8;
+            font-family: 'Shippori Mincho', serif;
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        /* 本棚レイアウト */
+        .bookshelf {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 2px;
+            padding: 50px 20px;
+            perspective: 1000px;
+        }
+
+        /* 本の背表紙 */
+        .book-spine {
+            width: 40px; /* 厚みはランダムに変える */
+            height: 200px; /* 高さもランダムに */
+            background-color: #5d4037;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            border-right: 1px solid rgba(0,0,0,0.3);
+            border-radius: 2px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.3s;
+            position: relative;
+            transform-origin: bottom center;
+            user-select: none;
+        }
+
+        /* ホバー時の「引き出し」アクション */
+        .book-spine:hover {
+            transform: translateZ(20px) translateY(-30px) scale(1.1);
+            z-index: 10;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+        }
+
+        /* ランダムな色クラス (JSで付与) */
+        .book-red { background: #5d2e2e; color: #ffcccc; }
+        .book-blue { background: #2e3b5d; color: #ccccff; }
+        .book-green { background: #2e5d3b; color: #ccffcc; }
+        .book-brown { background: #4e342e; color: #d7ccc8; }
+        .book-black { background: #1a1a1a; color: #f5f5f5; }
+
+        /* 埃（ほこり）パーティクル */
+        .dust-particle {
+            position: fixed;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.3;
+            animation: float-dust 10s infinite linear;
+        }
+        @keyframes float-dust {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            50% { opacity: 0.4; }
+            100% { transform: translateY(-100px) translateX(20px); opacity: 0; }
+        }
+
+        /* 詳細モーダル */
+        .book-modal {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background: #fff8e1;
+            color: #3e2723;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateY(120%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 50;
+            border: 1px solid #d7ccc8;
+        }
+        .book-modal.active {
+            transform: translateY(0);
+        }
+        .book-modal::before {
+            content: '貸出カード';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #d32f2f;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="fixed top-0 left-0 p-6 z-40 mix-blend-difference text-white">
+        <h1 class="text-3xl font-bold tracking-[0.5em]">積読</h1>
+        <p class="text-xs mt-2 opacity-60">TSUNDOKU OLD BOOKS</p>
+        <p class="text-xs mt-8 opacity-40">※検索機能はありません。<br>運命の一冊を見つけてください。</p>
+    </header>
+
+    <main class="bookshelf" id="shelf">
+        <!-- JSで本を大量生成 -->
+    </main>
+
+    <!-- 詳細パネル -->
+    <div class="book-modal" id="detail-panel">
+        <h2 class="text-xl font-bold mb-2" id="book-title">タイトル</h2>
+        <p class="text-xs text-gray-500 mb-4" id="book-author">著者名</p>
+        <p class="text-sm leading-relaxed" id="book-desc">
+            ここに本のあらすじや、店主の気まぐれなコメントが表示されます。古書の匂いが漂ってきそうな一冊です。
+        </p>
+        <button class="mt-4 w-full bg-[#3e2723] text-[#fff8e1] py-2 text-xs hover:opacity-80">
+            購入する
+        </button>
+    </div>
+
+    <script>
+        // 本のデータ生成
+        const shelf = document.getElementById('shelf');
+        const detailPanel = document.getElementById('detail-panel');
+        const titleEl = document.getElementById('book-title');
+        const authorEl = document.getElementById('book-author');
+        const colors = ['book-red', 'book-blue', 'book-green', 'book-brown', 'book-black', 'book-brown', 'book-brown'];
+        
+        const titles = [
+            "猫と哲学", "深夜の散歩", "失われた時計", "珈琲の淹れ方", "星を読む", 
+            "雨の日の手紙", "錆びた鍵", "透明な魚", "月への梯子", "影の採集",
+            "夢判断入門", "植物の言葉", "路地裏の地図", "砂の城", "銀河鉄道",
+            "古道具目録", "未完の小説", "誰かの日記", "雲の図鑑", "沈黙の音"
+        ];
+
+        // 100冊の本をランダム生成
+        for (let i = 0; i < 100; i++) {
+            const book = document.createElement('div');
+            book.classList.add('book-spine');
+            
+            // ランダムなスタイル
+            const height = Math.floor(Math.random() * 80) + 180; // 180-260px
+            const width = Math.floor(Math.random() * 20) + 30;   // 30-50px
+            const colorClass = colors[Math.floor(Math.random() * colors.length)];
+            const title = titles[Math.floor(Math.random() * titles.length)];
+            
+            book.style.height = `${height}px`;
+            book.style.width = `${width}px`;
+            book.classList.add(colorClass);
+            book.innerText = title;
+
+            // クリックイベント
+            book.addEventListener('mouseenter', () => {
+                titleEl.innerText = title;
+                authorEl.innerText = "著者不明";
+                detailPanel.classList.add('active');
+            });
+
+            shelf.appendChild(book);
+        }
+
+        // 埃パーティクル生成
+        for(let i=0; i<30; i++) {
+            const dust = document.createElement('div');
+            dust.classList.add('dust-particle');
+            dust.style.left = Math.random() * 100 + 'vw';
+            dust.style.top = Math.random() * 100 + 'vh';
+            dust.style.width = Math.random() * 3 + 'px';
+            dust.style.height = dust.style.width;
+            dust.style.animationDelay = Math.random() * 5 + 's';
+            dust.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            document.body.appendChild(dust);
+        }
+
+        // Shelfから外れたら詳細を隠す
+        shelf.addEventListener('mouseleave', () => {
+            detailPanel.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

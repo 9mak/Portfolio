@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bespoke Shoes "Aged" | 時を履く</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'leather-dark': '#1a120b',
+                        'leather-brown': '#3e2723',
+                        'leather-light': '#5d4037',
+                        'gold': '#c5a059',
+                    },
+                    fontFamily: {
+                        'serif': ['"Noto Serif JP"', 'serif'],
+                        'display': ['"Cinzel"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #1a120b;
+            color: #d7ccc8;
+        }
+        
+        /* レザーの質感（微細なノイズ） */
+        .leather-texture {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        /* Before/After Slider Effect */
+        .compare-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .img-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            clip-path: inset(0 50% 0 0); /* Initial state: half visible */
+            transition: clip-path 0.1s ease;
+        }
+        .compare-slider {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: #c5a059;
+            cursor: ew-resize;
+            z-index: 10;
+        }
+        .compare-slider::after {
+            content: '< >';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #c5a059;
+            color: #1a120b;
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 2px;
+            white-space: nowrap;
+        }
+
+        /* 革タグ風ボタン */
+        .leather-tag-btn {
+            background: #3e2723;
+            color: #c5a059;
+            border: 1px solid #5d4037;
+            position: relative;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            transition: all 0.3s;
+        }
+        .leather-tag-btn:hover {
+            background: #4e342e;
+            transform: translateY(-1px);
+        }
+        /* 縫い目 */
+        .leather-tag-btn::before {
+            content: '';
+            position: absolute;
+            top: 3px; left: 3px; right: 3px; bottom: 3px;
+            border: 1px dashed #5d4037;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body class="leather-texture font-serif selection:bg-gold selection:text-leather-dark">
+
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference">
+        <h1 class="font-display text-3xl text-gold tracking-widest">AGED</h1>
+        <div class="flex gap-8 text-xs tracking-widest text-gold/80">
+            <a href="#" class="hover:text-white">COLLECTION</a>
+            <a href="#" class="hover:text-white">PHILOSOPHY</a>
+            <a href="#" class="hover:text-white">BESPOKE</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-40">
+            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=1600&auto=format&fit=crop" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-leather-dark via-transparent to-transparent"></div>
+        
+        <div class="relative z-10 text-center space-y-6 max-w-2xl px-4">
+            <p class="text-gold text-xs tracking-[0.3em]">HANDCRAFTED IN TOKYO</p>
+            <h2 class="text-4xl md:text-6xl font-bold leading-tight">
+                傷の数だけ、<br>物語がある。
+            </h2>
+            <p class="text-sm opacity-70 leading-loose pt-4">
+                最高級のカーフレザーは、<br>
+                新品の時が完成ではない。<br>
+                貴方の足に馴染み、深い皺が刻まれた時こそ、<br>
+                「AGED」の靴は完成する。
+            </p>
+        </div>
+    </header>
+
+    <!-- Aging Showcase -->
+    <section class="py-24 px-6 md:px-12 bg-[#120c08]">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+            
+            <div class="w-full md:w-1/2 space-y-8">
+                <span class="text-gold text-xs tracking-widest border-b border-gold/30 pb-2">AGING GALLERY</span>
+                <h3 class="text-3xl font-display text-white">5 Years Later</h3>
+                <p class="text-sm leading-loose text-white/60 text-justify">
+                    左側は完成直後の「新品」。右側は週に2回、5年間履き込み、定期的にメンテナンスを施した「エイジング」後の姿。<br>
+                    色はより深く、艶はより鋭く。爪先の傷さえも、美しい陰影の一部となります。
+                </p>
+                
+                <div class="pt-4">
+                    <button class="leather-tag-btn px-8 py-3 text-sm tracking-widest">
+                        経年変化ギャラリーへ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Before/After Slider -->
+            <div class="w-full md:w-1/2 aspect-[4/3] compare-container rounded shadow-2xl border border-white/5 group" id="comparison">
+                <!-- After Image (Background) -->
+                <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1628253747716-0c4f5c90fdda?q=80&w=800&auto=format&fit=crop'); filter: sepia(0.4) contrast(1.2);"></div>
+                
+                <!-- Before Image (Overlay) -->
+                <div class="img-overlay" id="overlay" style="background-image: url('https://images.unsplash.com/photo-1533867617858-e7b97e060509?q=80&w=800&auto=format&fit=crop'); filter: brightness(1.1);"></div>
+                
+                <!-- Slider Handle -->
+                <div class="compare-slider" id="slider"></div>
+
+                <!-- Labels -->
+                <div class="absolute bottom-4 left-4 text-xs font-bold text-black bg-white/80 px-2 py-1 z-20 pointer-events-none">BRAND NEW</div>
+                <div class="absolute bottom-4 right-4 text-xs font-bold text-gold bg-black/80 px-2 py-1 z-20 pointer-events-none">5 YEARS AGED</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="py-24 px-6">
+        <div class="text-center mb-16">
+            <h3 class="font-display text-2xl text-gold">Lineup</h3>
+        </div>
+        
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Item 1 -->
+            <div class="group cursor-pointer">
+                <div class="aspect-[3/4] bg-[#0d0905] relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-leather-dark/90 to-transparent opacity-60"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <h4 class="font-display text-xl text-white mb-1">Oxford #01</h4>
+                        <p class="text-gold text-sm">¥128,000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 2 -->
+            <div class="group cursor-pointer">
+                <div class="aspect-[3/4] bg-[#0d0905] relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1605733160314-4fc7dac4bb16?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-leather-dark/90 to-transparent opacity-60"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <h4 class="font-display text-xl text-white mb-1">Loafer #05</h4>
+                        <p class="text-gold text-sm">¥115,000</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="group cursor-pointer">
+                <div class="aspect-[3/4] bg-[#0d0905] relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1607522370275-f14206abe5d3?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-leather-dark/90 to-transparent opacity-60"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <h4 class="font-display text-xl text-white mb-1">Boots #09</h4>
+                        <p class="text-gold text-sm">¥142,000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/10 text-center">
+        <p class="text-xs text-white/30 font-display">&copy; 2025 AGED BESPOKE SHOES.</p>
+    </footer>
+
+    <script>
+        // Comparison Slider Logic
+        const container = document.getElementById('comparison');
+        const overlay = document.getElementById('overlay');
+        const slider = document.getElementById('slider');
+
+        const moveSlider = (e) => {
+            const rect = container.getBoundingClientRect();
+            // X座標取得（マウス or タッチ）
+            let clientX = e.clientX || e.touches[0].clientX;
+            
+            let x = clientX - rect.left;
+            // 範囲制限
+            if (x < 0) x = 0;
+            if (x > rect.width) x = rect.width;
+            
+            const percentage = (x / rect.width) * 100;
+            
+            overlay.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+            slider.style.left = `${percentage}%`;
+        };
+
+        container.addEventListener('mousemove', moveSlider);
+        container.addEventListener('touchmove', moveSlider);
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ink Input Component</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f0; /* 生成り紙 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #2b2b2b;
+        }
+
+        /* SVG Filter Definition: 滲み（Bleed） */
+        .ink-bleed {
+            filter: url('#bleed');
+        }
+
+        /* Input Styles */
+        .ink-field {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            outline: none;
+            font-family: 'Dancing Script', cursive; /* 筆記体 */
+            font-size: 3rem;
+            color: #1a237e; /* インクブルー */
+            padding: 10px 0;
+            transition: border-color 0.3s;
+            line-height: 1.5;
+        }
+
+        .ink-field:focus {
+            border-bottom-color: #1a237e;
+        }
+
+        .ink-field::placeholder {
+            color: #ccc;
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+
+        /* カーソルの色変更 */
+        .ink-field {
+            caret-color: #1a237e; 
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- SVG Filters -->
+    <svg style="display: none;">
+        <defs>
+            <filter id="bleed">
+                <!-- ノイズ生成 -->
+                <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" result="noise" />
+                <!-- ノイズを使って画像を歪ませる（滲み） -->
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" />
+                <!-- 少しぼかす -->
+                <feGaussianBlur stdDeviation="0.4" />
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="w-full max-w-lg p-12 bg-white shadow-xl relative overflow-hidden">
+        <!-- 紙の罫線 -->
+        <div class="absolute inset-0 pointer-events-none" 
+             style="background-image: linear-gradient(#e5e5e5 1px, transparent 1px); background-size: 100% 3rem; top: 3.5rem;">
+        </div>
+
+        <div class="relative z-10">
+            <label class="block text-sm font-serif text-gray-500 mb-2">Signature</label>
+            <!-- インプットエリア：フィルター適用 -->
+            <div class="ink-bleed">
+                <input type="text" class="ink-field" placeholder="お名前をご記入ください" autofocus>
+            </div>
+            <p class="mt-4 text-xs text-gray-400 font-serif text-right">※万年筆 インク色：ミッドナイトブルー</p>
+        </div>
+    </div>
+
+</body>
+</html>

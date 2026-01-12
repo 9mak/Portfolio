@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登山ガイド 頂 ITADAKI | 高みへ。</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;800&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            /* 麓(緑) -> 岩場(灰) -> 雪渓(白) -> 空(青) -> 宇宙(紺) */
+            background: linear-gradient(to bottom, 
+                #0f172a 0%,    /* 宇宙 */
+                #1e3a8a 20%,   /* 空 */
+                #f8fafc 40%,   /* 雪渓 */
+                #57534e 70%,   /* 岩場 */
+                #14532d 100%   /* 樹海 */
+            );
+            background-size: 100% 500vh; /* 画面高さの5倍の長さ */
+            background-position: bottom; /* 最初は下（麓） */
+            font-family: 'Shippori Mincho', serif;
+            color: white;
+            transition: background-position 0.1s linear; /* スクロールに合わせてJSで操作 */
+        }
+
+        /* 等高線アニメーション */
+        .contour-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        .contour-path {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 0.5;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 10s ease-out forwards infinite alternate;
+        }
+        @keyframes drawLine {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* 霧（雲）のエフェクト */
+        .fog {
+            position: absolute;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,0.2), rgba(255,255,255,0));
+            filter: blur(20px);
+        }
+
+        /* 標高メーター */
+        .elevation-meter {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- 背景：等高線 -->
+    <svg class="contour-lines text-white" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+        <path class="contour-path" d="M0,800 Q200,700 400,800 T800,800 T1000,900" />
+        <path class="contour-path" d="M0,600 Q300,500 500,600 T900,500" style="animation-delay: 1s;" />
+        <path class="contour-path" d="M0,400 Q150,300 400,400 T800,300" style="animation-delay: 2s;" />
+        <path class="contour-path" d="M0,200 Q250,100 500,200 T1000,100" style="animation-delay: 3s;" />
+    </svg>
+
+    <!-- 固定UI：標高計 -->
+    <div class="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 flex gap-4 items-center">
+        <div class="h-64 w-[1px] bg-white/30 relative">
+            <div id="meter-indicator" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_white]"></div>
+        </div>
+        <div class="elevation-meter text-xs tracking-widest opacity-80">
+            <span id="elevation-text">0</span> m
+        </div>
+    </div>
+
+    <!-- コンテンツ -->
+    <main class="relative z-10">
+
+        <!-- Section 1: 麓 (Forest) -->
+        <section class="min-h-screen flex items-center justify-center relative p-12">
+            <div class="max-w-4xl text-center space-y-8">
+                <p class="text-sm tracking-[0.5em] opacity-80">MOUNTAIN GUIDE PORTFOLIO</p>
+                <h1 class="text-6xl md:text-9xl font-bold tracking-widest font-serif opacity-90">
+                    頂
+                </h1>
+                <p class="text-lg leading-loose opacity-80 pt-8">
+                    一歩ずつ、踏みしめる。<br>
+                    その先にしか見えない景色がある。
+                </p>
+            </div>
+            <div class="absolute bottom-10 animate-bounce text-xs tracking-widest">CLIMB UP</div>
+        </section>
+
+        <!-- Section 2: 岩場 (Rock) -->
+        <section class="min-h-screen flex items-center p-12 relative">
+            <div class="fog top-0"></div>
+            <div class="max-w-2xl">
+                <span class="text-xs font-bold font-sans opacity-50 block mb-4">ELEVATION: 1500m</span>
+                <h2 class="text-4xl mb-8 font-bold">岩稜を越えて</h2>
+                <div class="flex gap-8 overflow-x-auto pb-8 snap-x">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop" class="w-80 h-96 object-cover grayscale brightness-75 hover:grayscale-0 transition-all duration-500 snap-center shrink-0">
+                    <img src="https://images.unsplash.com/photo-1544198365-f5d60b6d8190?q=80&w=600&auto=format&fit=crop" class="w-80 h-96 object-cover grayscale brightness-75 hover:grayscale-0 transition-all duration-500 snap-center shrink-0">
+                </div>
+                <p class="mt-8 leading-loose text-justify text-sm opacity-80">
+                    北アルプスの岩場を中心にガイドを行っています。<br>
+                    安全確保はもちろん、岩の感触、風の音、<br>
+                    五感で山を感じる体験を提供します。
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 3: 雪渓 (Snow) -->
+        <section class="min-h-screen flex flex-col items-end justify-center p-12 relative text-slate-800">
+            <div class="max-w-2xl text-right">
+                <span class="text-xs font-bold font-sans opacity-50 block mb-4">ELEVATION: 2500m</span>
+                <h2 class="text-4xl mb-8 font-bold text-slate-900">静寂の雪原</h2>
+                <p class="mb-12 leading-loose text-sm opacity-80">
+                    冬山には、世界から音が消える瞬間がある。<br>
+                    厳しくも美しい、純白の世界へ。
+                </p>
+            </div>
+            <div class="w-full h-80 bg-white/20 backdrop-blur-sm rounded-lg p-8 grid grid-cols-3 gap-4">
+                <div class="col-span-2 bg-slate-200 h-full relative overflow-hidden group">
+                     <img src="https://images.unsplash.com/photo-1516934024742-b461fba47600?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                </div>
+                <div class="bg-slate-300 h-full relative overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?q=80&w=600&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: 頂上・宇宙 (Summit/Space) -->
+        <section class="min-h-screen flex items-center justify-center p-12 relative">
+            <div class="text-center">
+                <span class="text-xs font-bold font-sans opacity-50 block mb-4">ELEVATION: 3776m</span>
+                <h2 class="text-5xl md:text-7xl mb-12 font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-t from-white to-blue-200">
+                    頂へ
+                </h2>
+                <a href="#" class="inline-block border border-white/30 px-12 py-4 hover:bg-white hover:text-black transition-all duration-300 tracking-widest text-sm">
+                    ガイドを依頼する
+                </a>
+            </div>
+            
+            <!-- 星屑 -->
+            <div class="absolute inset-0 z-[-1]" id="stars"></div>
+        </section>
+
+    </main>
+
+    <script>
+        // スクロール連動背景 & 標高メーター
+        const body = document.body;
+        const meterIndicator = document.getElementById('meter-indicator');
+        const elevationText = document.getElementById('elevation-text');
+        
+        // 星生成
+        const starContainer = document.getElementById('stars');
+        for(let i=0; i<50; i++) {
+            const star = document.createElement('div');
+            star.style.position = 'absolute';
+            star.style.width = Math.random() * 2 + 'px';
+            star.style.height = star.style.width;
+            star.style.background = 'white';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.opacity = Math.random();
+            starContainer.appendChild(star);
+        }
+
+        window.addEventListener('scroll', () => {
+            const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            const scrollPercentClamped = Math.min(Math.max(scrollPercent, 0), 1);
+            
+            // 背景位置の更新 (bottom基準なので、scrollPercentが増えると上に移動)
+            // 0%スクロール = background-position-y: 100% (Green)
+            // 100%スクロール = background-position-y: 0% (Space)
+            body.style.backgroundPosition = `center ${100 - (scrollPercentClamped * 100)}%`;
+
+            // メーター更新
+            meterIndicator.style.bottom = `${scrollPercentClamped * 100}%`;
+            
+            // 標高テキスト更新 (0m -> 3776m)
+            const elevation = Math.round(scrollPercentClamped * 3776);
+            elevationText.textContent = elevation;
+        });
+    </script>
+</body>
+</html>

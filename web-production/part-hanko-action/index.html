@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Hanko Action</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .paper-doc {
+            background: white;
+            width: 400px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            font-family: 'Noto Serif JP', serif;
+            position: relative;
+        }
+
+        /* 承認ボタンエリア */
+        .approval-area {
+            border: 2px solid #ddd;
+            width: 80px;
+            height: 80px;
+            margin-left: auto;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .approval-area:hover {
+            background: #fafafa;
+        }
+        .approval-label {
+            font-size: 0.7rem;
+            color: #aaa;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+        }
+
+        /* ハンコ（印影） */
+        .hanko-mark {
+            width: 60px;
+            height: 60px;
+            border: 3px solid #d32f2f; /* 朱色 */
+            border-radius: 50%;
+            color: #d32f2f;
+            display: flex;
+            flex-col;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Hina Mincho', serif;
+            font-weight: bold;
+            font-size: 1.2rem;
+            line-height: 1;
+            position: absolute;
+            
+            /* 初期状態：非表示・拡大 */
+            opacity: 0;
+            transform: scale(3) rotate(-10deg);
+            pointer-events: none;
+            
+            /* 乗算モードで紙に馴染ませる */
+            mix-blend-mode: multiply; 
+        }
+
+        /* かすれ表現（borderをラフに） */
+        .hanko-mark::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border: 2px solid transparent; /* 実際はmaskでかすれを表現するが今回は簡易的に */
+            border-radius: 50%;
+        }
+
+        /* 捺印アニメーション */
+        .hanko-mark.stamped {
+            animation: stamp-action 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes stamp-action {
+            0% { opacity: 0; transform: scale(3) rotate(-20deg); }
+            50% { opacity: 1; transform: scale(0.9) rotate(-5deg); } /* 一瞬沈み込む */
+            100% { opacity: 0.9; transform: scale(1) rotate(-8deg); } /* 定着 */
+        }
+
+        .btn-text {
+            color: #ccc;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="paper-doc">
+        <h2 class="text-xl font-bold mb-4 border-b pb-2">稟議書</h2>
+        <div class="space-y-4 text-sm leading-relaxed text-gray-700">
+            <p>件名：Webサイトリニューアルの件</p>
+            <p>下記内容にて承認をお願い致します。</p>
+            <p class="text-xs text-gray-400 mt-8">2025年1月20日 申請</p>
+        </div>
+
+        <div class="flex justify-end mt-8">
+            <div class="text-center">
+                <p class="text-xs text-gray-500 mb-1">承認印</p>
+                <!-- ここをクリックして捺印 -->
+                <div class="approval-area" onclick="stamp(this)">
+                    <span class="approval-label">印</span>
+                    <span class="btn-text">Click</span>
+                    
+                    <!-- 印影（最初は見えない） -->
+                    <div class="hanko-mark">
+                        <span>承</span>
+                        <span>認</span>
+                        <div class="text-[0.6rem] border-t border-[#d32f2f] w-full text-center mt-1 pt-0.5">田中</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function stamp(element) {
+            const mark = element.querySelector('.hanko-mark');
+            const btnText = element.querySelector('.btn-text');
+            
+            if (!mark.classList.contains('stamped')) {
+                // 捺印音（視覚的な振動で表現しても良い）
+                // 押す
+                mark.classList.add('stamped');
+                btnText.style.display = 'none'; // Click文字を消す
+                
+                // 承認エリア自体のクリックを無効化
+                element.style.cursor = 'default';
+                element.onclick = null;
+            }
+        }
+    </script>
+</body>
+</html>

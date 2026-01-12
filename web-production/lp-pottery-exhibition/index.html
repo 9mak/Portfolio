@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陶芸家 織部蓮 個展「土と炎」 | 土の記憶を呼び覚ます</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'washi': '#f4f1ea', // 和紙のような白
+                        'tsuchi': '#8c705f', // 土色
+                        'sumi': '#2b2b2b',   // 墨色
+                        'sabi': '#593226',   // 錆色
+                        'ai': '#1e2f45',     // 藍色
+                    },
+                    fontFamily: {
+                        'serif': ['"Shippori Mincho"', '"Noto Serif JP"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* * アナログな質感の再現 
+         * AIが生成しにくい「ノイズ」と「不均一さ」をCSSで表現
+         */
+        
+        body {
+            background-color: #f4f1ea;
+            color: #2b2b2b;
+            overflow-x: hidden;
+        }
+
+        /* 画面全体にざらついた質感をオーバーレイ */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+        }
+
+        /* 縦書き設定 */
+        .tategaki {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            letter-spacing: 0.15em;
+        }
+
+        /* ふわっと墨が滲むような出現アニメーション */
+        .fade-in-ink {
+            opacity: 0;
+            filter: blur(8px);
+            transform: translateY(20px);
+            transition: opacity 1.5s ease-out, filter 1.5s ease-out, transform 1.5s ease-out;
+        }
+        
+        .fade-in-ink.visible {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+
+        /* 画像の縁を少し滲ませる */
+        .ink-edge {
+            mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%),
+                        linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            mask-composite: intersect;
+        }
+
+        /* カスタムスクロールバー */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f4f1ea; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8c705f; 
+            border-radius: 4px;
+        }
+
+        /* ゆらぎアニメーション */
+        @keyframes yuragi {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(0.5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-yuragi {
+            animation: yuragi 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="font-serif antialiased">
+
+    <!-- テクスチャレイヤー -->
+    <div class="noise-overlay"></div>
+
+    <!-- ローディング（オープニング） -->
+    <div id="loader" class="fixed inset-0 z-[100] bg-washi flex items-center justify-center transition-opacity duration-1000 pointer-events-none">
+        <div class="tategaki text-3xl md:text-5xl text-sumi opacity-0 animate-pulse" id="loader-text">
+            土と炎
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-40 p-6 flex justify-between items-start mix-blend-multiply">
+        <div class="text-sm tracking-widest text-sumi/70">
+            ORIBE REN<br>EXHIBITION
+        </div>
+        <button id="menu-btn" class="group flex flex-col items-end gap-2 cursor-pointer focus:outline-none">
+            <span class="block w-8 h-[1px] bg-sumi transition-all duration-500 group-hover:w-12"></span>
+            <span class="block w-6 h-[1px] bg-sumi transition-all duration-500 group-hover:w-10"></span>
+            <span class="text-xs mt-1 writing-vertical-rl text-sumi/60">其の他</span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="menu-overlay" class="fixed inset-0 bg-sumi z-30 transform translate-x-full transition-transform duration-700 ease-in-out flex items-center justify-center text-washi">
+        <div class="tategaki text-2xl gap-12 h-auto flex flex-col items-center">
+            <a href="#concept" class="hover:text-tsuchi transition-colors duration-300 menu-link">想い</a>
+            <a href="#works" class="hover:text-tsuchi transition-colors duration-300 menu-link">作品</a>
+            <a href="#profile" class="hover:text-tsuchi transition-colors duration-300 menu-link">作家</a>
+            <a href="#access" class="hover:text-tsuchi transition-colors duration-300 menu-link">場所</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+        <!-- 背景動画/画像の代替（SVGアニメーション） -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="w-full h-full">
+                <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="#8c705f">
+                    <animate attributeName="d" dur="10s" repeatCount="indefinite"
+                        values="M0,0 L100,0 L100,100 L0,100 Z; M0,0 L100,0 L90,100 L10,100 Z; M0,0 L100,0 L100,100 L0,100 Z" />
+                </path>
+            </svg>
+        </div>
+
+        <div class="relative z-10 flex flex-col-reverse md:flex-row items-center justify-center gap-12 md:gap-32 w-full max-w-6xl px-6">
+            
+            <!-- メイン画像（擬似） -->
+            <div class="w-full md:w-1/2 h-[50vh] md:h-[70vh] relative fade-in-ink delay-300">
+                 <!-- プレースホルダー：実際は陶芸作品の写真 -->
+                <div class="w-full h-full bg-stone-300 grayscale contrast-125 relative overflow-hidden ink-edge shadow-2xl animate-yuragi">
+                    <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=1000&auto=format&fit=crop" 
+                         alt="黒織部の茶碗" 
+                         class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                         onerror="this.style.display='none'; this.parentElement.style.backgroundColor='#aaa'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-tsuchi/30 to-transparent mix-blend-overlay"></div>
+                </div>
+                <div class="absolute -bottom-8 -right-8 text-xs text-sumi/50 tategaki">
+                    作品名：宵闇（よいやみ）
+                </div>
+            </div>
+
+            <!-- キャッチコピー -->
+            <div class="h-[50vh] md:h-[60vh] flex flex-col justify-center items-center md:items-start fade-in-ink">
+                <h1 class="tategaki text-4xl md:text-7xl font-bold text-sumi leading-loose tracking-widest" style="height: 100%;">
+                    <span>土</span>
+                    <span>の</span>
+                    <span>呼</span>
+                    <span>吸</span>
+                    <span class="mt-8 md:mt-16 text-sabi">火</span>
+                    <span>の</span>
+                    <span>鼓</span>
+                    <span>動</span>
+                </h1>
+                <p class="tategaki mt-0 md:mr-12 text-sm text-sumi/70 tracking-widest h-full pt-12 hidden md:block">
+                    二〇二五年 十月二日 — 十月十四日<br>
+                    於 銀座 寂静堂
+                </p>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2">
+            <span class="tategaki text-xs tracking-widest text-sumi/50">拝見</span>
+            <div class="w-[1px] h-16 bg-sumi/30"></div>
+        </div>
+    </header>
+
+    <!-- Concept Section -->
+    <section id="concept" class="py-24 md:py-40 px-6 relative">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-16 items-start">
+            <div class="w-full md:w-1/3 fade-in-ink">
+                <h2 class="tategaki text-3xl text-sumi font-bold border-l-2 border-sabi pl-6 py-2 ml-auto md:ml-0 mr-auto md:mr-0 w-fit">
+                    不完全を<br>愛でる心
+                </h2>
+            </div>
+            <div class="w-full md:w-2/3 leading-loose text-justify text-sumi/90 space-y-8 fade-in-ink delay-200">
+                <p>
+                    土塊（つちくれ）は、語りかけてくる。<br>
+                    己がどのような形になりたいのか、<br>
+                    どの程度の熱に耐えうるのかを。
+                </p>
+                <p>
+                    私はただ、その声に耳を傾け、<br>
+                    轆轤（ろくろ）の上で手助けをするに過ぎない。<br>
+                    計算された曲線よりも、指に残る歪みにこそ<br>
+                    命は宿ると信じている。
+                </p>
+                <p>
+                    本個展では、薪窯で七昼夜焼き締めた<br>
+                    「伊賀」の新作を中心に展示いたします。<br>
+                    自然釉（ビードロ）の景色と、<br>
+                    手に吸い付くような土肌をご覧ください。
+                </p>
+                <div class="pt-8 flex justify-end">
+                    <p class="tategaki text-lg">織部 蓮</p>
+                </div>
+            </div>
+        </div>
+        <!-- 装飾：背景の大きな文字 -->
+        <div class="absolute top-1/2 right-10 transform -translate-y-1/2 text-[15rem] text-tsuchi opacity-10 pointer-events-none select-none font-serif leading-none z-[-1]">
+            寂
+        </div>
+    </section>
+
+    <!-- Works Section -->
+    <section id="works" class="py-24 bg-[#ebe7de] relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-16 fade-in-ink">
+                <h2 class="text-3xl tracking-widest text-sumi border-b pb-4 border-sumi inline-block">作品</h2>
+                <span class="text-xs text-sumi/60">Works</span>
+            </div>
+
+            <!-- Masonry風 Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-16 auto-rows-max">
+                
+                <!-- Item 1 -->
+                <article class="group cursor-pointer fade-in-ink">
+                    <div class="aspect-[3/4] overflow-hidden bg-gray-300 relative">
+                        <img src="https://images.unsplash.com/photo-1578749556935-ef3893eb8d8d?q=80&w=800&auto=format&fit=crop" 
+                             alt="花入れ" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+                        <div class="absolute inset-0 bg-sumi/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                    </div>
+                    <div class="mt-4 flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg font-serif mb-1">伊賀耳付花入</h3>
+                            <p class="text-xs text-sumi/60">Iga Flower Vase</p>
+                        </div>
+                        <span class="tategaki text-xs text-sabi border border-sabi px-1 py-2">売約済</span>
+                    </div>
+                </article>
+
+                <!-- Item 2 (Top offset for staggered layout) -->
+                <article class="group cursor-pointer md:mt-24 fade-in-ink delay-100">
+                    <div class="aspect-[4/3] overflow-hidden bg-gray-300 relative">
+                        <img src="https://images.unsplash.com/photo-1624823183489-08b98165b63e?q=80&w=800&auto=format&fit=crop" 
+                             alt="茶碗" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-lg font-serif mb-1">信楽自然釉茶碗</h3>
+                        <p class="text-xs text-sumi/60">Shigaraki Tea Bowl</p>
+                    </div>
+                </article>
+
+                <!-- Item 3 -->
+                <article class="group cursor-pointer lg:mt-12 fade-in-ink delay-200">
+                    <div class="aspect-[3/3] overflow-hidden bg-gray-300 relative">
+                        <img src="https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?q=80&w=800&auto=format&fit=crop" 
+                             alt="大皿" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-lg font-serif mb-1">灰釉大皿「湖面」</h3>
+                        <p class="text-xs text-sumi/60">Large Plate "Surface"</p>
+                    </div>
+                </article>
+
+                <!-- Item 4 -->
+                <article class="group cursor-pointer fade-in-ink">
+                    <div class="aspect-[3/5] overflow-hidden bg-gray-300 relative">
+                        <img src="https://images.unsplash.com/photo-1616612656976-b3337f7634f1?q=80&w=800&auto=format&fit=crop" 
+                             alt="徳利" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-lg font-serif mb-1">備前片口</h3>
+                        <p class="text-xs text-sumi/60">Bizen Sake Pitcher</p>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="mt-24 text-center">
+                <a href="#" class="inline-block border border-sumi text-sumi px-12 py-4 hover:bg-sumi hover:text-washi transition-all duration-300 tracking-widest text-sm relative overflow-hidden group">
+                    <span class="relative z-10">作品一覧を見る</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile" class="py-24 px-6 relative overflow-hidden">
+        <div class="absolute -left-20 top-40 text-[20rem] text-sumi opacity-5 pointer-events-none font-serif leading-none z-[-1]">
+            陶
+        </div>
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-16">
+            <div class="w-full md:w-1/2 relative fade-in-ink">
+                <div class="w-3/4 ml-auto aspect-[3/4] bg-gray-400 relative grayscale contrast-125 ink-edge">
+                    <img src="https://images.unsplash.com/photo-1542176214-411cb3334651?q=80&w=800&auto=format&fit=crop" 
+                         alt="陶芸家ポートレート" 
+                         class="w-full h-full object-cover"
+                         style="object-position: center;">
+                </div>
+                <div class="absolute bottom-10 left-0 bg-washi p-6 shadow-lg border border-sumi/10 max-w-xs">
+                    <p class="tategaki text-sm leading-loose">
+                        土と向き合う時間は、<br>
+                        己の弱さと向き合う時間でもある。
+                    </p>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 fade-in-ink delay-100">
+                <h2 class="text-2xl mb-8 tracking-widest flex items-center gap-4">
+                    <span class="w-12 h-[1px] bg-sumi"></span>
+                    作家
+                </h2>
+                <h3 class="text-4xl font-bold mb-6">織部 蓮 <span class="text-lg font-normal ml-4 text-sumi/60">Ren Oribe</span></h3>
+                <div class="space-y-6 text-sm leading-loose text-justify text-sumi/80">
+                    <p>
+                        1980年、京都府生まれ。<br>
+                        大学卒業後、広告代理店勤務を経て30歳で陶芸の世界へ。<br>
+                        伊賀焼の人間国宝、古田織山に師事。
+                    </p>
+                    <p>
+                        2015年、三重県伊賀市に築窯。<br>
+                        自然釉（ビードロ）の変化を追求し、穴窯による焼成にこだわる。<br>
+                        その作風は「静寂の中に激情を秘める」と評される。
+                    </p>
+                    <ul class="text-xs text-sumi/60 space-y-2 mt-8 border-t border-sumi/20 pt-8">
+                        <li>2018年 第65回 日本伝統工芸展 入選</li>
+                        <li>2020年 東海伝統工芸展 奨励賞</li>
+                        <li>2023年 パリ「Maison de la Culture du Japon」にてグループ展</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Information / Access -->
+    <section id="access" class="py-24 bg-sumi text-washi relative">
+        <div class="noise-overlay opacity-20 bg-white"></div> <!-- 背景を少し明るくするためのノイズ反転 -->
+        
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center fade-in-ink">
+            <h2 class="text-2xl mb-12 tracking-[0.3em] border-b border-washi/30 pb-4 inline-block">開催概要</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-tsuchi text-sm mb-2 font-bold tracking-widest">会期</h3>
+                        <p class="text-xl">2025年 10月2日(木) — 10月14日(火)</p>
+                        <p class="text-sm text-washi/60 mt-1">11:00 - 19:00（最終日は17:00まで）<br>※会期中無休・作家在廊予定</p>
+                    </div>
+                    <div>
+                        <h3 class="text-tsuchi text-sm mb-2 font-bold tracking-widest">会場</h3>
+                        <p class="text-xl mb-2">銀座 寂静堂ギャラリー</p>
+                        <p class="text-sm text-washi/60">
+                            〒104-0061 東京都中央区銀座1-1-1<br>
+                            銀座わびさびビル B1F
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="border border-washi/20 p-6 flex flex-col justify-between items-center bg-white/5">
+                    <p class="tategaki text-lg mb-6">地図はこちら</p>
+                    <!-- 簡易地図表現 -->
+                    <div class="w-full h-40 border border-washi/30 relative flex items-center justify-center">
+                        <span class="text-xs tracking-widest text-washi/50">[ GOOGLE MAP ]</span>
+                        <div class="absolute w-[1px] h-full bg-washi/10 left-1/3"></div>
+                        <div class="absolute w-full h-[1px] bg-washi/10 top-1/2"></div>
+                        <div class="absolute w-2 h-2 bg-tsuchi rounded-full top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2 shadow-[0_0_10px_rgba(140,112,95,0.8)]"></div>
+                    </div>
+                    <a href="#" class="mt-4 text-xs underline underline-offset-4 hover:text-tsuchi transition-colors">Google Mapsで開く</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-[#151515] text-washi/40 text-center text-xs relative z-10">
+        <div class="mb-4">
+            <a href="#" class="mx-4 hover:text-washi transition-colors">Instagram</a>
+            <a href="#" class="mx-4 hover:text-washi transition-colors">Twitter</a>
+        </div>
+        <p>&copy; 2025 Ren Oribe Pottery. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Opening Animation
+        window.addEventListener('load', () => {
+            const loaderText = document.getElementById('loader-text');
+            const loader = document.getElementById('loader');
+            
+            // テキスト表示
+            setTimeout(() => {
+                loaderText.classList.remove('opacity-0');
+            }, 500);
+
+            // フェードアウト
+            setTimeout(() => {
+                loader.classList.add('opacity-0');
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 1000);
+            }, 2500);
+        });
+
+        // Intersection Observer for Scroll Animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // 一度だけ発火
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-ink').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuLinks = document.querySelectorAll('.menu-link');
+        let isMenuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                menuOverlay.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden';
+                // アイコンアニメーション（簡易）
+                menuBtn.children[0].classList.add('rotate-45', 'translate-y-2');
+                menuBtn.children[1].classList.add('-rotate-45', '-translate-y-1');
+            } else {
+                menuOverlay.classList.add('translate-x-full');
+                document.body.style.overflow = '';
+                // アイコン戻す
+                menuBtn.children[0].classList.remove('rotate-45', 'translate-y-2');
+                menuBtn.children[1].classList.remove('-rotate-45', '-translate-y-1');
+            }
+        });
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                menuOverlay.classList.add('translate-x-full');
+                document.body.style.overflow = '';
+            });
+        });
+    </script>
+</body>
+</html>

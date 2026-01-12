@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活版印刷所 文選 BUNSEN | 言葉に、重みを。</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700;900&family=Shippori+Mincho+B1:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'paper': '#e8e6e1',      // 特Aクッションのような少し黄みがかった紙色
+                        'ink': '#2c2c2c',        // 完全に黒ではない、乾いたインク色
+                        'lead': '#5c5f66',       // 鉛（活字）の色
+                        'accent': '#8a2be2',     // ※今回はアクセントカラーをほぼ使わず、陰影で勝負
+                    },
+                    fontFamily: {
+                        'serif': ['"Shippori Mincho B1"', '"Noto Serif JP"', 'serif'],
+                        'sans': ['"Noto Serif JP"', 'serif'], // あえてゴシックを使わず明朝で統一
+                    },
+                    letterSpacing: {
+                        'widest-xl': '0.3em',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* * 活版印刷（レタープレス）の再現 
+         * 光源を左上に想定し、内側の影を強調することで「凹み」を表現
+         */
+
+        body {
+            background-color: #e8e6e1;
+            color: #2c2c2c;
+            /* 紙の繊維のような微細なノイズ */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        /* --------------------------------------
+           Texture & Deboss Effects 
+           -------------------------------------- */
+        
+        /* 強くプレスされた文字（タイトルなど） */
+        .letterpress-deep {
+            color: rgba(44, 44, 44, 0.85);
+            text-shadow: 
+                -1px -1px 1px rgba(255,255,255,0.7), /* 上辺のハイライト */
+                1px 1px 2px rgba(0,0,0,0.3);        /* 下辺のシャドウ（内側への食い込み） */
+        }
+        
+        /* 浮き出し加工（紙の凸） */
+        .emboss-paper {
+            background: #e8e6e1;
+            box-shadow: 
+                -4px -4px 10px rgba(255,255,255,1), 
+                4px 4px 10px rgba(0,0,0,0.15);
+        }
+
+        /* 凹み加工（紙の凹）- ボタンや入力欄 */
+        .deboss-paper {
+            background: #e8e6e1;
+            box-shadow: 
+                inset 3px 3px 6px rgba(0,0,0,0.15),
+                inset -3px -3px 6px rgba(255,255,255,1);
+        }
+
+        /* インクのかすれ表現（SVGフィルター用クラス） */
+        .ink-bleed {
+            filter: url('#ink-bleed-filter');
+        }
+
+        /* --------------------------------------
+           Animation 
+           -------------------------------------- */
+
+        /* 活字を拾う動き（カチャッ、カチャッというリズム） */
+        @keyframes type-picking {
+            0% { opacity: 0; transform: translateY(-10px) rotateX(45deg); }
+            100% { opacity: 1; transform: translateY(0) rotateX(0); }
+        }
+        .animate-type-pick {
+            opacity: 0;
+            animation: type-picking 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* プレス機の動き（ゆっくり圧をかける） */
+        @keyframes press-down {
+            0% { transform: scale(1.1); opacity: 0; filter: blur(5px); }
+            50% { transform: scale(0.98); opacity: 1; filter: blur(0); }
+            100% { transform: scale(1); }
+        }
+        .animate-press {
+            animation: press-down 1.2s ease-out forwards;
+        }
+        
+        /* 縦書き */
+        .vertical-rl {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+        }
+
+    </style>
+</head>
+<body class="font-serif antialiased selection:bg-ink selection:text-paper">
+
+    <!-- SVG Filters (画面には表示しないが参照用) -->
+    <svg style="display: none;">
+        <defs>
+            <filter id="ink-bleed-filter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
+                <feGaussianBlur stdDeviation="0.5" />
+                <feColorMatrix type="matrix" values="
+                    1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 15 -8" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Loading Screen (Typesetting) -->
+    <div id="loader" class="fixed inset-0 z-50 bg-paper flex items-center justify-center pointer-events-none">
+        <div class="flex gap-4" id="loader-text-container">
+            <!-- JSで文字を生成 -->
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-40 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-multiply">
+        <div class="flex items-center gap-4">
+            <!-- Logo Mark -->
+            <div class="w-10 h-10 flex items-center justify-center border-2 border-ink rounded-sm letterpress-deep font-bold text-xl relative overflow-hidden">
+                <span class="relative z-10">文</span>
+                <div class="absolute inset-0 bg-ink opacity-10"></div>
+            </div>
+            <h1 class="text-sm tracking-widest font-bold text-ink/80 uppercase">Bunsen Letterpress</h1>
+        </div>
+        
+        <nav class="hidden md:flex gap-8 text-xs tracking-widest font-bold text-ink/60">
+            <a href="#about" class="hover:text-ink transition-colors">文選とは</a>
+            <a href="#services" class="hover:text-ink transition-colors">制作</a>
+            <a href="#works" class="hover:text-ink transition-colors">事例</a>
+            <a href="#contact" class="hover:text-ink transition-colors">ご相談</a>
+        </nav>
+
+        <button class="md:hidden w-8 h-8 flex flex-col justify-center gap-1.5 group">
+            <span class="w-full h-[2px] bg-ink/80 transition-all group-hover:w-3/4 self-end"></span>
+            <span class="w-2/3 h-[2px] bg-ink/80 transition-all group-hover:w-full self-end"></span>
+            <span class="w-full h-[2px] bg-ink/80 transition-all group-hover:w-1/2 self-end"></span>
+        </button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+        <!-- Background Typography Decoration -->
+        <div class="absolute inset-0 pointer-events-none opacity-[0.03] select-none overflow-hidden flex flex-wrap content-start">
+            <!-- 背景に大量の「活字」を並べる -->
+            <div id="bg-types" class="w-full h-full grid grid-cols-12 gap-1 text-8xl font-serif text-center transform scale-150 origin-top-left leading-none"></div>
+        </div>
+
+        <div class="relative z-10 flex flex-col md:flex-row-reverse items-center gap-16 md:gap-32 max-w-6xl w-full">
+            
+            <!-- Catchcopy (Vertical) -->
+            <div class="h-[60vh] flex flex-col justify-center gap-12 md:gap-24 vertical-rl py-10 border-l border-ink/10 md:border-none pl-8 md:pl-0">
+                <h2 class="text-4xl md:text-6xl font-black tracking-widest letterpress-deep leading-relaxed">
+                    <span class="inline-block animate-press" style="animation-delay: 0.2s;">言</span>
+                    <span class="inline-block animate-press" style="animation-delay: 0.4s;">葉</span>
+                    <span class="inline-block animate-press" style="animation-delay: 0.6s;">に</span>
+                    <span class="inline-block my-4"></span>
+                    <span class="inline-block animate-press" style="animation-delay: 0.8s;">重</span>
+                    <span class="inline-block animate-press" style="animation-delay: 1.0s;">み</span>
+                    <span class="inline-block animate-press" style="animation-delay: 1.2s;">を</span>
+                    <span class="inline-block animate-press" style="animation-delay: 1.4s;">。</span>
+                </h2>
+                
+                <p class="text-sm md:text-base tracking-widest text-ink/70 leading-loose">
+                    デジタル全盛の時代だからこそ、<br>
+                    指先で感じる「凹み」に価値がある。<br>
+                    一文字ずつ、鉛を拾い、<br>
+                    紙に命を吹き込む印刷所。
+                </p>
+            </div>
+
+            <!-- Hero Visual (Paper Card) -->
+            <div class="w-full md:w-[500px] aspect-[1/1.4] emboss-paper p-12 md:p-20 flex flex-col justify-between relative transform rotate-1 transition-transform duration-700 hover:rotate-0">
+                <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/40 to-black/5 pointer-events-none mix-blend-overlay"></div>
+                
+                <div class="text-xs tracking-[0.4em] text-ink/40 uppercase">Est. 1954<br>Tokyo, Japan</div>
+                
+                <div class="space-y-6">
+                    <div class="w-16 h-[2px] bg-ink mb-8"></div>
+                    <p class="font-serif text-2xl md:text-3xl leading-relaxed text-ink letterpress-deep ink-bleed">
+                        活版印刷所<br>文選
+                    </p>
+                    <p class="font-sans text-xs tracking-widest text-ink/60 mt-4">
+                        Bunsen Letterpress Studio
+                    </p>
+                </div>
+
+                <div class="self-end">
+                    <div class="w-12 h-12 border border-ink/20 rounded-full flex items-center justify-center">
+                        <svg class="w-4 h-4 text-ink/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section id="about" class="py-32 px-6 bg-[#e0ded9]">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+            <div class="w-full md:w-1/2">
+                <img src="https://images.unsplash.com/photo-1598424268686-2a3a5f988891?q=80&w=800&auto=format&fit=crop" 
+                     alt="活版印刷の活字棚" 
+                     class="w-full h-auto shadow-[10px_10px_30px_rgba(0,0,0,0.1),-10px_-10px_30px_rgba(255,255,255,0.8)] grayscale contrast-125 rounded-sm filter sepia-[0.2]">
+            </div>
+            <div class="w-full md:w-1/2 space-y-8">
+                <span class="text-xs font-bold tracking-[0.2em] text-ink/40 border-b border-ink/20 pb-2 inline-block">PHILOSOPHY</span>
+                <h3 class="text-3xl font-bold letterpress-deep leading-normal">
+                    0.2ミリの<br>影をデザインする。
+                </h3>
+                <p class="leading-loose text-ink/80 text-justify text-sm">
+                    モニター上のピクセルには「厚み」がありません。
+                    しかし、私たちの作る印刷物には、物理的な深さがあります。<br><br>
+                    活字の選定、組版の余白、そしてプレス機の圧力調整。
+                    その全てが計算された時、紙の上に落ちる「0.2ミリの影」が生まれます。<br><br>
+                    それは、読む人の指先に触れ、記憶に残る体験となります。
+                </p>
+                <a href="#" class="inline-block mt-4 text-xs tracking-widest border-b border-ink/40 pb-1 hover:border-ink hover:pb-2 transition-all">文選の歴史を読む &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-20 text-center">
+                <span class="text-xs font-bold tracking-[0.2em] text-ink/40">SERVICES</span>
+                <h3 class="text-2xl mt-4 font-bold letterpress-deep">制作メニュー</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                
+                <!-- Service 1 -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-square emboss-paper flex items-center justify-center p-12 transition-shadow duration-500 group-hover:shadow-[inset_4px_4px_10px_rgba(0,0,0,0.1),inset_-4px_-4px_10px_rgba(255,255,255,0.8)]">
+                        <div class="text-center space-y-6">
+                            <div class="w-16 h-16 mx-auto bg-paper rounded-full border border-ink/10 flex items-center justify-center shadow-lg group-hover:scale-90 transition-transform duration-500">
+                                <span class="font-serif text-2xl italic text-ink/60">A</span>
+                            </div>
+                            <h4 class="text-lg font-bold tracking-widest">名刺・カード</h4>
+                            <p class="text-xs text-ink/60 leading-relaxed">
+                                特Aクッション紙など、<br>
+                                厚みのある紙への深いプレス。<br>
+                                第一印象を決定づける一枚。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-square emboss-paper flex items-center justify-center p-12 transition-shadow duration-500 group-hover:shadow-[inset_4px_4px_10px_rgba(0,0,0,0.1),inset_-4px_-4px_10px_rgba(255,255,255,0.8)]">
+                        <div class="text-center space-y-6">
+                            <div class="w-16 h-16 mx-auto bg-paper rounded-full border border-ink/10 flex items-center justify-center shadow-lg group-hover:scale-90 transition-transform duration-500">
+                                <span class="font-serif text-2xl italic text-ink/60">B</span>
+                            </div>
+                            <h4 class="text-lg font-bold tracking-widest">ウェディング</h4>
+                            <p class="text-xs text-ink/60 leading-relaxed">
+                                招待状、席次表。<br>
+                                手触りのある紙で伝える、<br>
+                                特別な日のお知らせ。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-square emboss-paper flex items-center justify-center p-12 transition-shadow duration-500 group-hover:shadow-[inset_4px_4px_10px_rgba(0,0,0,0.1),inset_-4px_-4px_10px_rgba(255,255,255,0.8)]">
+                        <div class="text-center space-y-6">
+                            <div class="w-16 h-16 mx-auto bg-paper rounded-full border border-ink/10 flex items-center justify-center shadow-lg group-hover:scale-90 transition-transform duration-500">
+                                <span class="font-serif text-2xl italic text-ink/60">C</span>
+                            </div>
+                            <h4 class="text-lg font-bold tracking-widest">特注パッケージ</h4>
+                            <p class="text-xs text-ink/60 leading-relaxed">
+                                商品タグ、小箱。<br>
+                                箔押しとの組み合わせで<br>
+                                商品価値を高める。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Works Gallery -->
+    <section id="works" class="py-32 px-6 bg-[#2c2c2c] text-paper">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-paper/10 pb-6">
+                <div>
+                    <span class="text-xs font-bold tracking-[0.2em] text-paper/40">WORKS</span>
+                    <h3 class="text-2xl mt-4 font-bold tracking-widest">制作事例</h3>
+                </div>
+                <a href="#" class="text-xs tracking-widest text-paper/60 hover:text-paper mt-4 md:mt-0">All Works &rarr;</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
+                <!-- Work 1 -->
+                <div class="group">
+                    <div class="aspect-[4/3] bg-paper relative overflow-hidden rounded-sm cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1620641320499-d4c382ce18eb?q=80&w=800&auto=format&fit=crop" 
+                             class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 grayscale" alt="名刺事例">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-start">
+                        <div>
+                            <h4 class="text-lg font-bold">建築設計事務所 カード</h4>
+                            <p class="text-xs text-paper/40 mt-1">特Aクッション0.8mm / スミ1色</p>
+                        </div>
+                        <span class="text-xs border border-paper/20 px-2 py-1">2024</span>
+                    </div>
+                </div>
+
+                <!-- Work 2 -->
+                <div class="group md:mt-24">
+                    <div class="aspect-[4/3] bg-paper relative overflow-hidden rounded-sm cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=800&auto=format&fit=crop" 
+                             class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 grayscale" alt="コースター事例">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-start">
+                        <div>
+                            <h4 class="text-lg font-bold">COFFEE ROASTER コースター</h4>
+                            <p class="text-xs text-paper/40 mt-1">コースター用紙 / 空押し</p>
+                        </div>
+                        <span class="text-xs border border-paper/20 px-2 py-1">2023</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Area (Depressed UI) -->
+    <section id="contact" class="py-32 px-6">
+        <div class="max-w-2xl mx-auto text-center">
+            <h3 class="text-2xl font-bold letterpress-deep mb-12">ご相談・お見積り</h3>
+            
+            <form class="space-y-8 text-left">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <label class="block text-xs font-bold tracking-widest text-ink/60 mb-2">御社名</label>
+                        <input type="text" class="w-full h-12 deboss-paper border-none outline-none px-4 text-ink placeholder-ink/30 focus:shadow-[inset_2px_2px_5px_rgba(0,0,0,0.2),inset_-2px_-2px_5px_rgba(255,255,255,0.8)] transition-shadow" placeholder="株式会社〇〇">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold tracking-widest text-ink/60 mb-2">お名前</label>
+                        <input type="text" class="w-full h-12 deboss-paper border-none outline-none px-4 text-ink placeholder-ink/30 focus:shadow-[inset_2px_2px_5px_rgba(0,0,0,0.2),inset_-2px_-2px_5px_rgba(255,255,255,0.8)] transition-shadow" placeholder="山田 太郎">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold tracking-widest text-ink/60 mb-2">お問い合わせ内容</label>
+                    <textarea class="w-full h-40 deboss-paper border-none outline-none p-4 text-ink placeholder-ink/30 resize-none focus:shadow-[inset_2px_2px_5px_rgba(0,0,0,0.2),inset_-2px_-2px_5px_rgba(255,255,255,0.8)] transition-shadow" placeholder="名刺の作成を検討しています..."></textarea>
+                </div>
+
+                <div class="text-center pt-8">
+                    <button type="button" class="group relative inline-flex items-center justify-center px-12 py-4 font-bold tracking-[0.2em] text-ink transition-all duration-200 bg-paper emboss-paper active:shadow-[inset_3px_3px_6px_rgba(0,0,0,0.15),inset_-3px_-3px_6px_rgba(255,255,255,1)] active:scale-95 rounded-sm">
+                        <span>送信する</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 text-center text-xs text-ink/40 tracking-widest border-t border-ink/5">
+        <div class="mb-8 font-serif text-lg text-ink/80 letterpress-deep font-bold">文選</div>
+        <p>&copy; 2025 Bunsen Letterpress Studio. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Background Typography Generation
+        const bgContainer = document.getElementById('bg-types');
+        const chars = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん文選活版印刷明朝ゴシック";
+        
+        for (let i = 0; i < 100; i++) {
+            const span = document.createElement('span');
+            span.textContent = chars[Math.floor(Math.random() * chars.length)];
+            // ランダムに少し回転させたり透明度を変えたりする
+            span.style.opacity = Math.random() * 0.5 + 0.1;
+            span.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
+            bgContainer.appendChild(span);
+        }
+
+        // Loader Animation
+        const loaderContainer = document.getElementById('loader-text-container');
+        const loadText = "文選組版所";
+        
+        loadText.split('').forEach((char, index) => {
+            const span = document.createElement('div');
+            span.textContent = char;
+            span.className = "text-2xl font-bold bg-lead text-paper w-10 h-10 flex items-center justify-center rounded-sm shadow-md animate-type-pick";
+            span.style.animationDelay = `${index * 0.15}s`;
+            loaderContainer.appendChild(span);
+        });
+
+        // Hide Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                loader.style.transition = 'opacity 0.8s ease';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 800);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

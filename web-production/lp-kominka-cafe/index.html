@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古民家カフェ 木漏れ日 | 時を、味わう。</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&family=Yomogi&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'kinari': '#fcfaf2',  // 生成り色
+                        'kogecha': '#4a3b32', // 焦げ茶（古木の色）
+                        'maccha': '#7a8546',  // 抹茶色
+                        'azuki': '#8f4b3e',   // 小豆色
+                        'tatami': '#e0d8b6',  // 畳色
+                    },
+                    fontFamily: {
+                        'display': ['"Kaisei Decol"', 'serif'],
+                        'hand': ['"Yomogi"', 'cursive'],
+                        'body': ['"Zen Maru Gothic"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'washi-pattern': "url('data:image/svg+xml,%3Csvg width=\\'64\\' height=\\'64\\' viewBox=\\'0 0 64 64\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cpath d=\\'M8 16c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm33.414-6l5.95-5.95L45.95.636 40 6.586 34.05.636 32.636 2.05 38.586 8l-5.95 5.95 1.414 1.414L40 9.414l5.95 5.95 1.414-1.414L41.414 8zM40 48c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zM9.414 40l5.95-5.95-1.414-1.414L8 38.586l-5.95-5.95L.636 34.05 6.586 40l-5.95 5.95 1.414 1.414L8 41.414l5.95 5.95 1.414-1.414L9.414 40z\\' fill=\\'%23d8d1c0\\' fill-opacity=\\'0.15\\' fill-rule=\\'evenodd\\'/%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 手触り感を出すためのカスタムスタイル */
+
+        body {
+            background-color: #fcfaf2;
+            background-image: radial-gradient(#e6e2d3 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* 木漏れ日アニメーション */
+        .komorebi-shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8), transparent 60%),
+                        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.6), transparent 40%);
+            mix-blend-mode: soft-light;
+            animation: komorebi 10s infinite alternate ease-in-out;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @keyframes komorebi {
+            0% { opacity: 0.3; transform: scale(1) translate(0, 0); }
+            50% { opacity: 0.6; transform: scale(1.1) translate(10px, -10px); }
+            100% { opacity: 0.4; transform: scale(0.95) translate(-5px, 5px); }
+        }
+
+        /* 写真をテープで貼ったような表現 */
+        .tape-photo {
+            position: relative;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.15);
+            background: #fff;
+            padding: 10px 10px 30px 10px; /* ポラロイド風の余白 */
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease;
+        }
+        .tape-photo:hover {
+            transform: rotate(0deg) scale(1.02);
+            z-index: 20;
+        }
+        .tape-photo::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%) rotate(2deg);
+            width: 100px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-left: 1px dashed rgba(0,0,0,0.1);
+            border-right: 1px dashed rgba(0,0,0,0.1);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            z-index: 10;
+            backdrop-filter: blur(2px); /* 半透明テープ感 */
+        }
+
+        /* 湯気アニメーション */
+        .steam-container {
+            position: relative;
+            overflow: visible;
+        }
+        .steam {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            border-radius: 50%;
+            filter: blur(8px);
+            opacity: 0;
+            animation: steam 3s infinite ease-out;
+        }
+        .steam:nth-child(1) { animation-delay: 0s; transform: translateX(-10px); }
+        .steam:nth-child(2) { animation-delay: 1.5s; transform: translateX(10px); }
+
+        @keyframes steam {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-40px) scale(2); opacity: 0; }
+        }
+
+        /* ゆったりした縦書き */
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            line-height: 2.5;
+        }
+
+        /* クリップパスで「ちぎり絵」のような縁を作る */
+        .torn-paper {
+            clip-path: polygon(
+                0% 0%, 100% 0%, 100% 100%, 
+                95% 98%, 90% 100%, 85% 99%, 80% 100%, 75% 98%, 70% 100%, 65% 99%, 
+                60% 100%, 55% 98%, 50% 100%, 45% 99%, 40% 100%, 35% 98%, 30% 100%, 
+                25% 99%, 20% 100%, 15% 98%, 10% 100%, 5% 99%, 0% 100%
+            );
+        }
+
+        /* チョーク/手書き風のボーダー */
+        .chalk-border {
+            border: 2px solid transparent;
+            border-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0z' fill='none' stroke='%234a3b32' stroke-width='2' stroke-dasharray='5 2'/%3E%3C/svg%3E") 1;
+        }
+    </style>
+</head>
+<body class="text-kogecha font-body leading-relaxed overflow-x-hidden">
+
+    <!-- Header / Hero -->
+    <header class="relative min-h-screen flex flex-col items-center justify-center p-6 pt-20">
+        <!-- 背景装飾：木漏れ日 -->
+        <div class="komorebi-shadow"></div>
+        
+        <div class="absolute top-6 left-6 z-50">
+            <h1 class="font-display text-2xl md:text-3xl tracking-widest bg-kinari/80 px-4 py-2 rounded-sm shadow-sm inline-block transform -rotate-1">
+                古民家カフェ<br><span class="text-4xl md:text-5xl ml-2">木漏れ日</span>
+            </h1>
+        </div>
+
+        <div class="absolute top-6 right-6 z-50 flex gap-4 font-hand text-lg">
+            <a href="#menu" class="hover:text-maccha hover:scale-110 transition-transform">おしながき</a>
+            <a href="#access" class="hover:text-maccha hover:scale-110 transition-transform">場所</a>
+        </div>
+
+        <div class="relative w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            
+            <!-- Hero Image Group -->
+            <div class="md:col-span-7 relative h-[50vh] md:h-[70vh] w-full">
+                <!-- 写真1: 縁側 -->
+                <div class="absolute top-10 left-0 w-3/4 h-3/4 tape-photo z-10">
+                    <img src="https://images.unsplash.com/photo-1596627885481-9b634fb1e694?q=80&w=800&auto=format&fit=crop" alt="縁側と庭" class="w-full h-full object-cover sepia-[.3]">
+                </div>
+                <!-- 写真2: コーヒー -->
+                <div class="absolute bottom-0 right-0 w-3/5 h-3/5 tape-photo z-20 transform rotate-3 steam-container">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop" alt="ハンドドリップコーヒー" class="w-full h-full object-cover">
+                    <!-- 湯気 -->
+                    <div class="steam"></div>
+                    <div class="steam"></div>
+                </div>
+            </div>
+
+            <!-- Catchcopy -->
+            <div class="md:col-span-5 h-full flex justify-center md:justify-start items-center relative z-30">
+                <div class="vertical-text font-display text-2xl md:text-4xl tracking-[0.2em] h-[400px] text-kogecha">
+                    <p class="mb-8">時計の針を、</p>
+                    <p class="mb-8">少しだけ</p>
+                    <p>忘れる場所。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 animate-bounce">
+            <span class="font-hand text-sm text-kogecha/70">すくろーる</span>
+            <div class="w-[1px] h-12 bg-kogecha/30 mx-auto mt-2"></div>
+        </div>
+    </header>
+
+    <!-- Concept Section -->
+    <section class="py-24 px-6 bg-[#f4f0e6] relative torn-paper">
+        <div class="max-w-3xl mx-auto text-center space-y-12">
+            <h2 class="font-display text-3xl text-maccha flex items-center justify-center gap-4">
+                <span class="w-8 h-[1px] bg-maccha/50"></span>
+                <span>古きを訪ねて</span>
+                <span class="w-8 h-[1px] bg-maccha/50"></span>
+            </h2>
+            
+            <p class="text-lg leading-loose font-body text-kogecha/90">
+                築八十年の古民家を、<br>
+                家族と仲間たちで改装しました。<br><br>
+                柱に残る子供の背比べの跡。<br>
+                踏むときしむ廊下の音。<br>
+                それら全てが、この家の記憶です。<br><br>
+                挽きたての珈琲の香りと共に、<br>
+                穏やかな時間をお過ごしください。
+            </p>
+
+            <div class="flex justify-center gap-4 mt-8">
+                <div class="w-32 h-32 bg-white p-2 shadow-md transform rotate-2">
+                    <img src="https://images.unsplash.com/photo-1522775592638-f9b76a084775?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover opacity-90">
+                </div>
+                <div class="w-32 h-32 bg-white p-2 shadow-md transform -rotate-3 translate-y-4">
+                    <img src="https://images.unsplash.com/photo-1516216628859-9bcce59d6909?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover opacity-90">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-24 px-4 md:px-12 relative overflow-hidden">
+        <!-- 背景のあしらい -->
+        <div class="absolute top-20 right-[-50px] w-40 h-40 bg-maccha/10 rounded-full blur-2xl"></div>
+        <div class="absolute bottom-20 left-[-50px] w-60 h-60 bg-azuki/10 rounded-full blur-3xl"></div>
+
+        <div class="max-w-5xl mx-auto">
+            <h2 class="font-hand text-4xl text-center mb-16 transform -rotate-1 inline-block bg-kinari px-8 py-2 border-2 border-kogecha/20 w-full md:w-auto mx-auto block">
+                おしながき
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Drink Menu -->
+                <div class="bg-white/60 p-8 shadow-sm relative paper-texture rounded-sm">
+                    <!-- ピンの表現 -->
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-azuki rounded-full shadow-md z-10"></div>
+                    
+                    <h3 class="font-display text-xl text-azuki mb-8 border-b border-azuki/30 pb-2 text-center">お飲み物</h3>
+                    
+                    <ul class="space-y-6 font-body">
+                        <li class="flex justify-between items-baseline border-b border-dashed border-kogecha/20 pb-2">
+                            <div>
+                                <span class="font-bold text-lg">木漏れ日ブレンド</span>
+                                <p class="text-xs text-kogecha/60 mt-1">深煎り。チョコレートのようなコク。</p>
+                            </div>
+                            <span class="font-hand text-lg">550円</span>
+                        </li>
+                        <li class="flex justify-between items-baseline border-b border-dashed border-kogecha/20 pb-2">
+                            <div>
+                                <span class="font-bold text-lg">自家製ジンジャーエール</span>
+                                <p class="text-xs text-kogecha/60 mt-1">新生姜ときび砂糖で煮詰めました。</p>
+                            </div>
+                            <span class="font-hand text-lg">600円</span>
+                        </li>
+                        <li class="flex justify-between items-baseline border-b border-dashed border-kogecha/20 pb-2">
+                            <div>
+                                <span class="font-bold text-lg">ほうじ茶ラテ</span>
+                                <p class="text-xs text-kogecha/60 mt-1">京都宇治の茶葉を使用。</p>
+                            </div>
+                            <span class="font-hand text-lg">650円</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Food Menu -->
+                <div class="bg-white/60 p-8 shadow-sm relative paper-texture rounded-sm">
+                    <!-- ピンの表現 -->
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-maccha rounded-full shadow-md z-10"></div>
+
+                    <h3 class="font-display text-xl text-maccha mb-8 border-b border-maccha/30 pb-2 text-center">甘味・軽食</h3>
+                    
+                    <ul class="space-y-6 font-body">
+                        <li class="flex justify-between items-baseline border-b border-dashed border-kogecha/20 pb-2">
+                            <div>
+                                <span class="font-bold text-lg">きなこの揚げパン</span>
+                                <p class="text-xs text-kogecha/60 mt-1">懐かしの給食の味を再現。</p>
+                            </div>
+                            <span class="font-hand text-lg">350円</span>
+                        </li>
+                        <li class="flex justify-between items-baseline border-b border-dashed border-kogecha/20 pb-2">
+                            <div>
+                                <span class="font-bold text-lg">固めのプリン</span>
+                                <p class="text-xs text-kogecha/60 mt-1">卵たっぷり。ほろ苦いカラメル。</p>
+                            </div>
+                            <span class="font-hand text-lg">450円</span>
+                        </li>
+                        <li class="flex justify-between items-baseline border-b border-dashed border-kogecha/20 pb-2">
+                            <div>
+                                <span class="font-bold text-lg">本日の気まぐれ定食</span>
+                                <p class="text-xs text-kogecha/60 mt-1">※数量限定（黒板をご覧ください）</p>
+                            </div>
+                            <span class="font-hand text-lg">1,200円</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- おすすめ写真 -->
+            <div class="mt-16 text-center">
+                <div class="inline-block relative transform rotate-1 hover:rotate-0 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1555529733-0e670560f7e1?q=80&w=600&auto=format&fit=crop" alt="プリン" class="w-64 h-auto border-8 border-white shadow-lg">
+                    <p class="font-hand absolute -bottom-6 -right-6 text-kogecha bg-kinari px-2 py-1 shadow-sm transform -rotate-6">一番人気だよ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Access Section -->
+    <section id="access" class="py-24 px-6 bg-tatami/20 relative">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                
+                <!-- Info -->
+                <div class="w-full md:w-1/2 space-y-8">
+                    <h2 class="font-display text-3xl mb-8">店舗情報</h2>
+                    
+                    <dl class="grid grid-cols-[auto_1fr] gap-x-8 gap-y-4 text-sm md:text-base">
+                        <dt class="font-bold text-maccha">営業時間</dt>
+                        <dd>10:00 〜 18:00 (L.O. 17:30)</dd>
+
+                        <dt class="font-bold text-maccha">定休日</dt>
+                        <dd>火曜日・水曜日</dd>
+
+                        <dt class="font-bold text-maccha">住所</dt>
+                        <dd>
+                            〒248-0000<br>
+                            神奈川県鎌倉市山ノ内123-4<br>
+                            <span class="text-xs text-kogecha/60">※北鎌倉駅から徒歩10分</span>
+                        </dd>
+
+                        <dt class="font-bold text-maccha">電話</dt>
+                        <dd>0467-12-3456</dd>
+                    </dl>
+                    
+                    <div class="p-4 border-2 border-kogecha/10 bg-white/50 rounded-lg mt-4">
+                        <p class="font-hand text-sm text-center">
+                            駐車場は2台分ございます。<br>
+                            満車の際は近隣のコインパーキングをご利用ください。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Map Visualization (Hand-drawn style) -->
+                <div class="w-full md:w-1/2">
+                    <div class="bg-white p-4 shadow-md transform -rotate-1 relative overflow-hidden h-80 w-full border-4 border-white">
+                        <!-- 簡易的な手書き風地図 -->
+                        <div class="w-full h-full bg-[#fdfdfd] relative" style="background-image: radial-gradient(#ddd 1px, transparent 1px); background-size: 10px 10px;">
+                            
+                            <!-- 線路 -->
+                            <div class="absolute top-1/4 left-0 w-full h-4 border-t-2 border-b-2 border-gray-400 flex justify-between items-center overflow-hidden">
+                                <div class="w-full h-[2px] border-t border-dashed border-gray-400"></div>
+                            </div>
+                            <p class="absolute top-[28%] right-2 text-xs text-gray-400 font-hand">JR横須賀線</p>
+
+                            <!-- 駅 -->
+                            <div class="absolute top-[15%] right-10 w-16 h-8 border-2 border-kogecha bg-white flex items-center justify-center font-bold text-xs">北鎌倉駅</div>
+
+                            <!-- 道 -->
+                            <svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 1;">
+                                <path d="M 80 100 Q 150 150 250 120 T 400 200" fill="none" stroke="#e5e5e5" stroke-width="15" stroke-linecap="round"/>
+                                <path d="M 80 100 Q 150 150 250 120 T 400 200" fill="none" stroke="#4a3b32" stroke-width="2" stroke-dasharray="5,5" stroke-linecap="round"/>
+                            </svg>
+
+                            <!-- 目印 -->
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs font-hand text-kogecha bg-white px-1 border border-kogecha">郵便局</div>
+
+                            <!-- お店 -->
+                            <div class="absolute bottom-10 left-20 flex flex-col items-center z-10">
+                                <div class="w-4 h-4 bg-maccha rounded-full animate-bounce"></div>
+                                <div class="w-2 h-1 bg-kogecha/30 rounded-full mt-1"></div>
+                                <span class="font-display font-bold text-maccha text-sm bg-white px-1 mt-1">ここです</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="block text-center mt-4 font-hand text-sm underline hover:text-maccha">Googleマップで見る</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-kogecha text-kinari py-12 text-center relative overflow-hidden">
+        <div class="relative z-10">
+            <h2 class="font-display text-2xl mb-6">木漏れ日</h2>
+            <div class="flex justify-center gap-6 mb-8 text-sm font-hand">
+                <a href="#" class="hover:text-maccha transition-colors">いんすたぐらむ</a>
+                <a href="#" class="hover:text-maccha transition-colors">ふぇいすぶっく</a>
+            </div>
+            <p class="text-xs opacity-60 font-body">&copy; 2025 Komorebi Cafe. All Rights Reserved.</p>
+        </div>
+        <!-- 模様 -->
+        <div class="absolute -bottom-10 -right-10 w-40 h-40 border-4 border-kinari/10 rounded-full"></div>
+        <div class="absolute -top-10 -left-10 w-40 h-40 border-4 border-kinari/10 rounded-full"></div>
+    </footer>
+
+</body>
+</html>

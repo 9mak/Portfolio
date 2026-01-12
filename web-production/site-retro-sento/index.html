@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>富士見湯 | 昭和レトロ銭湯</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e0f2f1;
+            font-family: 'Zen Maru Gothic', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* レトロなタイル背景 */
+        .tile-bg {
+            background-image: 
+                linear-gradient(335deg, rgba(255,255,255,0.4) 23px, transparent 23px),
+                linear-gradient(155deg, rgba(255,255,255,0.4) 23px, transparent 23px),
+                linear-gradient(335deg, rgba(255,255,255,0.4) 23px, transparent 23px),
+                linear-gradient(155deg, rgba(255,255,255,0.4) 23px, transparent 23px);
+            background-size: 58px 58px;
+            background-color: #80cbc4; /* 銭湯グリーン */
+        }
+
+        /* 湯気（曇りガラス効果） */
+        .steam-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            pointer-events: none;
+            z-index: 40;
+            transition: backdrop-filter 1s ease;
+            background: radial-gradient(circle at center, transparent 30%, rgba(255,255,255,0.4) 100%);
+        }
+
+        /* 暖簾（のれん） */
+        .noren-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            z-index: 50;
+            display: flex;
+            pointer-events: none; /* 下のコンテンツをクリック可能に */
+        }
+        .noren-panel {
+            flex: 1;
+            background: #1a237e; /* 藍色 */
+            height: 100%;
+            transform-origin: top center;
+            transition: transform 0.5s ease-in-out;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 3rem;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        /* ホバーでめくれる */
+        .noren-panel:hover {
+            transform: scaleY(0.8) skewX(5deg);
+        }
+
+        /* ケロリン風桶アニメーション */
+        .oke-spin {
+            animation: spin-oke 10s linear infinite;
+        }
+        @keyframes spin-oke {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 波紋アニメーション */
+        .ripple {
+            position: absolute;
+            border: 2px solid rgba(255,255,255,0.6);
+            border-radius: 50%;
+            animation: ripple 2s infinite;
+        }
+        @keyframes ripple {
+            0% { width: 0; height: 0; opacity: 1; }
+            100% { width: 200px; height: 200px; opacity: 0; }
+        }
+    </style>
+</head>
+<body class="tile-bg">
+
+    <!-- 湯気オーバーレイ（スクロールで晴れる） -->
+    <div class="steam-overlay" id="steam"></div>
+
+    <!-- 暖簾 -->
+    <div class="noren-container">
+        <div class="noren-panel">富</div>
+        <div class="noren-panel">士</div>
+        <div class="noren-panel">見</div>
+        <div class="noren-panel">湯</div>
+        <div class="noren-panel text-sm flex-col justify-end pb-4"><span>創業</span><span>昭和</span><span>三年</span></div>
+    </div>
+
+    <!-- Hero -->
+    <header class="min-h-screen flex items-center justify-center pt-40 pb-20 px-6 relative overflow-hidden">
+        <div class="text-center bg-white/80 p-12 rounded-3xl shadow-lg border-4 border-[#1a237e] max-w-2xl relative z-10">
+            <p class="text-[#1a237e] font-bold mb-4 tracking-widest">心も体も、洗濯しよう。</p>
+            <h1 class="text-5xl md:text-7xl font-family-dela text-[#d32f2f] mb-8 drop-shadow-md" style="font-family: 'Dela Gothic One', cursive;">
+                ゆ
+            </h1>
+            <p class="text-gray-700 leading-loose">
+                高い天井、響く桶の音。<br>
+                富士山のペンキ絵を見上げれば、<br>
+                そこは時間の止まった場所。<br>
+                460円の小旅行へようこそ。
+            </p>
+            
+            <!-- ボタン -->
+            <a href="#" class="mt-8 inline-block bg-[#fdd835] text-[#1a237e] font-bold px-8 py-4 rounded-full border-2 border-[#1a237e] hover:translate-y-1 transition-transform shadow-[4px_4px_0px_#1a237e]">
+                営業案内を見る
+            </a>
+        </div>
+
+        <!-- 装飾：桶 -->
+        <div class="absolute bottom-10 right-10 w-32 h-32 bg-[#fdd835] rounded-full border-4 border-white shadow-xl flex items-center justify-center oke-spin opacity-80">
+            <span class="text-[#d32f2f] font-bold text-xs">ケロリン</span>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <section class="py-24 px-6 bg-[#fff9c4] relative">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+            <div class="w-full md:w-1/2 relative h-64 bg-blue-200 rounded-lg overflow-hidden border-4 border-white shadow-lg">
+                <!-- 富士山のペンキ絵（プレースホルダー） -->
+                <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-white/50 to-transparent"></div>
+                <!-- 波紋 -->
+                <div class="ripple" style="top: 50%; left: 50%;"></div>
+            </div>
+            <div class="w-full md:w-1/2 space-y-6">
+                <h2 class="text-3xl font-bold text-[#1a237e]">ペンキ絵師による<br>圧巻の富士</h2>
+                <p class="leading-loose text-gray-700">
+                    男湯・女湯をまたぐ雄大な赤富士は、<br>
+                    日本に3人しかいないペンキ絵師の手によるもの。<br>
+                    毎年描き変えられる景色を、<br>
+                    湯船の中からご堪能ください。
+                </p>
+                <div class="flex gap-4">
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-bold">電気風呂</span>
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-bold">薬湯</span>
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-bold">サウナ</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1a237e] text-white py-12 text-center">
+        <p class="font-bold text-xl mb-4">富士見湯</p>
+        <p class="text-sm opacity-70">東京都杉並区高円寺北 3-XX-XX</p>
+        <p class="text-sm opacity-70 mt-2">15:00 - 25:00（月曜定休）</p>
+    </footer>
+
+    <script>
+        // スクロールで湯気が晴れる
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const steam = document.getElementById('steam');
+            
+            // 300pxスクロールしたら完全に晴れる
+            const blurAmount = Math.max(0, 8 - (scrollY / 300) * 8);
+            steam.style.backdropFilter = `blur(${blurAmount}px)`;
+            steam.style.webkitBackdropFilter = `blur(${blurAmount}px)`;
+            
+            if (blurAmount <= 0) {
+                steam.style.display = 'none';
+            } else {
+                steam.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

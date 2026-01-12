@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>静火 SHIZUBI | 闇を愉しむ焚き火台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #050505;
+            color: #d4d4d4;
+            font-family: 'Shippori Mincho', serif;
+            overflow-x: hidden;
+        }
+
+        /* 炎のゆらぎテキスト */
+        .fire-text {
+            background: linear-gradient(0deg, #ff4500, #ff8c00, #ffd700);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: flicker 3s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; filter: brightness(100%) blur(0px); }
+            50% { opacity: 0.8; filter: brightness(120%) blur(1px); }
+        }
+
+        /* 赤熱する鉄の表現 */
+        .heated-iron {
+            position: relative;
+        }
+        .heated-iron::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(255, 69, 0, 0.2), transparent 70%);
+            mix-blend-mode: color-dodge;
+            animation: pulse-heat 4s infinite ease-in-out;
+        }
+
+        @keyframes pulse-heat {
+            0%, 100% { opacity: 0.3; transform: scale(0.95); }
+            50% { opacity: 0.6; transform: scale(1.05); }
+        }
+
+        #embers-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            mix-blend-mode: screen;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s, transform 1s;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="selection:bg-orange-900 selection:text-white">
+
+    <!-- 火の粉エフェクト -->
+    <canvas id="embers-canvas"></canvas>
+
+    <!-- Header -->
+    <header class="h-screen flex flex-col items-center justify-center relative z-20">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-[#050505] z-0"></div>
+        <!-- 背景動画の代わりに暗い焚き火画像 -->
+        <div class="absolute inset-0 z-[-1] opacity-60">
+            <img src="https://images.unsplash.com/photo-1516629706316-43b4f6535f45?q=80&w=1600&auto=format&fit=crop" class="w-full h-full object-cover" alt="焚き火">
+        </div>
+
+        <div class="text-center space-y-8 relative z-10 px-4">
+            <p class="text-xs tracking-[0.5em] text-orange-200/60">SOLO BONFIRE GEAR</p>
+            <h1 class="text-6xl md:text-8xl font-bold tracking-widest text-white drop-shadow-[0_0_15px_rgba(255,69,0,0.5)]">
+                静火
+            </h1>
+            <p class="text-sm md:text-base tracking-widest opacity-80 leading-loose">
+                語らない。<br>
+                ただ、燃やす。
+            </p>
+        </div>
+
+        <div class="absolute bottom-10 animate-bounce">
+            <svg class="w-6 h-6 text-orange-500/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </header>
+
+    <!-- Concept -->
+    <section class="py-32 px-6 relative z-20">
+        <div class="max-w-3xl mx-auto text-center space-y-16">
+            <div class="fade-in">
+                <h2 class="text-3xl font-bold mb-8 fire-text inline-block border-b border-orange-900/30 pb-4">コンセプト</h2>
+                <p class="text-lg leading-loose text-gray-400">
+                    「静火（SHIZUBI）」は、<br>
+                    孤独を愛するソロキャンパーのために生まれた。<br><br>
+                    軽量化よりも、堅牢さを。<br>
+                    便利さよりも、不便の美学を。<br><br>
+                    黒皮鉄板が熱で歪む音すらも、<br>
+                    BGMになる夜をあなたに。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section class="py-32 bg-[#0a0a0a] relative z-20 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="fade-in relative group heated-iron">
+                <div class="aspect-square bg-neutral-900 relative overflow-hidden rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700 mix-blend-lighten" alt="焚き火台ディテール">
+                    <div class="absolute inset-0 bg-gradient-to-t from-orange-900/20 to-transparent mix-blend-overlay"></div>
+                </div>
+                <!-- スペック -->
+                <div class="absolute -bottom-6 -right-6 bg-[#1a1a1a] p-6 border border-orange-900/20 shadow-2xl">
+                    <dl class="text-xs space-y-2 text-gray-400">
+                        <div class="flex gap-4"><dt>素材</dt><dd>黒皮鉄 (2.3mm厚)</dd></div>
+                        <div class="flex gap-4"><dt>重量</dt><dd>1.8 kg</dd></div>
+                        <div class="flex gap-4"><dt>生産</dt><dd>燕三条</dd></div>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="fade-in space-y-8">
+                <h3 class="text-4xl font-bold text-white">育てる、鉄。</h3>
+                <p class="leading-loose text-gray-400">
+                    塗装は一切施していない。<br>
+                    最初の火入れで青黒く変色し、<br>
+                    使い込むほどに赤錆と煤（すす）が混じり合う。<br>
+                    世界に一つだけの模様を、炎と共に刻んでいく。
+                </p>
+                <div class="pt-8">
+                    <button class="border border-orange-900/50 text-orange-100 px-12 py-4 hover:bg-orange-900/20 transition-colors tracking-widest relative overflow-hidden group">
+                        <span class="relative z-10">製品詳細を見る</span>
+                        <div class="absolute inset-0 bg-orange-600/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-32 px-6 relative z-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="aspect-[3/4] fade-in relative overflow-hidden group">
+                <img src="https://images.unsplash.com/photo-1525811902-f2342640856e?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0">
+            </div>
+            <div class="aspect-[3/4] fade-in delay-100 relative overflow-hidden group md:mt-12">
+                <img src="https://images.unsplash.com/photo-1496080174650-637e3f22fa03?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0">
+            </div>
+            <div class="aspect-[3/4] fade-in delay-200 relative overflow-hidden group">
+                <img src="https://images.unsplash.com/photo-1533575342466-9b0d48df7406?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0">
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-xs text-gray-600 border-t border-white/5 relative z-20">
+        <p>&copy; 2025 SHIZUBI Project.</p>
+    </footer>
+
+    <script>
+        // 火の粉パーティクルシステム
+        const canvas = document.getElementById('embers-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let embers = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Ember {
+            constructor() {
+                this.reset();
+                this.y = Math.random() * height; // 初期配置はランダム
+            }
+            
+            reset() {
+                this.x = Math.random() * width;
+                this.y = height + 10;
+                this.vx = (Math.random() - 0.5) * 2; // 横揺れ
+                this.vy = -(Math.random() * 2 + 1); // 上昇速度
+                this.size = Math.random() * 3 + 1;
+                this.color = `rgba(255, ${Math.floor(Math.random() * 100) + 50}, 0, ${Math.random()})`;
+                this.life = Math.random() * 100 + 50;
+            }
+
+            update() {
+                this.x += this.vx + Math.sin(this.y * 0.01); // ゆらゆら
+                this.y += this.vy;
+                this.life--;
+                this.size *= 0.99; // 徐々に小さく
+
+                if (this.life <= 0 || this.y < -10 || this.size < 0.1) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = "orange";
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 0; // 重くなるのでリセット
+            }
+        }
+
+        function initEmbers() {
+            for (let i = 0; i < 60; i++) {
+                embers.push(new Ember());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            embers.forEach(ember => {
+                ember.update();
+                ember.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        initEmbers();
+        animate();
+
+        // スクロールフェードイン
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

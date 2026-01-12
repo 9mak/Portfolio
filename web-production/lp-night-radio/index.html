@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM 02:00 の独り言 | 深夜放送</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #080808;
+            color: #00ff41; /* 蛍光グリーン */
+            font-family: 'Zen Old Mincho', serif;
+            overflow-x: hidden;
+        }
+        
+        .font-mono {
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* 砂嵐ノイズ背景 */
+        .noise-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.08;
+            pointer-events: none;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+            animation: noise-anim 0.2s infinite;
+        }
+
+        @keyframes noise-anim {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(-5%, -5%); }
+            20% { transform: translate(-10%, 5%); }
+            30% { transform: translate(5%, -10%); }
+            40% { transform: translate(-5%, 15%); }
+            50% { transform: translate(-10%, 5%); }
+            60% { transform: translate(15%, 0); }
+            70% { transform: translate(0, 10%); }
+            80% { transform: translate(-15%, 0); }
+            90% { transform: translate(10%, 5%); }
+            100% { transform: translate(5%, 0); }
+        }
+
+        /* グリッチテキスト */
+        .glitch {
+            position: relative;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #080808;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -1px 0 #00fff9;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(2px, 9999px, 5px, 0); }
+            5% { clip: rect(40px, 9999px, 45px, 0); }
+            100% { clip: rect(10px, 9999px, 80px, 0); }
+        }
+        @keyframes glitch-anim2 {
+            0% { clip: rect(80px, 9999px, 85px, 0); }
+            5% { clip: rect(10px, 9999px, 20px, 0); }
+            100% { clip: rect(20px, 9999px, 60px, 0); }
+        }
+
+        /* 波形アニメーション（CSS） */
+        .waveform-bar {
+            width: 4px;
+            background-color: #00ff41;
+            animation: wave 1s ease-in-out infinite;
+        }
+        @keyframes wave {
+            0%, 100% { height: 10%; opacity: 0.3; }
+            50% { height: 100%; opacity: 1; }
+        }
+
+        /* スキャンライン */
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 255, 65, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 50;
+            animation: scan 3s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes scan {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    
+    <div class="noise-bg"></div>
+    <div class="scanline"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full p-6 flex justify-between items-center z-50 border-b border-[#00ff41]/20 bg-[#080808]/80 backdrop-blur-sm">
+        <span class="font-mono text-xs tracking-widest animate-pulse">● ON AIR</span>
+        <div class="flex gap-1 items-end h-8">
+            <!-- 簡易波形ビジュアライザー -->
+            <div class="waveform-bar h-4" style="animation-duration: 0.6s;"></div>
+            <div class="waveform-bar h-6" style="animation-duration: 0.9s;"></div>
+            <div class="waveform-bar h-8" style="animation-duration: 0.4s;"></div>
+            <div class="waveform-bar h-3" style="animation-duration: 0.7s;"></div>
+            <div class="waveform-bar h-5" style="animation-duration: 0.5s;"></div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="min-h-screen flex flex-col justify-center items-center px-6 relative">
+        <div class="max-w-4xl w-full">
+            <div class="font-mono text-[#00ff41]/50 mb-4 tracking-widest">HZ: 84.1 / JODR-FM</div>
+            <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-8 glitch" data-text="午前2時の独り言">
+                午前2時の<br>独り言
+            </h1>
+            <p class="text-lg md:text-xl leading-loose text-gray-400 max-w-2xl border-l-2 border-[#00ff41] pl-6">
+                眠れない夜のために。<br>
+                誰にも届かない声を、電波に乗せて。<br>
+                <span class="font-mono text-sm block mt-4 text-[#00ff41]/70">> START TUNING...</span>
+            </p>
+        </div>
+
+        <!-- 飾り: ラジオダイヤル -->
+        <div class="absolute bottom-20 w-full max-w-2xl h-1 bg-[#00ff41]/20">
+            <div class="absolute top-1/2 left-[84%] transform -translate-x-1/2 -translate-y-1/2 w-1 h-6 bg-[#ff00c1] shadow-[0_0_10px_#ff00c1]"></div>
+            <div class="flex justify-between text-[#00ff41]/30 font-mono text-xs mt-2">
+                <span>70</span>
+                <span>76</span>
+                <span>80</span>
+                <span>90</span>
+                <span>100</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <section class="py-24 px-6 border-t border-[#00ff41]/10">
+        <div class="max-w-3xl mx-auto space-y-24">
+            
+            <!-- Episode List -->
+            <div class="space-y-8">
+                <h2 class="font-mono text-xl border-b border-[#00ff41]/30 pb-2 inline-block">ARCHIVES</h2>
+                
+                <article class="group cursor-pointer hover:bg-[#00ff41]/5 p-4 transition-colors border-l border-transparent hover:border-[#00ff41]">
+                    <div class="flex justify-between items-baseline font-mono text-xs text-[#00ff41]/50 mb-2">
+                        <span>#104</span>
+                        <span>2025.04.14</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-[#00ff41] transition-colors">雨の日のコンビニエンスストア</h3>
+                    <p class="text-sm text-gray-500 line-clamp-2">
+                        傘を忘れたふりをして、雑誌コーナーで立ち読みをする。蛍光灯のジーという音だけが響く店内。
+                    </p>
+                </article>
+
+                <article class="group cursor-pointer hover:bg-[#00ff41]/5 p-4 transition-colors border-l border-transparent hover:border-[#00ff41]">
+                    <div class="flex justify-between items-baseline font-mono text-xs text-[#00ff41]/50 mb-2">
+                        <span>#103</span>
+                        <span>2025.04.07</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-[#00ff41] transition-colors">自動販売機の明かり</h3>
+                    <p class="text-sm text-gray-500 line-clamp-2">
+                        真夜中の住宅街。100円玉が落ちる音の大きさについて。冷たい缶コーヒーの結露。
+                    </p>
+                </article>
+
+                 <article class="group cursor-pointer hover:bg-[#00ff41]/5 p-4 transition-colors border-l border-transparent hover:border-[#00ff41]">
+                    <div class="flex justify-between items-baseline font-mono text-xs text-[#00ff41]/50 mb-2">
+                        <span>#102</span>
+                        <span>2025.03.31</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-[#00ff41] transition-colors">誰もいない交差点</h3>
+                    <p class="text-sm text-gray-500 line-clamp-2">
+                        点滅信号の黄色と赤色。横断歩道の白線の上だけを歩く遊び。
+                    </p>
+                </article>
+            </div>
+
+            <!-- Message Form -->
+            <div class="border border-[#00ff41]/30 p-8 relative">
+                <div class="absolute -top-3 left-4 bg-[#080808] px-2 font-mono text-sm text-[#00ff41]">REQUEST / MESSAGE</div>
+                <textarea class="w-full bg-transparent border-none text-[#00ff41] placeholder-[#00ff41]/20 outline-none h-32 font-mono" placeholder="メッセージを入力..."></textarea>
+                <div class="text-right">
+                    <button class="bg-[#00ff41] text-black font-bold px-6 py-2 text-sm hover:opacity-80">SEND SIGNAL</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="py-12 text-center font-mono text-xs text-[#00ff41]/30">
+        <p>JODR-FM 84.1MHz "MIDNIGHT MONOLOGUE"</p>
+    </footer>
+
+</body>
+</html>

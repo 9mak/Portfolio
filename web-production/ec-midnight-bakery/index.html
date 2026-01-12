@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>月夜のベーカリー | 真夜中に焼く</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Zen+Kurenaido&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: radial-gradient(circle at top, #1a237e 0%, #000022 100%);
+            color: #fff9c4;
+            font-family: 'Zen Kurenaido', sans-serif;
+            min-height: 100vh;
+        }
+        
+        h1, h2, .timer-font {
+            font-family: 'DM Serif Display', serif;
+        }
+
+        /* パンの発光表現 */
+        .glowing-bread {
+            position: relative;
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.3));
+            transition: transform 0.3s;
+        }
+        .glowing-bread:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.5));
+        }
+
+        /* 湯気（CSS Animation） */
+        .steam {
+            position: absolute;
+            width: 10px;
+            height: 40px;
+            background: rgba(255,255,255,0.4);
+            border-radius: 50%;
+            filter: blur(8px);
+            opacity: 0;
+            top: 20%;
+            left: 50%;
+            animation: rise 3s infinite ease-out;
+        }
+        @keyframes rise {
+            0% { transform: translateY(0) scaleX(1); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-50px) scaleX(2); opacity: 0; }
+        }
+
+        /* カウントダウン枠 */
+        .timer-box {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="p-6 flex justify-between items-center">
+        <h1 class="text-2xl text-yellow-400">Moonlight Bakery</h1>
+        <div class="text-xs tracking-widest opacity-70">OPEN: 23:00 - 04:00</div>
+    </nav>
+
+    <header class="py-12 md:py-24 text-center px-4">
+        <p class="mb-4 opacity-80">次の焼き上がりまで</p>
+        
+        <!-- カウントダウン -->
+        <div class="flex justify-center gap-4 mb-16 timer-font text-5xl md:text-7xl text-yellow-300">
+            <div class="timer-box p-4 rounded">00</div>
+            <span class="self-center">:</span>
+            <div class="timer-box p-4 rounded">42</div>
+            <span class="self-center">:</span>
+            <div class="timer-box p-4 rounded">15</div>
+        </div>
+
+        <h2 class="text-4xl md:text-5xl mb-8 leading-relaxed">
+            真夜中の<span class="text-yellow-400 border-b-2 border-yellow-400 pb-1">クロワッサン</span>は<br>
+            月の味がする。
+        </h2>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 pb-24 grid grid-cols-1 md:grid-cols-3 gap-12">
+        
+        <!-- Item 1 -->
+        <div class="relative group cursor-pointer">
+            <div class="aspect-square relative mb-6">
+                <!-- 湯気エフェクト -->
+                <div class="steam" style="left: 40%; animation-delay: 0s;"></div>
+                <div class="steam" style="left: 60%; animation-delay: 1.5s;"></div>
+                
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-contain glowing-bread rounded-full bg-gradient-to-b from-white/10 to-transparent p-4">
+            </div>
+            <div class="text-center">
+                <h3 class="text-xl font-bold text-yellow-100 mb-2">月光クロワッサン</h3>
+                <p class="text-sm opacity-60">発酵バター使用。サクサクの層が夜を彩る。</p>
+                <div class="mt-4 text-yellow-400 font-bold text-lg">¥420</div>
+            </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="relative group cursor-pointer mt-12 md:mt-0">
+            <div class="aspect-square relative mb-6">
+                 <!-- 湯気 -->
+                 <div class="steam" style="left: 50%; animation-delay: 0.5s;"></div>
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-contain glowing-bread rounded-full bg-gradient-to-b from-white/10 to-transparent p-4">
+            </div>
+            <div class="text-center">
+                <h3 class="text-xl font-bold text-yellow-100 mb-2">星屑のカンパーニュ</h3>
+                <p class="text-sm opacity-60">ライ麦の酸味と、ドライフルーツの甘み。</p>
+                <div class="mt-4 text-yellow-400 font-bold text-lg">¥850</div>
+            </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="relative group cursor-pointer">
+            <div class="aspect-square relative mb-6">
+                 <!-- 湯気 -->
+                 <div class="steam" style="left: 30%; animation-delay: 1s;"></div>
+                 <div class="steam" style="left: 70%; animation-delay: 2s;"></div>
+                <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-contain glowing-bread rounded-full bg-gradient-to-b from-white/10 to-transparent p-4">
+            </div>
+            <div class="text-center">
+                <h3 class="text-xl font-bold text-yellow-100 mb-2">闇夜のブリオッシュ</h3>
+                <p class="text-sm opacity-60">卵黄たっぷり。ケーキのような口溶け。</p>
+                <div class="mt-4 text-yellow-400 font-bold text-lg">¥580</div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

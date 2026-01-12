@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Record Player UI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .player-base {
+            width: 400px;
+            height: 300px;
+            background: #d7ccc8;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        /* レコード盤 */
+        .record-disk {
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, #333 0%, #111 40%, #000 100%);
+            /* 溝の表現 */
+            background-image: repeating-radial-gradient(#111 0, #111 2px, #222 3px, #222 4px);
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .record-label {
+            width: 80px;
+            height: 80px;
+            background: #ff7043;
+            border-radius: 50%;
+            border: 20px solid #111;
+        }
+
+        .spinning {
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* トーンアーム */
+        .tone-arm-base {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background: #bdbdbd;
+            border-radius: 50%;
+            border: 2px solid #9e9e9e;
+            z-index: 10;
+        }
+
+        .tone-arm {
+            position: absolute;
+            top: 30px; /* base center */
+            right: 70px; /* base center */
+            width: 180px;
+            height: 10px;
+            background: silver;
+            transform-origin: 100% 50%; /* 右端（ベース側）を中心に回転 */
+            transform: rotate(-30deg);
+            border-radius: 5px;
+            cursor: grab;
+            transition: transform 0.2s;
+            box-shadow: 2px 5px 5px rgba(0,0,0,0.2);
+        }
+        .tone-arm:active {
+            cursor: grabbing;
+        }
+
+        /* 針先 */
+        .needle {
+            position: absolute;
+            left: 0;
+            top: -5px;
+            width: 20px;
+            height: 30px;
+            background: #333;
+            border-radius: 2px;
+        }
+
+        .status-light {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 10px;
+            height: 10px;
+            background: #555;
+            border-radius: 50%;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);
+        }
+        .status-light.on {
+            background: #00e676;
+            box-shadow: 0 0 5px #00e676;
+        }
+
+        .instruction {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 0.8rem;
+            color: #795548;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="player-base">
+        <div class="record-disk" id="disk">
+            <div class="record-label"></div>
+        </div>
+
+        <div class="tone-arm-base"></div>
+        
+        <!-- アーム（ここをドラッグ） -->
+        <div class="tone-arm" id="arm" draggable="true">
+            <div class="needle"></div>
+        </div>
+
+        <div class="status-light" id="led"></div>
+        <p class="instruction">Drag the arm to the record.</p>
+    </div>
+
+    <script>
+        const arm = document.getElementById('arm');
+        const disk = document.getElementById('disk');
+        const led = document.getElementById('led');
+        let isPlaying = false;
+
+        // 簡易的なクリック・トグル実装（ドラッグ実装は複雑になるため、デモ用にクリックで移動）
+        arm.addEventListener('click', () => {
+            if (!isPlaying) {
+                // Play
+                arm.style.transform = "rotate(15deg)"; // レコード上に移動
+                setTimeout(() => {
+                    disk.classList.add('spinning');
+                    led.classList.add('on');
+                }, 300); // アームが降りる時間
+                isPlaying = true;
+            } else {
+                // Stop
+                arm.style.transform = "rotate(-30deg)"; // 元に戻る
+                disk.classList.remove('spinning');
+                led.classList.remove('on');
+                isPlaying = false;
+            }
+        });
+    </script>
+</body>
+</html>
