@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener - URL短縮ツール</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔗 URL Shortener</h1>
+            <p>URLを短縮して、QRコードも生成</p>
+        </header>
+
+        <div class="card">
+            <h2>URL短縮</h2>
+            <form id="shorten-form">
+                <div class="form-group">
+                    <label for="original-url">元のURL</label>
+                    <input type="url" id="original-url" required placeholder="https://example.com/very-long-url">
+                </div>
+                <div class="form-group">
+                    <label for="alias">カスタムエイリアス（任意）</label>
+                    <input type="text" id="alias" placeholder="my-link" pattern="[a-zA-Z0-9-_]+">
+                    <small>英数字、ハイフン、アンダースコアのみ</small>
+                </div>
+                <div class="form-group">
+                    <label for="tags">タグ（カンマ区切り）</label>
+                    <input type="text" id="tags" placeholder="work, docs">
+                </div>
+                <div class="form-group">
+                    <label for="memo">メモ（任意）</label>
+                    <input type="text" id="memo" placeholder="用途や説明">
+                </div>
+                <button type="submit" class="btn btn-primary">短縮</button>
+            </form>
+        </div>
+
+        <div class="card" id="result-section" style="display: none;">
+            <h2>短縮URL</h2>
+            <div class="result-display">
+                <div class="short-url">
+                    <input type="text" id="short-url-display" readonly>
+                    <button class="btn btn-secondary" id="copy-btn">コピー</button>
+                </div>
+                <div id="qrcode"></div>
+                <button class="btn btn-secondary" id="download-qr">QRコードをダウンロード</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>短縮URL一覧</h2>
+            <div class="filter-bar">
+                <input type="text" id="search" placeholder="検索...">
+                <select id="tag-filter">
+                    <option value="">全タグ</option>
+                </select>
+            </div>
+            <div id="url-list"></div>
+        </div>
+
+        <div class="card">
+            <h3>データ管理</h3>
+            <button class="btn btn-secondary" id="export-json">JSONエクスポート</button>
+            <button class="btn btn-secondary" id="import-json">JSONインポート</button>
+            <input type="file" id="import-file" accept=".json" style="display: none;">
+            <button class="btn btn-danger" id="clear-all">全削除</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

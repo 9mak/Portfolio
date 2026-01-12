@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Aggregator - ニュース集約ダッシュボード</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📰 News Aggregator</h1>
+            <p>複数ソースからニュースを集約</p>
+        </header>
+
+        <div class="card api-card">
+            <div class="api-settings">
+                <input type="password" id="api-key" placeholder="News API キーを入力（オプション）">
+                <button class="btn btn-secondary" id="save-key">保存</button>
+            </div>
+        </div>
+
+        <div class="controls">
+            <input type="text" id="search" placeholder="キーワード検索...">
+            <select id="category">
+                <option value="">全カテゴリ</option>
+                <option value="technology">テクノロジー</option>
+                <option value="business">ビジネス</option>
+                <option value="entertainment">エンタメ</option>
+                <option value="sports">スポーツ</option>
+                <option value="science">科学</option>
+                <option value="health">健康</option>
+            </select>
+            <button class="btn btn-primary" id="refresh-btn">更新</button>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="news">最新ニュース</button>
+            <button class="tab-btn" data-tab="bookmarks">ブックマーク</button>
+        </div>
+
+        <div class="tab-content active" id="news-tab">
+            <div id="news-list" class="news-grid"></div>
+        </div>
+
+        <div class="tab-content" id="bookmarks-tab">
+            <div id="bookmarks-list" class="news-grid"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

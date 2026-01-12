@@ -4,54 +4,111 @@
 
 ## 📁 プロジェクト一覧
 
-### 1. 🍅 [app-pomodoro-timer](./app-pomodoro-timer/)
+### Webアプリケーション (app-)
+
+#### 1. 🍅 [app-pomodoro-timer](./app-pomodoro-timer/)
 PWA対応のポモドーロタイマー
 
 **技術スタック**: PWA, Service Worker, Notification API, Web Audio API
 **特徴**: オフライン動作、統計管理、カスタマイズ可能
 
-### 2. 📋 [app-task-manager](./app-task-manager/)
+#### 2. 📋 [app-task-manager](./app-task-manager/)
 タスク管理アプリケーション
 
 **技術スタック**: Vanilla JavaScript, LocalStorage
 **特徴**: 優先度管理、フィルタ機能、進捗可視化
 
-### 3. 🖼️ [tool-image-optimizer](./tool-image-optimizer/)
+#### 3. 💰 [app-expense-tracker](./app-expense-tracker/)
+家計簿・支出管理アプリ
+
+**技術スタック**: Chart.js, IndexedDB, LocalStorage
+**特徴**: カテゴリ別集計、グラフ表示、予算管理、CSV/JSONエクスポート
+
+### 業務自動化ツール (tool-)
+
+#### 4. 🖼️ [tool-image-optimizer](./tool-image-optimizer/)
 画像最適化ツール
 
 **技術スタック**: HTML5 Canvas API, File API, Blob API
 **特徴**: WebP変換、リサイズ、バッチ処理、完全クライアントサイド
 
-### 4. ✍️ [ai-writing-assistant](./ai-writing-assistant/)
+#### 5. 📊 [tool-csv-processor](./tool-csv-processor/)
+CSV変換・集計ツール
+
+**技術スタック**: Papa Parse, File API, Encoding.js
+**特徴**: CSV/TSV/JSON変換、フィルタリング、集計、エンコーディング対応
+
+#### 6. 🔗 [tool-url-shortener](./tool-url-shortener/)
+URL短縮サービス（ローカル版）
+
+**技術スタック**: QRCode.js, LocalStorage
+**特徴**: カスタムエイリアス、QRコード生成、クリック数カウント、タグ管理
+
+### AI/機械学習連携 (ai-)
+
+#### 7. ✍️ [ai-writing-assistant](./ai-writing-assistant/)
 AI文章作成アシスタント
 
 **技術スタック**: OpenAI API, Fetch API
 **特徴**: 複数テンプレート、カスタマイズ、履歴管理
 
-### 5. ⛅ [api-weather-dashboard](./api-weather-dashboard/)
+#### 8. 📝 [ai-text-analyzer](./ai-text-analyzer/)
+テキスト分析・インサイトツール
+
+**技術スタック**: OpenAI/Claude API, Fetch API
+**特徴**: 感情分析、キーワード抽出、可読性評価、改善提案
+
+#### 9. 😂 [ai-photo-comedian](./ai-photo-comedian/)
+写真で一言ジェネレーター（IPPONグランプリ風）
+
+**技術スタック**: OpenAI Vision/Claude Vision, Canvas API
+**特徴**: 面白キャプション生成、スタイル選択、いいね機能、ギャラリー
+
+### 外部API統合 (api-)
+
+#### 10. ⛅ [api-weather-dashboard](./api-weather-dashboard/)
 天気情報ダッシュボード
 
 **技術スタック**: OpenWeatherMap API, Geolocation API
 **特徴**: リアルタイム情報、5日間予報、お気に入り機能
 
+#### 11. 📰 [api-news-aggregator](./api-news-aggregator/)
+ニュース集約ダッシュボード
+
+**技術スタック**: News API, Fetch API, LocalStorage
+**特徴**: 複数ソース集約、カテゴリ別表示、ブックマーク、既読管理
+
+#### 12. 🐙 [api-github-profile](./api-github-profile/)
+GitHub統計ビューアー
+
+**技術スタック**: GitHub REST API, Chart.js
+**特徴**: ユーザー統計、リポジトリ一覧、言語統計、レスポンシブデザイン
+
 ## 🎯 カテゴリー別分類
 
 ### Webアプリケーション (`app-`)
 Webアプリケーション、PWA（Progressive Web Apps）
-- **app-task-manager**: タスク管理
 - **app-pomodoro-timer**: 時間管理（PWA）
+- **app-task-manager**: タスク管理
+- **app-expense-tracker**: 家計簿・支出管理
 
 ### 業務自動化ツール (`tool-`)
 業務効率化スクリプト、開発支援ツール、GAS連携
 - **tool-image-optimizer**: 画像最適化
+- **tool-csv-processor**: CSV変換・集計
+- **tool-url-shortener**: URL短縮サービス
 
 ### AI/機械学習連携 (`ai-`)
 AI APIソリューション（OpenAI、Anthropic Claude、ローカルモデル対応）
 - **ai-writing-assistant**: AI文章作成
+- **ai-text-analyzer**: テキスト分析・インサイトツール
+- **ai-photo-comedian**: 写真で一言ジェネレーター
 
 ### 外部API統合 (`api-`)
 バックエンドAPI、外部サービス連携
 - **api-weather-dashboard**: 天気情報API
+- **api-news-aggregator**: ニュース集約ダッシュボード
+- **api-github-profile**: GitHub統計ビューアー
 
 ## 💡 技術的ハイライト
 
@@ -98,11 +155,18 @@ AI APIソリューション（OpenAI、Anthropic Claude、ローカルモデル�
 
 | プロジェクト | ファイル数 | 主要技術 | 難易度 |
 |------------|----------|---------|--------|
-| app-task-manager | 4 | JavaScript, LocalStorage | ⭐⭐ |
-| tool-image-optimizer | 4 | Canvas API, File API | ⭐⭐⭐ |
-| ai-writing-assistant | 4 | AI API連携 | ⭐⭐⭐ |
-| api-weather-dashboard | 4 | REST API | ⭐⭐ |
 | app-pomodoro-timer | 6 | PWA, Service Worker | ⭐⭐⭐⭐ |
+| app-task-manager | 4 | JavaScript, LocalStorage | ⭐⭐ |
+| app-expense-tracker | 4 | Chart.js, IndexedDB | ⭐⭐⭐ |
+| tool-image-optimizer | 4 | Canvas API, File API | ⭐⭐⭐ |
+| tool-csv-processor | 4 | Papa Parse, File API | ⭐⭐⭐ |
+| tool-url-shortener | 4 | QRCode.js, LocalStorage | ⭐⭐ |
+| ai-writing-assistant | 4 | AI API連携 | ⭐⭐⭐ |
+| ai-text-analyzer | 4 | AI API（複数プロバイダー） | ⭐⭐⭐ |
+| ai-photo-comedian | 4 | AI Vision API | ⭐⭐⭐⭐ |
+| api-weather-dashboard | 4 | REST API | ⭐⭐ |
+| api-news-aggregator | 4 | News API | ⭐⭐ |
+| api-github-profile | 4 | GitHub API, Chart.js | ⭐⭐⭐ |
 
 ## 🎨 デザイン原則
 
@@ -113,11 +177,18 @@ AI APIソリューション（OpenAI、Anthropic Claude、ローカルモデル�
 
 ### カラーパレット
 各プロジェクトで異なるテーマカラーを採用：
-- Task Manager: Indigo (`#4f46e5`)
-- Image Optimizer: Purple (`#8b5cf6`)
-- AI Writing: Cyan (`#06b6d4`)
-- Weather Dashboard: Blue (`#3b82f6`)
-- Pomodoro Timer: Red (`#ef4444`)
+- **app-pomodoro-timer**: Red (`#ef4444`)
+- **app-task-manager**: Indigo (`#4f46e5`)
+- **app-expense-tracker**: Indigo (`#4f46e5`)
+- **tool-image-optimizer**: Purple (`#8b5cf6`)
+- **tool-csv-processor**: Purple (`#8b5cf6`)
+- **tool-url-shortener**: Blue (`#3b82f6`)
+- **ai-writing-assistant**: Cyan (`#06b6d4`)
+- **ai-text-analyzer**: Cyan (`#06b6d4`)
+- **ai-photo-comedian**: Orange (`#f59e0b`)
+- **api-weather-dashboard**: Blue (`#3b82f6`)
+- **api-news-aggregator**: Blue (`#3b82f6`)
+- **api-github-profile**: Green (`#238636`)
 
 ## 🚀 セットアップ方法
 

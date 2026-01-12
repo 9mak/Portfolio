@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Text Analyzer - テキスト分析ツール</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 AI Text Analyzer</h1>
+            <p>AIによる高度なテキスト分析・インサイトツール</p>
+        </header>
+
+        <div class="card">
+            <h2>API設定</h2>
+            <div class="api-settings">
+                <select id="provider">
+                    <option value="openai">OpenAI GPT-4</option>
+                    <option value="claude">Anthropic Claude</option>
+                </select>
+                <input type="password" id="api-key" placeholder="APIキーを入力">
+                <button class="btn btn-secondary" id="save-key">保存</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>テキスト入力</h2>
+            <textarea id="text-input" placeholder="分析したいテキストを入力してください..." rows="10"></textarea>
+            <div class="text-stats">
+                <span>文字数: <strong id="char-count">0</strong></span>
+                <span>語数: <strong id="word-count">0</strong></span>
+            </div>
+            <button class="btn btn-primary" id="analyze-btn">分析開始</button>
+        </div>
+
+        <div class="card" id="results" style="display: none;">
+            <h2>分析結果</h2>
+            <div class="result-grid">
+                <div class="result-card">
+                    <h3>感情分析</h3>
+                    <div id="sentiment-result"></div>
+                </div>
+                <div class="result-card">
+                    <h3>キーワード</h3>
+                    <div id="keywords-result"></div>
+                </div>
+                <div class="result-card">
+                    <h3>可読性</h3>
+                    <div id="readability-result"></div>
+                </div>
+                <div class="result-card">
+                    <h3>改善提案</h3>
+                    <div id="suggestions-result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

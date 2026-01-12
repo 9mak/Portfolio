@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Processor - CSV変換・集計ツール</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 CSV Processor</h1>
+            <p>CSVファイルの変換・集計・加工ツール</p>
+        </header>
+
+        <!-- ファイルアップロード -->
+        <div class="card upload-area" id="upload-area">
+            <input type="file" id="file-input" accept=".csv,.tsv,.txt" style="display: none;">
+            <div class="upload-content">
+                <svg width="64" height="64" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                </svg>
+                <p>CSVファイルをドラッグ&ドロップ</p>
+                <p class="text-sm">または</p>
+                <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">ファイルを選択</button>
+            </div>
+        </div>
+
+        <!-- データプレビュー -->
+        <div class="card" id="preview-section" style="display: none;">
+            <div class="section-header">
+                <h2>データプレビュー</h2>
+                <div class="stats">
+                    <span>行数: <strong id="row-count">0</strong></span>
+                    <span>列数: <strong id="col-count">0</strong></span>
+                </div>
+            </div>
+            <div class="table-container">
+                <table id="data-table">
+                    <thead id="table-head"></thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- フィルタ・集計 -->
+        <div class="card" id="tools-section" style="display: none;">
+            <h2>データ操作</h2>
+
+            <div class="tools-grid">
+                <!-- フィルタリング -->
+                <div class="tool-panel">
+                    <h3>フィルタリング</h3>
+                    <div class="form-group">
+                        <label>列を選択</label>
+                        <select id="filter-column"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>条件</label>
+                        <select id="filter-operator">
+                            <option value="contains">含む</option>
+                            <option value="equals">等しい</option>
+                            <option value="gt">より大きい</option>
+                            <option value="lt">より小さい</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>値</label>
+                        <input type="text" id="filter-value" placeholder="検索値">
+                    </div>
+                    <button class="btn btn-secondary" id="apply-filter">フィルタ適用</button>
+                    <button class="btn btn-secondary" id="clear-filter">クリア</button>
+                </div>
+
+                <!-- 集計 -->
+                <div class="tool-panel">
+                    <h3>集計</h3>
+                    <div class="form-group">
+                        <label>列を選択</label>
+                        <select id="aggregate-column"></select>
+                    </div>
+                    <button class="btn btn-secondary" id="calculate-stats">計算</button>
+                    <div id="stats-result"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- エクスポート -->
+        <div class="card" id="export-section" style="display: none;">
+            <h2>エクスポート</h2>
+            <div class="export-buttons">
+                <button class="btn btn-primary" id="export-csv">CSV形式</button>
+                <button class="btn btn-primary" id="export-json">JSON形式</button>
+                <button class="btn btn-primary" id="export-tsv">TSV形式</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
