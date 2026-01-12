@@ -37,16 +37,20 @@ AI文章作成アシスタント
 ## 🎯 カテゴリー別分類
 
 ### Webアプリケーション (`app-`)
+Webアプリケーション、PWA（Progressive Web Apps）
 - **app-task-manager**: タスク管理
 - **app-pomodoro-timer**: 時間管理（PWA）
 
-### 開発ツール (`tool-`)
+### 業務自動化ツール (`tool-`)
+業務効率化スクリプト、開発支援ツール、GAS連携
 - **tool-image-optimizer**: 画像最適化
 
-### AI連携 (`ai-`)
+### AI/機械学習連携 (`ai-`)
+AI APIソリューション（OpenAI、Anthropic Claude、ローカルモデル対応）
 - **ai-writing-assistant**: AI文章作成
 
-### API統合 (`api-`)
+### 外部API統合 (`api-`)
+バックエンドAPI、外部サービス連携
 - **api-weather-dashboard**: 天気情報API
 
 ## 💡 技術的ハイライト
@@ -76,7 +80,7 @@ AI文章作成アシスタント
 - JavaScript (ES6+)
 
 ### API・サービス
-- OpenAI GPT-3.5 / GPT-4
+- AI APIs (OpenAI GPT-4/Vision, Anthropic Claude, Google Gemini等)
 - OpenWeatherMap API
 - Browser APIs (Canvas, Notification, Geolocation, etc.)
 
@@ -96,7 +100,7 @@ AI文章作成アシスタント
 |------------|----------|---------|--------|
 | app-task-manager | 4 | JavaScript, LocalStorage | ⭐⭐ |
 | tool-image-optimizer | 4 | Canvas API, File API | ⭐⭐⭐ |
-| ai-writing-assistant | 4 | OpenAI API | ⭐⭐⭐ |
+| ai-writing-assistant | 4 | AI API連携 | ⭐⭐⭐ |
 | api-weather-dashboard | 4 | REST API | ⭐⭐ |
 | app-pomodoro-timer | 6 | PWA, Service Worker | ⭐⭐⭐⭐ |
 
@@ -126,7 +130,10 @@ AI文章作成アシスタント
 ### APIキーが必要なプロジェクト
 
 #### ai-writing-assistant
-1. [OpenAI Platform](https://platform.openai.com/api-keys) でAPIキーを取得
+1. 使用するAI APIプロバイダーでAPIキーを取得
+   - [OpenAI Platform](https://platform.openai.com/api-keys)
+   - [Anthropic Console](https://console.anthropic.com/)
+   - その他対応プロバイダー
 2. アプリ内でAPIキーを設定
 
 #### api-weather-dashboard
