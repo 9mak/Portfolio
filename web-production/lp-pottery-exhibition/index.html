@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <script>
         tailwind.config = {
             theme: {
@@ -26,80 +27,6 @@
             }
         }
     </script>
-    <style>
-        /* * アナログな質感の再現 
-         * AIが生成しにくい「ノイズ」と「不均一さ」をCSSで表現
-         */
-        
-        body {
-            background-color: #f4f1ea;
-            color: #2b2b2b;
-            overflow-x: hidden;
-        }
-
-        /* 画面全体にざらついた質感をオーバーレイ */
-        .noise-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 50;
-            opacity: 0.6;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
-        }
-
-        /* 縦書き設定 */
-        .tategaki {
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            letter-spacing: 0.15em;
-        }
-
-        /* ふわっと墨が滲むような出現アニメーション */
-        .fade-in-ink {
-            opacity: 0;
-            filter: blur(8px);
-            transform: translateY(20px);
-            transition: opacity 1.5s ease-out, filter 1.5s ease-out, transform 1.5s ease-out;
-        }
-        
-        .fade-in-ink.visible {
-            opacity: 1;
-            filter: blur(0);
-            transform: translateY(0);
-        }
-
-        /* 画像の縁を少し滲ませる */
-        .ink-edge {
-            mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%),
-                        linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-            mask-composite: intersect;
-        }
-
-        /* カスタムスクロールバー */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f4f1ea; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #8c705f; 
-            border-radius: 4px;
-        }
-
-        /* ゆらぎアニメーション */
-        @keyframes yuragi {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-5px) rotate(0.5deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-        .animate-yuragi {
-            animation: yuragi 6s ease-in-out infinite;
-        }
-    </style>
 </head>
 <body class="font-serif antialiased">
 
@@ -398,76 +325,6 @@
         <p>&copy; 2025 Ren Oribe Pottery. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        // Opening Animation
-        window.addEventListener('load', () => {
-            const loaderText = document.getElementById('loader-text');
-            const loader = document.getElementById('loader');
-            
-            // テキスト表示
-            setTimeout(() => {
-                loaderText.classList.remove('opacity-0');
-            }, 500);
-
-            // フェードアウト
-            setTimeout(() => {
-                loader.classList.add('opacity-0');
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 1000);
-            }, 2500);
-        });
-
-        // Intersection Observer for Scroll Animation
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // 一度だけ発火
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in-ink').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Mobile Menu Toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const menuOverlay = document.getElementById('menu-overlay');
-        const menuLinks = document.querySelectorAll('.menu-link');
-        let isMenuOpen = false;
-
-        menuBtn.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            if (isMenuOpen) {
-                menuOverlay.classList.remove('translate-x-full');
-                document.body.style.overflow = 'hidden';
-                // アイコンアニメーション（簡易）
-                menuBtn.children[0].classList.add('rotate-45', 'translate-y-2');
-                menuBtn.children[1].classList.add('-rotate-45', '-translate-y-1');
-            } else {
-                menuOverlay.classList.add('translate-x-full');
-                document.body.style.overflow = '';
-                // アイコン戻す
-                menuBtn.children[0].classList.remove('rotate-45', 'translate-y-2');
-                menuBtn.children[1].classList.remove('-rotate-45', '-translate-y-1');
-            }
-        });
-
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                isMenuOpen = false;
-                menuOverlay.classList.add('translate-x-full');
-                document.body.style.overflow = '';
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

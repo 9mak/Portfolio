@@ -6,51 +6,7 @@
     <title>自家製味噌キット 醸 Kamosu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Noto Serif JP', serif;
-        }
-
-        /* 木目テクスチャ */
-        .wood-texture {
-            background-color: #d7ccc8;
-            background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05 1' numOctaves='3' result='noise'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 0.8 0 0 0 0 0 0.6 0 0 0 0 0 1 0' in='noise'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.3'/%3E%3C/svg%3E");
-            background-size: cover;
-        }
-
-        /* タイムラインセクション */
-        .timeline-section {
-            min-height: 300vh; /* 長くする */
-            position: relative;
-        }
-
-        .sticky-content {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.5s;
-        }
-
-        /* 味噌の色変化クラス (JSで制御) */
-        .color-stage-0 { background-color: #fff9c4; color: #5d4037; } /* 仕込み（大豆色） */
-        .color-stage-1 { background-color: #ffe0b2; color: #5d4037; } /* 3ヶ月（麹色） */
-        .color-stage-2 { background-color: #d7ccc8; color: #3e2723; } /* 6ヶ月（薄茶） */
-        .color-stage-3 { background-color: #8d6e63; color: #fff; }    /* 10ヶ月（赤茶） */
-        .color-stage-4 { background-color: #3e2723; color: #fff; }    /* 1年（熟成） */
-
-        .miso-blob {
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            transition: all 1s ease;
-            animation: breathe 5s infinite ease-in-out;
-        }
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -103,52 +59,6 @@
         </div>
     </section>
 
-    <script>
-        const timeline = document.getElementById('fermentation-timeline');
-        const stickyBg = document.getElementById('sticky-bg');
-        const monthLabel = document.getElementById('month-label');
-        const descText = document.getElementById('desc-text');
-        const misoVisual = document.getElementById('miso-visual');
-
-        window.addEventListener('scroll', () => {
-            const rect = timeline.getBoundingClientRect();
-            const totalHeight = rect.height - window.innerHeight;
-            const scrolled = -rect.top;
-            
-            if (scrolled < 0) return; // タイムライン前
-
-            const progress = Math.min(Math.max(scrolled / totalHeight, 0), 1);
-            
-            // 段階判定 (0.0 - 1.0)
-            stickyBg.className = 'sticky-content transition-colors duration-700';
-            
-            if (progress < 0.2) {
-                stickyBg.classList.add('color-stage-0');
-                monthLabel.innerText = "仕込み当日";
-                misoVisual.style.backgroundColor = "#f0f4c3"; // 大豆色
-                descText.innerHTML = "大豆を潰し、麹と塩を混ぜ合わせる。<br>まだ白っぽく、豆の香りが強い状態。";
-            } else if (progress < 0.4) {
-                stickyBg.classList.add('color-stage-1');
-                monthLabel.innerText = "3ヶ月目";
-                misoVisual.style.backgroundColor = "#ffe0b2"; // 薄いオレンジ
-                descText.innerHTML = "発酵が始まり、少しずつ色がつき始める。<br>麹の甘い香りが漂う。";
-            } else if (progress < 0.6) {
-                stickyBg.classList.add('color-stage-2');
-                monthLabel.innerText = "6ヶ月目（天地返し）";
-                misoVisual.style.backgroundColor = "#d7ccc8"; // 茶色
-                descText.innerHTML = "空気を入れるために混ぜ返す。<br>旨味成分が増し、味噌らしい色へ。";
-            } else if (progress < 0.8) {
-                stickyBg.classList.add('color-stage-3');
-                monthLabel.innerText = "10ヶ月目";
-                misoVisual.style.backgroundColor = "#8d6e63"; // 赤茶
-                descText.innerHTML = "熟成が進み、赤褐色に変化。<br>コクと香りが深まる。";
-            } else {
-                stickyBg.classList.add('color-stage-4');
-                monthLabel.innerText = "1年（完成）";
-                misoVisual.style.backgroundColor = "#3e2723"; // 濃い茶
-                descText.innerHTML = "ついに完成。<br>あなただけの「手前味噌」の出来上がり。";
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

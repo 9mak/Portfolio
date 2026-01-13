@@ -6,55 +6,7 @@
     <title>月夜のベーカリー | 真夜中に焼く</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Zen+Kurenaido&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background: radial-gradient(circle at top, #1a237e 0%, #000022 100%);
-            color: #fff9c4;
-            font-family: 'Zen Kurenaido', sans-serif;
-            min-height: 100vh;
-        }
-        
-        h1, h2, .timer-font {
-            font-family: 'DM Serif Display', serif;
-        }
-
-        /* パンの発光表現 */
-        .glowing-bread {
-            position: relative;
-            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.3));
-            transition: transform 0.3s;
-        }
-        .glowing-bread:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.5));
-        }
-
-        /* 湯気（CSS Animation） */
-        .steam {
-            position: absolute;
-            width: 10px;
-            height: 40px;
-            background: rgba(255,255,255,0.4);
-            border-radius: 50%;
-            filter: blur(8px);
-            opacity: 0;
-            top: 20%;
-            left: 50%;
-            animation: rise 3s infinite ease-out;
-        }
-        @keyframes rise {
-            0% { transform: translateY(0) scaleX(1); opacity: 0; }
-            50% { opacity: 0.5; }
-            100% { transform: translateY(-50px) scaleX(2); opacity: 0; }
-        }
-
-        /* カウントダウン枠 */
-        .timer-box {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(5px);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 

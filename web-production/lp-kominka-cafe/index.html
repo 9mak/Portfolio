@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&family=Yomogi&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <script>
         tailwind.config = {
             theme: {
@@ -31,114 +32,6 @@
             }
         }
     </script>
-    <style>
-        /* 手触り感を出すためのカスタムスタイル */
-
-        body {
-            background-color: #fcfaf2;
-            background-image: radial-gradient(#e6e2d3 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-
-        /* 木漏れ日アニメーション */
-        .komorebi-shadow {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8), transparent 60%),
-                        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.6), transparent 40%);
-            mix-blend-mode: soft-light;
-            animation: komorebi 10s infinite alternate ease-in-out;
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        @keyframes komorebi {
-            0% { opacity: 0.3; transform: scale(1) translate(0, 0); }
-            50% { opacity: 0.6; transform: scale(1.1) translate(10px, -10px); }
-            100% { opacity: 0.4; transform: scale(0.95) translate(-5px, 5px); }
-        }
-
-        /* 写真をテープで貼ったような表現 */
-        .tape-photo {
-            position: relative;
-            box-shadow: 2px 4px 10px rgba(0,0,0,0.15);
-            background: #fff;
-            padding: 10px 10px 30px 10px; /* ポラロイド風の余白 */
-            transform: rotate(-2deg);
-            transition: transform 0.3s ease;
-        }
-        .tape-photo:hover {
-            transform: rotate(0deg) scale(1.02);
-            z-index: 20;
-        }
-        .tape-photo::before {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%) rotate(2deg);
-            width: 100px;
-            height: 30px;
-            background-color: rgba(255, 255, 255, 0.4);
-            border-left: 1px dashed rgba(0,0,0,0.1);
-            border-right: 1px dashed rgba(0,0,0,0.1);
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-            z-index: 10;
-            backdrop-filter: blur(2px); /* 半透明テープ感 */
-        }
-
-        /* 湯気アニメーション */
-        .steam-container {
-            position: relative;
-            overflow: visible;
-        }
-        .steam {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            width: 30px;
-            height: 30px;
-            background: #fff;
-            border-radius: 50%;
-            filter: blur(8px);
-            opacity: 0;
-            animation: steam 3s infinite ease-out;
-        }
-        .steam:nth-child(1) { animation-delay: 0s; transform: translateX(-10px); }
-        .steam:nth-child(2) { animation-delay: 1.5s; transform: translateX(10px); }
-
-        @keyframes steam {
-            0% { transform: translateY(0) scale(1); opacity: 0; }
-            50% { opacity: 0.6; }
-            100% { transform: translateY(-40px) scale(2); opacity: 0; }
-        }
-
-        /* ゆったりした縦書き */
-        .vertical-text {
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            line-height: 2.5;
-        }
-
-        /* クリップパスで「ちぎり絵」のような縁を作る */
-        .torn-paper {
-            clip-path: polygon(
-                0% 0%, 100% 0%, 100% 100%, 
-                95% 98%, 90% 100%, 85% 99%, 80% 100%, 75% 98%, 70% 100%, 65% 99%, 
-                60% 100%, 55% 98%, 50% 100%, 45% 99%, 40% 100%, 35% 98%, 30% 100%, 
-                25% 99%, 20% 100%, 15% 98%, 10% 100%, 5% 99%, 0% 100%
-            );
-        }
-
-        /* チョーク/手書き風のボーダー */
-        .chalk-border {
-            border: 2px solid transparent;
-            border-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0z' fill='none' stroke='%234a3b32' stroke-width='2' stroke-dasharray='5 2'/%3E%3C/svg%3E") 1;
-        }
-    </style>
 </head>
 <body class="text-kogecha font-body leading-relaxed overflow-x-hidden">
 

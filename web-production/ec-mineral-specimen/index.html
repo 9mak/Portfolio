@@ -6,82 +6,7 @@
     <title>The Specimen | Mineral & Fossil</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #0f172a; /* Slate 900 */
-            color: #e2e8f0;
-            font-family: 'Lato', sans-serif;
-            cursor: crosshair;
-        }
-        h1, h2, h3 {
-            font-family: 'Cinzel', serif;
-        }
-
-        /* 標本箱のグリッド */
-        .specimen-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1px;
-            background-color: #334155; /* 枠線の色 */
-            padding: 1px;
-            border: 10px solid #1e293b;
-            box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
-        }
-
-        .specimen-cell {
-            background-color: #0f172a;
-            position: relative;
-            aspect-ratio: 1 / 1;
-            overflow: hidden;
-            group: group;
-        }
-
-        /* ルーペ効果（マスク） */
-        .loupe-mask {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle 100px at var(--x, 50%) var(--y, 50%), transparent 0%, rgba(0,0,0,0.8) 100%);
-            pointer-events: none;
-            z-index: 10;
-            transition: opacity 0.3s;
-            opacity: 0;
-        }
-        .specimen-cell:hover .loupe-mask {
-            opacity: 1;
-        }
-
-        /* 画像のキラキラ反射（Specular） */
-        .specular-shine {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle 50px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.3) 0%, transparent 60%);
-            mix-blend-mode: overlay;
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        .label-plate {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #e2e8f0;
-            color: #0f172a;
-            padding: 4px 12px;
-            font-size: 0.7rem;
-            font-family: 'Cinzel', serif;
-            letter-spacing: 0.1em;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            border: 1px solid #94a3b8;
-            z-index: 20;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -144,15 +69,6 @@
         </div>
     </main>
 
-    <script>
-        function updateLight(e, element) {
-            const rect = element.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            element.style.setProperty('--x', `${x}px`);
-            element.style.setProperty('--y', `${y}px`);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

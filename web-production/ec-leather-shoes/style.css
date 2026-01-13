@@ -1,0 +1,71 @@
+body {
+    background-color: #1a120b;
+    color: #d7ccc8;
+}
+
+/* レザーの質感（微細なノイズ） */
+.leather-texture {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* Before/After Slider Effect */
+.compare-container {
+    position: relative;
+    overflow: hidden;
+}
+.img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    clip-path: inset(0 50% 0 0); /* Initial state: half visible */
+    transition: clip-path 0.1s ease;
+}
+.compare-slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: #c5a059;
+    cursor: ew-resize;
+    z-index: 10;
+}
+.compare-slider::after {
+    content: '< >';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #c5a059;
+    color: #1a120b;
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+}
+
+/* 革タグ風ボタン */
+.leather-tag-btn {
+    background: #3e2723;
+    color: #c5a059;
+    border: 1px solid #5d4037;
+    position: relative;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    transition: all 0.3s;
+}
+.leather-tag-btn:hover {
+    background: #4e342e;
+    transform: translateY(-1px);
+}
+/* 縫い目 */
+.leather-tag-btn::before {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px; right: 3px; bottom: 3px;
+    border: 1px dashed #5d4037;
+    opacity: 0.5;
+}

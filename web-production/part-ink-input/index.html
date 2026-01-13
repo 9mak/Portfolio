@@ -6,53 +6,7 @@
     <title>Ink Input Component</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f4f4f0; /* 生成り紙 */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            color: #2b2b2b;
-        }
-
-        /* SVG Filter Definition: 滲み（Bleed） */
-        .ink-bleed {
-            filter: url('#bleed');
-        }
-
-        /* Input Styles */
-        .ink-field {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid #ccc;
-            outline: none;
-            font-family: 'Dancing Script', cursive; /* 筆記体 */
-            font-size: 3rem;
-            color: #1a237e; /* インクブルー */
-            padding: 10px 0;
-            transition: border-color 0.3s;
-            line-height: 1.5;
-        }
-
-        .ink-field:focus {
-            border-bottom-color: #1a237e;
-        }
-
-        .ink-field::placeholder {
-            color: #ccc;
-            font-family: 'Shippori Mincho', serif;
-            font-size: 1.5rem;
-            opacity: 0.5;
-        }
-
-        /* カーソルの色変更 */
-        .ink-field {
-            caret-color: #1a237e; 
-        }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 

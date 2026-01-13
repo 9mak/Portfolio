@@ -8,62 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;800&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            /* 麓(緑) -> 岩場(灰) -> 雪渓(白) -> 空(青) -> 宇宙(紺) */
-            background: linear-gradient(to bottom, 
-                #0f172a 0%,    /* 宇宙 */
-                #1e3a8a 20%,   /* 空 */
-                #f8fafc 40%,   /* 雪渓 */
-                #57534e 70%,   /* 岩場 */
-                #14532d 100%   /* 樹海 */
-            );
-            background-size: 100% 500vh; /* 画面高さの5倍の長さ */
-            background-position: bottom; /* 最初は下（麓） */
-            font-family: 'Shippori Mincho', serif;
-            color: white;
-            transition: background-position 0.1s linear; /* スクロールに合わせてJSで操作 */
-        }
-
-        /* 等高線アニメーション */
-        .contour-lines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.1;
-            z-index: 0;
-        }
-        .contour-path {
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 0.5;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: drawLine 10s ease-out forwards infinite alternate;
-        }
-        @keyframes drawLine {
-            to { stroke-dashoffset: 0; }
-        }
-
-        /* 霧（雲）のエフェクト */
-        .fog {
-            position: absolute;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,0.2), rgba(255,255,255,0));
-            filter: blur(20px);
-        }
-
-        /* 標高メーター */
-        .elevation-meter {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            font-family: 'Montserrat', sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="overflow-x-hidden">
 
@@ -159,42 +104,6 @@
 
     </main>
 
-    <script>
-        // スクロール連動背景 & 標高メーター
-        const body = document.body;
-        const meterIndicator = document.getElementById('meter-indicator');
-        const elevationText = document.getElementById('elevation-text');
-        
-        // 星生成
-        const starContainer = document.getElementById('stars');
-        for(let i=0; i<50; i++) {
-            const star = document.createElement('div');
-            star.style.position = 'absolute';
-            star.style.width = Math.random() * 2 + 'px';
-            star.style.height = star.style.width;
-            star.style.background = 'white';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.opacity = Math.random();
-            starContainer.appendChild(star);
-        }
-
-        window.addEventListener('scroll', () => {
-            const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-            const scrollPercentClamped = Math.min(Math.max(scrollPercent, 0), 1);
-            
-            // 背景位置の更新 (bottom基準なので、scrollPercentが増えると上に移動)
-            // 0%スクロール = background-position-y: 100% (Green)
-            // 100%スクロール = background-position-y: 0% (Space)
-            body.style.backgroundPosition = `center ${100 - (scrollPercentClamped * 100)}%`;
-
-            // メーター更新
-            meterIndicator.style.bottom = `${scrollPercentClamped * 100}%`;
-            
-            // 標高テキスト更新 (0m -> 3776m)
-            const elevation = Math.round(scrollPercentClamped * 3776);
-            elevationText.textContent = elevation;
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
