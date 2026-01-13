@@ -1,0 +1,56 @@
+body {
+    background-color: #0f0f15;
+    color: #e0e0e0;
+    font-family: 'Kaisei Tokumin', serif;
+    overflow-x: hidden;
+    height: 100vh;
+    margin: 0;
+}
+
+/* ぼかしたネオン背景 */
+.neon-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1600&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    filter: blur(15px) brightness(0.4);
+    z-index: -2;
+    transform: scale(1.1);
+}
+
+/* 雨のアニメーション用Canvas */
+#rain-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* ガラスの曇り感 */
+    backdrop-filter: blur(2px);
+}
+
+.vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+
+/* ネオンサイン風の光彩 */
+.neon-text-glow {
+    text-shadow: 0 0 10px rgba(255, 200, 100, 0.5), 0 0 20px rgba(255, 100, 50, 0.3);
+}
+
+.menu-card {
+    background: rgba(20, 20, 30, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s, background 0.3s;
+}
+.menu-card:hover {
+    transform: translateY(-5px);
+    background: rgba(20, 20, 30, 0.8);
+}

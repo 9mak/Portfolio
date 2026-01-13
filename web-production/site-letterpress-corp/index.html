@@ -29,82 +29,7 @@
             }
         }
     </script>
-    <style>
-        /* * 活版印刷（レタープレス）の再現 
-         * 光源を左上に想定し、内側の影を強調することで「凹み」を表現
-         */
-
-        body {
-            background-color: #e8e6e1;
-            color: #2c2c2c;
-            /* 紙の繊維のような微細なノイズ */
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
-        }
-
-        /* --------------------------------------
-           Texture & Deboss Effects 
-           -------------------------------------- */
-        
-        /* 強くプレスされた文字（タイトルなど） */
-        .letterpress-deep {
-            color: rgba(44, 44, 44, 0.85);
-            text-shadow: 
-                -1px -1px 1px rgba(255,255,255,0.7), /* 上辺のハイライト */
-                1px 1px 2px rgba(0,0,0,0.3);        /* 下辺のシャドウ（内側への食い込み） */
-        }
-        
-        /* 浮き出し加工（紙の凸） */
-        .emboss-paper {
-            background: #e8e6e1;
-            box-shadow: 
-                -4px -4px 10px rgba(255,255,255,1), 
-                4px 4px 10px rgba(0,0,0,0.15);
-        }
-
-        /* 凹み加工（紙の凹）- ボタンや入力欄 */
-        .deboss-paper {
-            background: #e8e6e1;
-            box-shadow: 
-                inset 3px 3px 6px rgba(0,0,0,0.15),
-                inset -3px -3px 6px rgba(255,255,255,1);
-        }
-
-        /* インクのかすれ表現（SVGフィルター用クラス） */
-        .ink-bleed {
-            filter: url('#ink-bleed-filter');
-        }
-
-        /* --------------------------------------
-           Animation 
-           -------------------------------------- */
-
-        /* 活字を拾う動き（カチャッ、カチャッというリズム） */
-        @keyframes type-picking {
-            0% { opacity: 0; transform: translateY(-10px) rotateX(45deg); }
-            100% { opacity: 1; transform: translateY(0) rotateX(0); }
-        }
-        .animate-type-pick {
-            opacity: 0;
-            animation: type-picking 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-
-        /* プレス機の動き（ゆっくり圧をかける） */
-        @keyframes press-down {
-            0% { transform: scale(1.1); opacity: 0; filter: blur(5px); }
-            50% { transform: scale(0.98); opacity: 1; filter: blur(0); }
-            100% { transform: scale(1); }
-        }
-        .animate-press {
-            animation: press-down 1.2s ease-out forwards;
-        }
-        
-        /* 縦書き */
-        .vertical-rl {
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-        }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="font-serif antialiased selection:bg-ink selection:text-paper">
 
@@ -387,43 +312,6 @@
         <p>&copy; 2025 Bunsen Letterpress Studio. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        // Background Typography Generation
-        const bgContainer = document.getElementById('bg-types');
-        const chars = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん文選活版印刷明朝ゴシック";
-        
-        for (let i = 0; i < 100; i++) {
-            const span = document.createElement('span');
-            span.textContent = chars[Math.floor(Math.random() * chars.length)];
-            // ランダムに少し回転させたり透明度を変えたりする
-            span.style.opacity = Math.random() * 0.5 + 0.1;
-            span.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
-            bgContainer.appendChild(span);
-        }
-
-        // Loader Animation
-        const loaderContainer = document.getElementById('loader-text-container');
-        const loadText = "文選組版所";
-        
-        loadText.split('').forEach((char, index) => {
-            const span = document.createElement('div');
-            span.textContent = char;
-            span.className = "text-2xl font-bold bg-lead text-paper w-10 h-10 flex items-center justify-center rounded-sm shadow-md animate-type-pick";
-            span.style.animationDelay = `${index * 0.15}s`;
-            loaderContainer.appendChild(span);
-        });
-
-        // Hide Loader
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                loader.style.opacity = '0';
-                loader.style.transition = 'opacity 0.8s ease';
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 800);
-            }, 1500);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

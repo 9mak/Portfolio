@@ -1,0 +1,93 @@
+body {
+    background-color: #f0f2f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.paper-doc {
+    background: white;
+    width: 400px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    font-family: 'Noto Serif JP', serif;
+    position: relative;
+}
+
+/* 承認ボタンエリア */
+.approval-area {
+    border: 2px solid #ddd;
+    width: 80px;
+    height: 80px;
+    margin-left: auto;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.approval-area:hover {
+    background: #fafafa;
+}
+.approval-label {
+    font-size: 0.7rem;
+    color: #aaa;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+}
+
+/* ハンコ（印影） */
+.hanko-mark {
+    width: 60px;
+    height: 60px;
+    border: 3px solid #d32f2f; /* 朱色 */
+    border-radius: 50%;
+    color: #d32f2f;
+    display: flex;
+    flex-col;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Hina Mincho', serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1;
+    position: absolute;
+
+    /* 初期状態：非表示・拡大 */
+    opacity: 0;
+    transform: scale(3) rotate(-10deg);
+    pointer-events: none;
+
+    /* 乗算モードで紙に馴染ませる */
+    mix-blend-mode: multiply;
+}
+
+/* かすれ表現（borderをラフに） */
+.hanko-mark::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border: 2px solid transparent; /* 実際はmaskでかすれを表現するが今回は簡易的に */
+    border-radius: 50%;
+}
+
+/* 捺印アニメーション */
+.hanko-mark.stamped {
+    animation: stamp-action 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes stamp-action {
+    0% { opacity: 0; transform: scale(3) rotate(-20deg); }
+    50% { opacity: 1; transform: scale(0.9) rotate(-5deg); } /* 一瞬沈み込む */
+    100% { opacity: 0.9; transform: scale(1) rotate(-8deg); } /* 定着 */
+}
+
+.btn-text {
+    color: #ccc;
+    font-size: 0.8rem;
+}
