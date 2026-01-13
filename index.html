@@ -590,10 +590,280 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-2xl border p-12 text-center">
-                <span class="material-symbols-outlined text-gray-300 text-6xl mb-4">construction</span>
-                <p class="text-gray-500 mb-2">現在、プロジェクトを準備中です。</p>
-                <p class="text-sm text-gray-400">app- / tool- / ai- / api- プロジェクトを追加予定</p>
+            <!-- Category: Web Applications -->
+            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-red-600"></span>
+                Webアプリケーション (APP)
+            </h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+
+                <!-- App: Pomodoro Timer -->
+                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
+                    <div class="aspect-video bg-gradient-to-br from-red-100 to-orange-50 flex items-center justify-center relative overflow-hidden">
+                        <span class="material-symbols-outlined text-red-300 text-6xl group-hover:scale-110 transition">timer</span>
+                        <span class="absolute top-3 left-3 bg-red-600 text-white text-xs font-medium px-2 py-1 rounded">APP</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">ポモドーロタイマー</h3>
+                        <p class="text-sm text-gray-600 mb-4">PWA対応、オフライン動作可能な生産性向上タイマー。統計管理機能付き。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">PWA</span>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Service Worker</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="./system-development/app-pomodoro-timer/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
+                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/app-pomodoro-timer" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- App: Task Manager -->
+                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
+                    <div class="aspect-video bg-gradient-to-br from-indigo-100 to-blue-50 flex items-center justify-center relative overflow-hidden">
+                        <span class="material-symbols-outlined text-indigo-300 text-6xl group-hover:scale-110 transition">task_alt</span>
+                        <span class="absolute top-3 left-3 bg-red-600 text-white text-xs font-medium px-2 py-1 rounded">APP</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">タスク管理アプリ</h3>
+                        <p class="text-sm text-gray-600 mb-4">優先度管理・フィルタ機能・進捗可視化を備えたタスク管理アプリ。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">JavaScript</span>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">LocalStorage</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="./system-development/app-task-manager/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
+                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/app-task-manager" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- App: Expense Tracker -->
+                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
+                    <div class="aspect-video bg-gradient-to-br from-emerald-100 to-green-50 flex items-center justify-center relative overflow-hidden">
+                        <span class="material-symbols-outlined text-emerald-300 text-6xl group-hover:scale-110 transition">account_balance_wallet</span>
+                        <span class="absolute top-3 left-3 bg-red-600 text-white text-xs font-medium px-2 py-1 rounded">APP</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">家計簿アプリ</h3>
+                        <p class="text-sm text-gray-600 mb-4">カテゴリ別集計、グラフ表示、CSV/JSONエクスポート機能搭載。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Chart.js</span>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">IndexedDB</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="./system-development/app-expense-tracker/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
+                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/app-expense-tracker" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Category: Automation Tools -->
+            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                業務自動化ツール (TOOL)
+            </h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+
+                <!-- Tool: Image Optimizer -->
+                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
+                    <div class="aspect-video bg-gradient-to-br from-purple-100 to-pink-50 flex items-center justify-center relative overflow-hidden">
+                        <span class="material-symbols-outlined text-purple-300 text-6xl group-hover:scale-110 transition">image</span>
+                        <span class="absolute top-3 left-3 bg-purple-600 text-white text-xs font-medium px-2 py-1 rounded">TOOL</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">画像最適化ツール</h3>
+                        <p class="text-sm text-gray-600 mb-4">ブラウザ上で完結。WebP変換・リサイズ・メタデータ削除。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Canvas API</span>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">File API</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="./system-development/tool-image-optimizer/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
+                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/tool-image-optimizer" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Tool: CSV Processor -->
+                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
+                    <div class="aspect-video bg-gradient-to-br from-orange-100 to-amber-50 flex items-center justify-center relative overflow-hidden">
+                        <span class="material-symbols-outlined text-orange-300 text-6xl group-hover:scale-110 transition">table_chart</span>
+                        <span class="absolute top-3 left-3 bg-purple-600 text-white text-xs font-medium px-2 py-1 rounded">TOOL</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">CSV変換・集計ツール</h3>
+                        <p class="text-sm text-gray-600 mb-4">CSV/TSV/JSON変換、フィルタリング、集計機能。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Papa Parse</span>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Encoding.js</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="./system-development/tool-csv-processor/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
+                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/tool-csv-processor" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Tool: URL Shortener -->
+                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
+                    <div class="aspect-video bg-gradient-to-br from-blue-100 to-cyan-50 flex items-center justify-center relative overflow-hidden">
+                        <span class="material-symbols-outlined text-blue-300 text-6xl group-hover:scale-110 transition">link</span>
+                        <span class="absolute top-3 left-3 bg-purple-600 text-white text-xs font-medium px-2 py-1 rounded">TOOL</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">URL短縮サービス</h3>
+                        <p class="text-sm text-gray-600 mb-4">カスタムエイリアス、QRコード生成、クリック数カウント。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">QRCode.js</span>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">LocalStorage</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="./system-development/tool-url-shortener/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
+                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/tool-url-shortener" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Category: AI Integration -->
+            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-cyan-600"></span>
+                AI連携ツール (AI)
+            </h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+
+                <!-- AI: Writing Assistant -->
+                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
+                    <div class="aspect-video bg-gradient-to-br from-cyan-100 to-blue-50 flex items-center justify-center relative overflow-hidden">
+                        <span class="material-symbols-outlined text-cyan-300 text-6xl group-hover:scale-110 transition">edit_note</span>
+                        <span class="absolute top-3 left-3 bg-cyan-600 text-white text-xs font-medium px-2 py-1 rounded">AI</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">AI文章作成アシスタント</h3>
+                        <p class="text-sm text-gray-600 mb-4">複数テンプレート対応の文章生成ツール（ブログ、商品説明、SNS投稿など）。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">OpenAI API</span>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">GPT-4</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="./system-development/ai-writing-assistant/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
+                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/ai-writing-assistant" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- AI: Text Analyzer -->
+                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
+                    <div class="aspect-video bg-gradient-to-br from-teal-100 to-green-50 flex items-center justify-center relative overflow-hidden">
+                        <span class="material-symbols-outlined text-teal-300 text-6xl group-hover:scale-110 transition">psychology</span>
+                        <span class="absolute top-3 left-3 bg-cyan-600 text-white text-xs font-medium px-2 py-1 rounded">AI</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">テキスト分析ツール</h3>
+                        <p class="text-sm text-gray-600 mb-4">感情分析、キーワード抽出、可読性評価、改善提案。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">OpenAI API</span>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Claude API</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="./system-development/ai-text-analyzer/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
+                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/ai-text-analyzer" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- AI: Photo Comedian -->
+                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
+                    <div class="aspect-video bg-gradient-to-br from-pink-100 to-rose-50 flex items-center justify-center relative overflow-hidden">
+                        <span class="material-symbols-outlined text-pink-300 text-6xl group-hover:scale-110 transition">sentiment_very_satisfied</span>
+                        <span class="absolute top-3 left-3 bg-cyan-600 text-white text-xs font-medium px-2 py-1 rounded">AI</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">写真で一言ジェネレーター</h3>
+                        <p class="text-sm text-gray-600 mb-4">画像から面白キャプション生成。いいね機能、ギャラリー表示。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Vision API</span>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Image Analysis</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="./system-development/ai-photo-comedian/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
+                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/ai-photo-comedian" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Category: External API Integration -->
+            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-orange-600"></span>
+                外部API連携 (API)
+            </h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- API: Weather Dashboard -->
+                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
+                    <div class="aspect-video bg-gradient-to-br from-sky-100 to-blue-50 flex items-center justify-center relative overflow-hidden">
+                        <span class="material-symbols-outlined text-sky-300 text-6xl group-hover:scale-110 transition">wb_sunny</span>
+                        <span class="absolute top-3 left-3 bg-orange-600 text-white text-xs font-medium px-2 py-1 rounded">API</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">天気情報ダッシュボード</h3>
+                        <p class="text-sm text-gray-600 mb-4">リアルタイム天気情報と5日間予報を表示。位置情報自動取得。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">OpenWeatherMap</span>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Geolocation</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="./system-development/api-weather-dashboard/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
+                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/api-weather-dashboard" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- API: News Aggregator -->
+                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
+                    <div class="aspect-video bg-gradient-to-br from-slate-100 to-gray-50 flex items-center justify-center relative overflow-hidden">
+                        <span class="material-symbols-outlined text-slate-400 text-6xl group-hover:scale-110 transition">newspaper</span>
+                        <span class="absolute top-3 left-3 bg-orange-600 text-white text-xs font-medium px-2 py-1 rounded">API</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">ニュース集約ダッシュボード</h3>
+                        <p class="text-sm text-gray-600 mb-4">複数ソース集約、カテゴリ別表示、ブックマーク機能。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">News API</span>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Fetch API</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="./system-development/api-news-aggregator/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
+                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/api-news-aggregator" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- API: GitHub Profile -->
+                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
+                    <div class="aspect-video bg-gradient-to-br from-green-100 to-emerald-50 flex items-center justify-center relative overflow-hidden">
+                        <span class="material-symbols-outlined text-green-400 text-6xl group-hover:scale-110 transition">code</span>
+                        <span class="absolute top-3 left-3 bg-orange-600 text-white text-xs font-medium px-2 py-1 rounded">API</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">GitHub統計ビューアー</h3>
+                        <p class="text-sm text-gray-600 mb-4">ユーザー統計、リポジトリ一覧、言語統計をグラフ表示。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">GitHub API</span>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Chart.js</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="./system-development/api-github-profile/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
+                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/api-github-profile" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
+                        </div>
+                    </div>
+                </article>
+
             </div>
         </section>
 
