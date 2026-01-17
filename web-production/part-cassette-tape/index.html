@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="cassette-body">
         <div class="cassette-label">
             <div class="label-stripes"></div>
             <div class="absolute top-8 text-xs font-bold text-gray-500 font-mono">MIX TAPE VOL.1</div>
-            
+
             <div class="reel-window">
                 <div class="reel spinning"></div>
                 <div class="tape-connector"></div>
@@ -23,7 +25,24 @@
         <div class="cassette-bottom"></div>
     </div>
 
-    <div class="loading-text">LOADING...</div>
+    <div class="loading-text" id="status">LOADING...</div>
+
+    <script>
+        // 完了状態のシミュレーション
+        setTimeout(() => {
+            const status = document.getElementById('status');
+            const reels = document.querySelectorAll('.reel');
+
+            status.textContent = 'LOADED ✓';
+            status.classList.add('loaded');
+
+            // リールの回転を停止
+            reels.forEach(reel => {
+                reel.classList.remove('spinning');
+            });
+        }, 3000); // 3秒後に完了
+    </script>
 
 </body>
+
 </html>

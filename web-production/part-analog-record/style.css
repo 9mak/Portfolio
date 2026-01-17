@@ -12,7 +12,7 @@ body {
     background: #d7ccc8;
     border-radius: 10px;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
 
@@ -27,7 +27,7 @@ body {
     position: absolute;
     top: 20px;
     left: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,8 +46,13 @@ body {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* トーンアーム */
@@ -65,18 +70,22 @@ body {
 
 .tone-arm {
     position: absolute;
-    top: 30px; /* base center */
-    right: 70px; /* base center */
+    top: 30px;
+    /* base center */
+    right: 70px;
+    /* base center */
     width: 180px;
     height: 10px;
     background: silver;
-    transform-origin: 100% 50%; /* 右端（ベース側）を中心に回転 */
+    transform-origin: 100% 50%;
+    /* 右端（ベース側）を中心に回転 */
     transform: rotate(-30deg);
     border-radius: 5px;
     cursor: grab;
     transition: transform 0.2s;
-    box-shadow: 2px 5px 5px rgba(0,0,0,0.2);
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2);
 }
+
 .tone-arm:active {
     cursor: grabbing;
 }
@@ -100,8 +109,9 @@ body {
     height: 10px;
     background: #555;
     border-radius: 50%;
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
 }
+
 .status-light.on {
     background: #00e676;
     box-shadow: 0 0 5px #00e676;
@@ -114,4 +124,25 @@ body {
     font-size: 0.8rem;
     color: #795548;
     font-family: monospace;
+}
+
+/* インタラクション改善 */
+.tone-arm.dragging {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+.tone-arm.playing {
+    box-shadow: 2px 5px 10px rgba(0, 200, 0, 0.3);
+}
+
+.record-disk.hover-ready {
+    box-shadow: 0 0 20px rgba(255, 112, 67, 0.6);
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+.tone-arm:hover {
+    filter: brightness(1.1);
+    transform: rotate(-30deg) scale(1.02);
 }

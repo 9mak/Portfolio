@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>純喫茶 琥珀 | 雨と珈琲</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&family=Kaisei+Tokumin:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&family=Kaisei+Tokumin:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="neon-bg"></div>
@@ -15,7 +18,8 @@
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 p-8 z-50 mix-blend-screen">
-        <h1 class="text-2xl font-bold text-amber-500 tracking-widest neon-text-glow border-2 border-amber-500/50 p-2 inline-block rounded-sm">
+        <h1
+            class="text-2xl font-bold text-amber-500 tracking-widest neon-text-glow border-2 border-amber-500/50 p-2 inline-block rounded-sm">
             琥珀
         </h1>
         <p class="text-xs text-amber-200 mt-2 tracking-widest">MIDNIGHT CAFE</p>
@@ -23,9 +27,10 @@
 
     <!-- Content Wrapper -->
     <main class="relative z-10 min-h-screen flex flex-col md:flex-row">
-        
+
         <!-- Left: Hero -->
-        <section class="w-full md:w-1/2 h-screen flex flex-col justify-center items-center md:items-start p-12 md:pl-32">
+        <section
+            class="w-full md:w-1/2 h-screen flex flex-col justify-center items-center md:items-start p-12 md:pl-32">
             <h2 class="text-4xl md:text-6xl font-bold leading-normal mb-8">
                 雨音と、<br>
                 <span class="text-amber-400 neon-text-glow">深煎り</span>の<br>
@@ -45,11 +50,13 @@
         <!-- Right: Menu -->
         <section class="w-full md:w-1/2 min-h-screen flex flex-col justify-center p-6 md:p-24 overflow-y-auto">
             <div class="space-y-6">
-                <h3 class="text-xl text-amber-200/80 mb-8 border-b border-amber-500/30 pb-2 inline-block">Midnight Menu</h3>
-                
+                <h3 class="text-xl text-amber-200/80 mb-8 border-b border-amber-500/30 pb-2 inline-block">Midnight Menu
+                </h3>
+
                 <div class="menu-card p-6 rounded-lg flex gap-6">
                     <div class="w-20 h-20 rounded-full overflow-hidden border border-white/10 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover opacity-80" alt="カクテル">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=400&auto=format&fit=crop"
+                            class="w-full h-full object-cover opacity-80" alt="カクテル">
                     </div>
                     <div>
                         <div class="flex justify-between items-baseline mb-2">
@@ -64,7 +71,8 @@
 
                 <div class="menu-card p-6 rounded-lg flex gap-6">
                     <div class="w-20 h-20 rounded-full overflow-hidden border border-white/10 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover opacity-80" alt="バーガー">
+                        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=400&auto=format&fit=crop"
+                            class="w-full h-full object-cover opacity-80" alt="バーガー">
                     </div>
                     <div>
                         <div class="flex justify-between items-baseline mb-2">
@@ -79,7 +87,8 @@
 
                 <div class="menu-card p-6 rounded-lg flex gap-6">
                     <div class="w-20 h-20 rounded-full overflow-hidden border border-white/10 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover opacity-80" alt="珈琲ゼリー">
+                        <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?q=80&w=400&auto=format&fit=crop"
+                            class="w-full h-full object-cover opacity-80" alt="珈琲ゼリー">
                     </div>
                     <div>
                         <div class="flex justify-between items-baseline mb-2">
@@ -103,6 +112,16 @@
 
     </main>
 
+    <!-- Sticky CTA Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button
+            class="bg-amber-600 hover:bg-amber-500 text-white font-bold px-6 py-3 rounded-lg shadow-2xl shadow-amber-900/50 transition-all hover:scale-105 border-2 border-amber-400/50 neon-text-glow">
+            <span class="block text-xs opacity-90 mb-1">KOHAKU</span>
+            <span class="text-base">予約する</span>
+        </button>
+    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -54,3 +54,27 @@ body {
     transform: translateY(-5px);
     background: rgba(20, 20, 30, 0.8);
 }
+
+/* モバイル可読性の改善 */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    
+    h2 {
+        font-size: 2rem !important;
+    }
+    
+    h4 {
+        font-size: 1.125rem !important;
+    }
+    
+    p, .text-sm {
+        font-size: 0.95rem !important;
+        line-height: 1.7 !important;
+    }
+    
+    .text-xs {
+        font-size: 0.85rem !important;
+    }
+}

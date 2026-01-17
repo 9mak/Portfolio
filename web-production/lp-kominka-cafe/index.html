@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&family=Yomogi&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&family=Yomogi&family=Zen+Maru+Gothic:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script>
         tailwind.config = {
@@ -33,15 +36,17 @@
         }
     </script>
 </head>
+
 <body class="text-kogecha font-body leading-relaxed overflow-x-hidden">
 
     <!-- Header / Hero -->
     <header class="relative min-h-screen flex flex-col items-center justify-center p-6 pt-20">
         <!-- 背景装飾：木漏れ日 -->
         <div class="komorebi-shadow"></div>
-        
+
         <div class="absolute top-6 left-6 z-50">
-            <h1 class="font-display text-2xl md:text-3xl tracking-widest bg-kinari/80 px-4 py-2 rounded-sm shadow-sm inline-block transform -rotate-1">
+            <h1
+                class="font-display text-2xl md:text-3xl tracking-widest bg-kinari/80 px-4 py-2 rounded-sm shadow-sm inline-block transform -rotate-1">
                 古民家カフェ<br><span class="text-4xl md:text-5xl ml-2">木漏れ日</span>
             </h1>
         </div>
@@ -52,16 +57,18 @@
         </div>
 
         <div class="relative w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            
+
             <!-- Hero Image Group -->
             <div class="md:col-span-7 relative h-[50vh] md:h-[70vh] w-full">
                 <!-- 写真1: 縁側 -->
                 <div class="absolute top-10 left-0 w-3/4 h-3/4 tape-photo z-10">
-                    <img src="https://images.unsplash.com/photo-1596627885481-9b634fb1e694?q=80&w=800&auto=format&fit=crop" alt="縁側と庭" class="w-full h-full object-cover sepia-[.3]">
+                    <img src="https://images.unsplash.com/photo-1596627885481-9b634fb1e694?q=80&w=800&auto=format&fit=crop"
+                        alt="縁側と庭" class="w-full h-full object-cover sepia-[.3]">
                 </div>
                 <!-- 写真2: コーヒー -->
                 <div class="absolute bottom-0 right-0 w-3/5 h-3/5 tape-photo z-20 transform rotate-3 steam-container">
-                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop" alt="ハンドドリップコーヒー" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop"
+                        alt="ハンドドリップコーヒー" class="w-full h-full object-cover">
                     <!-- 湯気 -->
                     <div class="steam"></div>
                     <div class="steam"></div>
@@ -92,7 +99,7 @@
                 <span>古きを訪ねて</span>
                 <span class="w-8 h-[1px] bg-maccha/50"></span>
             </h2>
-            
+
             <p class="text-lg leading-loose font-body text-kogecha/90">
                 築八十年の古民家を、<br>
                 家族と仲間たちで改装しました。<br><br>
@@ -105,10 +112,12 @@
 
             <div class="flex justify-center gap-4 mt-8">
                 <div class="w-32 h-32 bg-white p-2 shadow-md transform rotate-2">
-                    <img src="https://images.unsplash.com/photo-1522775592638-f9b76a084775?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover opacity-90">
+                    <img src="https://images.unsplash.com/photo-1522775592638-f9b76a084775?q=80&w=300&auto=format&fit=crop"
+                        class="w-full h-full object-cover opacity-90">
                 </div>
                 <div class="w-32 h-32 bg-white p-2 shadow-md transform -rotate-3 translate-y-4">
-                    <img src="https://images.unsplash.com/photo-1516216628859-9bcce59d6909?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover opacity-90">
+                    <img src="https://images.unsplash.com/photo-1516216628859-9bcce59d6909?q=80&w=300&auto=format&fit=crop"
+                        class="w-full h-full object-cover opacity-90">
                 </div>
             </div>
         </div>
@@ -121,7 +130,8 @@
         <div class="absolute bottom-20 left-[-50px] w-60 h-60 bg-azuki/10 rounded-full blur-3xl"></div>
 
         <div class="max-w-5xl mx-auto">
-            <h2 class="font-hand text-4xl text-center mb-16 transform -rotate-1 inline-block bg-kinari px-8 py-2 border-2 border-kogecha/20 w-full md:w-auto mx-auto block">
+            <h2
+                class="font-hand text-4xl text-center mb-16 transform -rotate-1 inline-block bg-kinari px-8 py-2 border-2 border-kogecha/20 w-full md:w-auto mx-auto block">
                 おしながき
             </h2>
 
@@ -129,10 +139,12 @@
                 <!-- Drink Menu -->
                 <div class="bg-white/60 p-8 shadow-sm relative paper-texture rounded-sm">
                     <!-- ピンの表現 -->
-                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-azuki rounded-full shadow-md z-10"></div>
-                    
+                    <div
+                        class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-azuki rounded-full shadow-md z-10">
+                    </div>
+
                     <h3 class="font-display text-xl text-azuki mb-8 border-b border-azuki/30 pb-2 text-center">お飲み物</h3>
-                    
+
                     <ul class="space-y-6 font-body">
                         <li class="flex justify-between items-baseline border-b border-dashed border-kogecha/20 pb-2">
                             <div>
@@ -161,10 +173,13 @@
                 <!-- Food Menu -->
                 <div class="bg-white/60 p-8 shadow-sm relative paper-texture rounded-sm">
                     <!-- ピンの表現 -->
-                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-maccha rounded-full shadow-md z-10"></div>
+                    <div
+                        class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-maccha rounded-full shadow-md z-10">
+                    </div>
 
-                    <h3 class="font-display text-xl text-maccha mb-8 border-b border-maccha/30 pb-2 text-center">甘味・軽食</h3>
-                    
+                    <h3 class="font-display text-xl text-maccha mb-8 border-b border-maccha/30 pb-2 text-center">甘味・軽食
+                    </h3>
+
                     <ul class="space-y-6 font-body">
                         <li class="flex justify-between items-baseline border-b border-dashed border-kogecha/20 pb-2">
                             <div>
@@ -194,8 +209,11 @@
             <!-- おすすめ写真 -->
             <div class="mt-16 text-center">
                 <div class="inline-block relative transform rotate-1 hover:rotate-0 transition-transform duration-300">
-                    <img src="https://images.unsplash.com/photo-1555529733-0e670560f7e1?q=80&w=600&auto=format&fit=crop" alt="プリン" class="w-64 h-auto border-8 border-white shadow-lg">
-                    <p class="font-hand absolute -bottom-6 -right-6 text-kogecha bg-kinari px-2 py-1 shadow-sm transform -rotate-6">一番人気だよ</p>
+                    <img src="https://images.unsplash.com/photo-1555529733-0e670560f7e1?q=80&w=600&auto=format&fit=crop"
+                        alt="プリン" class="w-64 h-auto border-8 border-white shadow-lg">
+                    <p
+                        class="font-hand absolute -bottom-6 -right-6 text-kogecha bg-kinari px-2 py-1 shadow-sm transform -rotate-6">
+                        一番人気だよ</p>
                 </div>
             </div>
         </div>
@@ -205,11 +223,11 @@
     <section id="access" class="py-24 px-6 bg-tatami/20 relative">
         <div class="max-w-4xl mx-auto">
             <div class="flex flex-col md:flex-row gap-12 items-center">
-                
+
                 <!-- Info -->
                 <div class="w-full md:w-1/2 space-y-8">
                     <h2 class="font-display text-3xl mb-8">店舗情報</h2>
-                    
+
                     <dl class="grid grid-cols-[auto_1fr] gap-x-8 gap-y-4 text-sm md:text-base">
                         <dt class="font-bold text-maccha">営業時間</dt>
                         <dd>10:00 〜 18:00 (L.O. 17:30)</dd>
@@ -227,7 +245,7 @@
                         <dt class="font-bold text-maccha">電話</dt>
                         <dd>0467-12-3456</dd>
                     </dl>
-                    
+
                     <div class="p-4 border-2 border-kogecha/10 bg-white/50 rounded-lg mt-4">
                         <p class="font-hand text-sm text-center">
                             駐車場は2台分ございます。<br>
@@ -238,27 +256,36 @@
 
                 <!-- Map Visualization (Hand-drawn style) -->
                 <div class="w-full md:w-1/2">
-                    <div class="bg-white p-4 shadow-md transform -rotate-1 relative overflow-hidden h-80 w-full border-4 border-white">
+                    <div
+                        class="bg-white p-4 shadow-md transform -rotate-1 relative overflow-hidden h-80 w-full border-4 border-white">
                         <!-- 簡易的な手書き風地図 -->
-                        <div class="w-full h-full bg-[#fdfdfd] relative" style="background-image: radial-gradient(#ddd 1px, transparent 1px); background-size: 10px 10px;">
-                            
+                        <div class="w-full h-full bg-[#fdfdfd] relative"
+                            style="background-image: radial-gradient(#ddd 1px, transparent 1px); background-size: 10px 10px;">
+
                             <!-- 線路 -->
-                            <div class="absolute top-1/4 left-0 w-full h-4 border-t-2 border-b-2 border-gray-400 flex justify-between items-center overflow-hidden">
+                            <div
+                                class="absolute top-1/4 left-0 w-full h-4 border-t-2 border-b-2 border-gray-400 flex justify-between items-center overflow-hidden">
                                 <div class="w-full h-[2px] border-t border-dashed border-gray-400"></div>
                             </div>
                             <p class="absolute top-[28%] right-2 text-xs text-gray-400 font-hand">JR横須賀線</p>
 
                             <!-- 駅 -->
-                            <div class="absolute top-[15%] right-10 w-16 h-8 border-2 border-kogecha bg-white flex items-center justify-center font-bold text-xs">北鎌倉駅</div>
+                            <div
+                                class="absolute top-[15%] right-10 w-16 h-8 border-2 border-kogecha bg-white flex items-center justify-center font-bold text-xs">
+                                北鎌倉駅</div>
 
                             <!-- 道 -->
                             <svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 1;">
-                                <path d="M 80 100 Q 150 150 250 120 T 400 200" fill="none" stroke="#e5e5e5" stroke-width="15" stroke-linecap="round"/>
-                                <path d="M 80 100 Q 150 150 250 120 T 400 200" fill="none" stroke="#4a3b32" stroke-width="2" stroke-dasharray="5,5" stroke-linecap="round"/>
+                                <path d="M 80 100 Q 150 150 250 120 T 400 200" fill="none" stroke="#e5e5e5"
+                                    stroke-width="15" stroke-linecap="round" />
+                                <path d="M 80 100 Q 150 150 250 120 T 400 200" fill="none" stroke="#4a3b32"
+                                    stroke-width="2" stroke-dasharray="5,5" stroke-linecap="round" />
                             </svg>
 
                             <!-- 目印 -->
-                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs font-hand text-kogecha bg-white px-1 border border-kogecha">郵便局</div>
+                            <div
+                                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs font-hand text-kogecha bg-white px-1 border border-kogecha">
+                                郵便局</div>
 
                             <!-- お店 -->
                             <div class="absolute bottom-10 left-20 flex flex-col items-center z-10">
@@ -268,7 +295,8 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="block text-center mt-4 font-hand text-sm underline hover:text-maccha">Googleマップで見る</a>
+                    <a href="#"
+                        class="block text-center mt-4 font-hand text-sm underline hover:text-maccha">Googleマップで見る</a>
                 </div>
             </div>
         </div>
@@ -289,5 +317,15 @@
         <div class="absolute -top-10 -left-10 w-40 h-40 border-4 border-kinari/10 rounded-full"></div>
     </footer>
 
+    <!-- Sticky CTA Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button
+            class="bg-maccha hover:bg-azuki text-white font-bold px-6 py-4 rounded-lg shadow-2xl transition-all hover:scale-105 border-2 border-white/20 font-hand">
+            <span class="block text-xs opacity-90 mb-1">木漏れ日</span>
+            <span class="text-base">ご予約</span>
+        </button>
+    </div>
+
 </body>
+
 </html>
