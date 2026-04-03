@@ -436,6 +436,7 @@
       <div class="about-name">9mak</div>
       <div class="about-role">Freelance Web Engineer</div>
       <div class="social-links">
+        <a href="https://x.com/9makorg" class="social-link" target="_blank" rel="noopener">X</a>
         <a href="https://github.com/9mak" class="social-link" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.lancers.jp/profile/_9mak___" class="social-link" target="_blank" rel="noopener">Lancers</a>
         <a href="https://coconala.com/users/4590843" class="social-link" target="_blank" rel="noopener">Coconala</a>
@@ -487,6 +488,7 @@
     <h2>お問い合わせ</h2>
     <p>ご相談は各プラットフォームのメッセージ機能よりお願いいたします。</p>
     <div class="contact-links">
+      <a href="https://x.com/9makorg" class="contact-link" target="_blank" rel="noopener">X ↗</a>
       <a href="https://www.lancers.jp/profile/_9mak___" class="contact-link" target="_blank" rel="noopener">Lancers ↗</a>
       <a href="https://coconala.com/users/4590843" class="contact-link" target="_blank" rel="noopener">Coconala ↗</a>
     </div>
@@ -599,13 +601,14 @@ function renderSections() {
   const container = document.getElementById('sections-container');
   let html = '';
   sections.forEach(sec => {
-    html += `<section id="${sec.id}">
+    html += `<section id="${sec.id}" class="portfolio-section">
       <div class="section-heading">
         <h2>${sec.title}</h2>
         <p>${sec.sub}</p>
       </div>`;
     sec.categories.forEach(cat => {
-      html += `<div class="cat-heading">
+      html += `<div class="subcategory-wrapper">
+      <div class="cat-heading">
         <svg class="cat-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="${cat.color}"/></svg>
         <h3>${cat.name} (${cat.label})</h3>
       </div>
@@ -629,7 +632,7 @@ function renderSections() {
           </article>
         </div>`;
       });
-      html += `</div>`;
+      html += `</div></div>`;
     });
     html += `</section>`;
   });
@@ -643,6 +646,16 @@ function filterCards(cat) {
     b.classList.toggle('active', b.dataset.filter === cat));
   document.querySelectorAll('.card-wrap').forEach(w =>
     w.classList.toggle('hidden', cat !== 'all' && w.dataset.category !== cat));
+  
+  document.querySelectorAll('.subcategory-wrapper').forEach(w => {
+    const hasVisible = Array.from(w.querySelectorAll('.card-wrap')).some(c => !c.classList.contains('hidden'));
+    w.style.display = hasVisible ? '' : 'none';
+  });
+  
+  document.querySelectorAll('.portfolio-section').forEach(s => {
+    const hasVisible = Array.from(s.querySelectorAll('.subcategory-wrapper')).some(w => w.style.display !== 'none');
+    s.style.display = hasVisible ? '' : 'none';
+  });
 }
 
 // ── SCROLL ANIMATION ──
