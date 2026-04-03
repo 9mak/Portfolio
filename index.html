@@ -1,894 +1,671 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>9mak Portfolio | Web制作・システム開発</title>
-    <meta name="description" content="エンジニアリングとデザインの両面から、ビジネスの課題を解決するソリューションを提供します。">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        html { scroll-behavior: smooth; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9mak Portfolio | Web制作・システム開発</title>
+  <meta name="description" content="エンジニアリングとデザインの両面から、ビジネスの課題を解決するソリューションを提供します。">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Inter:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F5F0E8;
+      --card-bg: #FDFAF5;
+      --ink: #1C1008;
+      --red: #C44B2B;
+      --green: #5C8B6E;
+      --border: 2px solid #1C1008;
+      --shadow: 5px 5px 0 #1C1008;
+      --shadow-sm: 3px 3px 0 #1C1008;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ── HEADER ── */
+    #site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--bg);
+      border-bottom: var(--border);
+      padding: 0 clamp(1rem, 5vw, 3rem);
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .logo {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 900; font-size: 1.3rem;
+      text-decoration: none; color: var(--ink);
+      display: flex; align-items: baseline; gap: 0.5rem;
+    }
+    .logo span {
+      font-size: 0.65rem; font-weight: 400; letter-spacing: 0.2em;
+      color: var(--red); font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+    }
+    nav { display: flex; gap: 2rem; }
+    nav a {
+      text-decoration: none; color: var(--ink);
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em;
+      position: relative; padding-bottom: 2px;
+    }
+    nav a::after {
+      content: ''; position: absolute; left: 0; bottom: 0;
+      width: 0; height: 2px; background: var(--red);
+      transition: width 0.25s ease;
+    }
+    nav a:hover::after { width: 100%; }
+
+    /* ── HERO ── */
+    #hero {
+      max-width: 1200px; margin: 0 auto;
+      padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 5vw, 3rem);
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: end; gap: 2rem;
+      border-bottom: var(--border);
+    }
+    .hero-left { position: relative; }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 700; background: var(--red); color: #fff;
+      padding: 3px 10px; margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 900;
+      font-size: clamp(3.5rem, 12vw, 9rem);
+      line-height: 0.95;
+      color: transparent;
+      -webkit-text-stroke: 2.5px var(--ink);
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+    .hero-title-fill {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 900;
+      font-size: clamp(3.5rem, 12vw, 9rem);
+      line-height: 0.95;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-top: -0.15em;
+    }
+    .hero-sub {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #6b5a44;
+      max-width: 420px;
+      line-height: 1.9;
+      border-left: 3px solid var(--green);
+      padding-left: 1rem;
+    }
+    .hero-right {
+      writing-mode: vertical-rl;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      color: #9a8070;
+      align-self: center;
+    }
+    .scroll-hint {
+      margin-top: 3rem;
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: #9a8070;
+    }
+    .scroll-hint-line {
+      width: 60px; height: 1px; background: var(--ink);
+      animation: scroll-line 2s ease-in-out infinite;
+    }
+    @keyframes scroll-line {
+      0%, 100% { width: 60px; }
+      50% { width: 100px; }
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      border-bottom: var(--border);
+      padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 5vw, 3rem);
+    }
+    .about-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 220px 1fr; gap: 4rem;
+      align-items: start;
+    }
+    .stamp-box {
+      width: 100px; height: 100px;
+      border: var(--border);
+      background: var(--ink);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+    .stamp-box svg { fill: var(--bg); width: 52px; height: 52px; }
+    .about-name {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 900; font-size: 1.5rem; margin-bottom: 0.2rem;
+    }
+    .about-role {
+      font-size: 0.75rem; color: var(--green); letter-spacing: 0.1em;
+      text-transform: uppercase; font-weight: 700; margin-bottom: 1rem;
+    }
+    .social-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .social-link {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+      border: var(--border); padding: 4px 12px;
+      text-decoration: none; color: var(--ink);
+      transition: background 0.15s, color 0.15s, box-shadow 0.15s, transform 0.15s;
+      box-shadow: var(--shadow-sm);
+    }
+    .social-link:hover {
+      background: var(--ink); color: var(--bg);
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--red);
+    }
+    .section-label {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      font-weight: 700; color: var(--red); margin-bottom: 0.6rem;
+    }
+    .about-bio {
+      font-size: 0.9rem; color: #3a2a1a; line-height: 1.95;
+      margin-bottom: 2rem;
+    }
+    .about-bio::first-letter {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 3em; font-weight: 900; line-height: 0.8;
+      float: left; margin-right: 0.1em; color: var(--red);
+    }
+    .skills-grid {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .skill-badge {
+      border: var(--border); padding: 5px 14px;
+      font-size: 0.78rem; font-weight: 600;
+      box-shadow: var(--shadow-sm);
+      background: var(--card-bg);
+    }
+
+    /* ── MAIN CONTENT ── */
+    main {
+      max-width: 1200px; margin: 0 auto;
+      padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 5vw, 3rem);
+    }
+
+    /* ── FILTER BAR ── */
+    #filter-bar {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 3rem;
+      position: sticky; top: 60px; z-index: 40;
+      background: var(--bg); padding: 1rem 0;
+      border-bottom: 1px dashed #b09a80;
+    }
+    .filter-btn {
+      border: var(--border); padding: 6px 18px;
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      cursor: pointer; background: var(--card-bg);
+      color: var(--ink); transition: all 0.12s;
+      box-shadow: var(--shadow-sm);
+    }
+    .filter-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--ink);
+    }
+    .filter-btn.active {
+      background: var(--red); color: #fff;
+      border-color: var(--red); box-shadow: none;
+      transform: translate(2px, 2px);
+    }
+
+    /* ── SECTION HEADING ── */
+    .section-heading {
+      display: flex; align-items: baseline; gap: 1rem;
+      margin-bottom: 2.5rem; margin-top: 3.5rem;
+      border-bottom: var(--border); padding-bottom: 0.8rem;
+    }
+    .section-heading h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 900; font-size: 1.6rem;
+    }
+    .section-heading p {
+      font-size: 0.72rem; color: #8a7060; letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .cat-heading {
+      display: flex; align-items: center; gap: 0.8rem;
+      margin-bottom: 1.5rem; margin-top: 2.5rem;
+    }
+    .cat-heading h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 700; font-size: 1rem;
+    }
+    .cat-dot {
+      width: 10px; height: 10px; flex-shrink: 0;
+    }
+
+    /* ── CARDS ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem; margin-bottom: 1rem;
+    }
+    .card {
+      border: var(--border);
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      transition: transform 0.18s, box-shadow 0.18s;
+      overflow: hidden;
+      opacity: 0; transform: translateY(24px);
+    }
+    .card.visible {
+      animation: fadeUp 0.5s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 9px 9px 0 var(--ink);
+    }
+    .card-thumb {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      position: relative;
+      border-bottom: var(--border);
+    }
+    .card-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.35s ease;
+      display: block;
+    }
+    .card:hover .card-thumb img { transform: scale(1.06); }
+    .card-badge {
+      position: absolute; top: 10px; left: 10px;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+      padding: 3px 10px; color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.6);
+    }
+    .card-body { padding: 1.2rem; }
+    .card-title {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem;
+    }
+    .card-desc {
+      font-size: 0.8rem; color: #5a4a3a; line-height: 1.75; margin-bottom: 1rem;
+    }
+    .card-tags {
+      display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1rem;
+      padding-bottom: 1rem; border-bottom: 1px dashed #c5b49a;
+    }
+    .card-tag {
+      font-size: 0.68rem; border: 1px solid #b09a80;
+      padding: 2px 8px; color: #6a5040; background: transparent;
+    }
+    .card-actions { display: flex; gap: 0.6rem; }
+    .btn-demo, .btn-code {
+      flex: 1; text-align: center; text-decoration: none;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em;
+      padding: 8px 0;
+      border: var(--border);
+      transition: all 0.12s;
+    }
+    .btn-demo {
+      background: var(--red); color: #fff; border-color: var(--red);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-demo:hover {
+      background: #a83a1e; box-shadow: none;
+      transform: translate(2px, 2px);
+    }
+    .btn-code {
+      background: var(--card-bg); color: var(--ink);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-code:hover {
+      background: var(--ink); color: var(--bg);
+      box-shadow: none; transform: translate(2px, 2px);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      margin-top: 5rem;
+      border: var(--border); padding: 3.5rem 2rem;
+      text-align: center;
+      background: var(--ink); color: var(--bg);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    #contact::before {
+      content: 'CONTACT';
+      position: absolute; top: -0.7em; left: 50%; transform: translateX(-50%);
+      background: var(--red); color: #fff;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.3em;
+      padding: 4px 16px;
+    }
+    #contact h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 900; font-size: 1.8rem; margin-bottom: 0.8rem;
+    }
+    #contact p { font-size: 0.85rem; color: #c5b49a; margin-bottom: 2rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .contact-link {
+      display: inline-block; text-decoration: none;
+      font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em;
+      border: 2px solid var(--bg); color: var(--bg);
+      padding: 10px 28px; box-shadow: 4px 4px 0 var(--red);
+      transition: all 0.12s;
+    }
+    .contact-link:hover {
+      background: var(--bg); color: var(--ink);
+      box-shadow: none; transform: translate(3px, 3px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: var(--border); padding: 1.5rem clamp(1rem, 5vw, 3rem);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 0.5rem;
+    }
+    .footer-logo {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 900; font-size: 1rem;
+    }
+    .footer-copy { font-size: 0.72rem; color: #8a7060; }
+
+    /* ── HIDDEN ── */
+    .card-wrap.hidden { display: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-right { writing-mode: horizontal-tb; }
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+<body>
 
-    <!-- Header -->
-    <header class="bg-white border-b sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-            <a href="#" class="text-2xl font-bold">Portfolio</a>
-            <nav class="hidden md:flex items-center gap-6">
-                <a href="#web-production" class="text-sm text-gray-600 hover:text-gray-900 transition">Web制作</a>
-                <a href="#system-development" class="text-sm text-gray-600 hover:text-gray-900 transition">システム開発</a>
-                <a href="#contact" class="text-sm text-gray-600 hover:text-gray-900 transition">お問い合わせ</a>
-            </nav>
-        </div>
-    </header>
+<!-- HEADER -->
+<header id="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo">9mak <span>Portfolio</span></a>
+    <nav>
+      <a href="#web-production">Web制作</a>
+      <a href="#system-development">システム開発</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
 
-    <!-- Hero -->
-    <section class="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-20">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Portfolio</h1>
-            <p class="text-gray-300 text-lg max-w-2xl mx-auto">
-                エンジニアリングとデザインの両面から、<br class="hidden md:block">
-                ビジネスの課題を解決するソリューションを提供します。
-            </p>
-        </div>
-    </section>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">2026 — Works</div>
+    <div class="hero-title">Portfolio</div>
+    <div class="hero-title-fill">作品集</div>
+    <p class="hero-sub">
+      エンジニアリングとデザインの両面から、<br>
+      ビジネスの課題を解決するソリューションを提供します。<br>
+      Web制作・システム開発の実績を公開しています。
+    </p>
+    <div class="scroll-hint">
+      <div class="scroll-hint-line"></div>
+      Scroll to explore
+    </div>
+  </div>
+  <div class="hero-right">Web Engineer &amp; Designer</div>
+</section>
 
-    <main class="max-w-6xl mx-auto px-6 py-16">
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div>
+      <div class="stamp-box">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/>
+        </svg>
+      </div>
+      <div class="about-name">9mak</div>
+      <div class="about-role">Freelance Web Engineer</div>
+      <div class="social-links">
+        <a href="https://github.com/9mak" class="social-link" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.lancers.jp/profile/_9mak___" class="social-link" target="_blank" rel="noopener">Lancers</a>
+        <a href="https://coconala.com/users/4590843" class="social-link" target="_blank" rel="noopener">Coconala</a>
+      </div>
+    </div>
+    <div>
+      <div class="section-label">About</div>
+      <p class="about-bio">
+        Web制作・システム開発を中心に活動するフリーランスエンジニアです。
+        HTML/CSS/JavaScriptを基盤に、Tailwind CSS・Puppeteer・外部API連携など幅広い技術を活用し、
+        ランディングページからAI連携ツールまで対応します。
+        デザインと機能性を両立した、ビジネス課題の解決に直結するWeb制作が得意です。
+      </p>
+      <div class="section-label">Skills</div>
+      <div class="skills-grid">
+        <div class="skill-badge">HTML / CSS</div>
+        <div class="skill-badge">JavaScript</div>
+        <div class="skill-badge">Tailwind CSS</div>
+        <div class="skill-badge">Node.js</div>
+        <div class="skill-badge">AI API 連携</div>
+        <div class="skill-badge">レスポンシブ対応</div>
+        <div class="skill-badge">Puppeteer</div>
+        <div class="skill-badge">PWA</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <!-- Web Production Section -->
-        <section id="web-production" class="mb-20">
-            <div class="flex items-center gap-3 mb-8">
-                <span class="material-symbols-outlined text-blue-600 text-3xl">web</span>
-                <div>
-                    <h2 class="text-2xl font-bold">Web Production</h2>
-                    <p class="text-gray-500 text-sm">Web制作・デザイン</p>
-                </div>
+<!-- MAIN -->
+<main>
+  <!-- FILTER BAR -->
+  <div id="filter-bar">
+    <button class="filter-btn active" data-filter="all" onclick="filterCards('all')">All</button>
+    <button class="filter-btn" data-filter="LP" onclick="filterCards('LP')">LP</button>
+    <button class="filter-btn" data-filter="SITE" onclick="filterCards('SITE')">SITE</button>
+    <button class="filter-btn" data-filter="EC" onclick="filterCards('EC')">EC</button>
+    <button class="filter-btn" data-filter="PARTS" onclick="filterCards('PARTS')">PARTS</button>
+    <button class="filter-btn" data-filter="APP" onclick="filterCards('APP')">APP</button>
+    <button class="filter-btn" data-filter="TOOL" onclick="filterCards('TOOL')">TOOL</button>
+    <button class="filter-btn" data-filter="AI" onclick="filterCards('AI')">AI</button>
+    <button class="filter-btn" data-filter="API" onclick="filterCards('API')">API</button>
+  </div>
+
+  <!-- SECTIONS will be rendered by JS -->
+  <div id="sections-container"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>お問い合わせ</h2>
+    <p>ご相談は各プラットフォームのメッセージ機能よりお願いいたします。</p>
+    <div class="contact-links">
+      <a href="https://www.lancers.jp/profile/_9mak___" class="contact-link" target="_blank" rel="noopener">Lancers ↗</a>
+      <a href="https://coconala.com/users/4590843" class="contact-link" target="_blank" rel="noopener">Coconala ↗</a>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">9mak</div>
+  <div class="footer-copy">© 2026 9mak Portfolio. All rights reserved.</div>
+</footer>
+
+<script>
+// ── DATA ──
+const sections = [
+  {
+    id: 'web-production',
+    title: 'Web Production',
+    sub: 'Web制作・デザイン',
+    categories: [
+      {
+        name: 'ランディングページ', color: '#2563EB', label: 'LP',
+        cards: [
+          { cat:'LP', title:'光影堂 - 中古カメラ買取', desc:'信頼感と専門性を重視した、高コンバージョン設計のLP。', tags:['Tailwind CSS','CTA Design'], demo:'./web-production/lp-camera-koei/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/lp-camera-koei', thumb:'./assets/images/thumbnails/lp-camera-koei.jpg' },
+          { cat:'LP', title:'陶器個展 - 赤土の記憶', desc:'和の美しさを表現した、アーティストの作品展示LP。', tags:['CSS Animation','Gallery'], demo:'./web-production/lp-pottery-exhibition/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/lp-pottery-exhibition', thumb:'./assets/images/thumbnails/lp-pottery-exhibition.jpg' },
+          { cat:'LP', title:'古民家カフェ すぎな', desc:'古き良き日本の雰囲気を伝える、カフェのLP。', tags:['Japanese Style','Responsive'], demo:'./web-production/lp-kominka-cafe/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/lp-kominka-cafe', thumb:'./assets/images/thumbnails/lp-kominka-cafe.jpg' },
+          { cat:'LP', title:'焚き火台 HOKAGE', desc:'炎のアニメーションが印象的な、アウトドアギアLP。', tags:['CSS Animation','Product LP'], demo:'./web-production/lp-bonfire-gear/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/lp-bonfire-gear', thumb:'./assets/images/thumbnails/lp-bonfire-gear.jpg' },
+          { cat:'LP', title:'深夜ラジオ番組', desc:'深夜の雰囲気を演出した、ラジオ番組のLP。', tags:['Dark Theme','Media'], demo:'./web-production/lp-night-radio/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/lp-night-radio', thumb:'./assets/images/thumbnails/lp-night-radio.jpg' },
+          { cat:'LP', title:'深夜喫茶 静寂', desc:'夜だけ開く特別なカフェ。モノクロの世界観。', tags:['Monochrome','Minimalist'], demo:'./web-production/lp-midnight-cafe/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/lp-midnight-cafe', thumb:'./assets/images/thumbnails/lp-midnight-cafe.jpg' },
+        ]
+      },
+      {
+        name: '企業サイト', color: '#16A34A', label: 'SITE',
+        cards: [
+          { cat:'SITE', title:'NexTech Solutions', desc:'テック企業のコーポレートサイト。モダンなグラデーションデザイン。', tags:['Tailwind CSS','Corporate'], demo:'./web-production/site-tech-company/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/site-tech-company', thumb:'./assets/images/thumbnails/site-tech-company.jpg' },
+          { cat:'SITE', title:'活版印刷所 刻印堂', desc:'伝統工芸の活版印刷。テクスチャ表現が特徴。', tags:['Texture Design','Traditional'], demo:'./web-production/site-letterpress-corp/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/site-letterpress-corp', thumb:'./assets/images/thumbnails/site-letterpress-corp.jpg' },
+          { cat:'SITE', title:'登山ガイド 山彦', desc:'山岳ガイドサービス。視差効果で山の雄大さを表現。', tags:['Parallax','Nature'], demo:'./web-production/site-mountain-guide/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/site-mountain-guide', thumb:'./assets/images/thumbnails/site-mountain-guide.jpg' },
+          { cat:'SITE', title:'昭和レトロ銭湯 富士の湯', desc:'レトロな銭湯サイト。昭和の雰囲気を再現。', tags:['Retro Design','Japanese'], demo:'./web-production/site-retro-sento/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/site-retro-sento', thumb:'./assets/images/thumbnails/site-retro-sento.jpg' },
+          { cat:'SITE', title:'迷宮古書店', desc:'古書店サイト。本棚のパララックス効果が特徴。', tags:['Scroll Effect','Vintage'], demo:'./web-production/site-old-bookstore/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/site-old-bookstore', thumb:'./assets/images/thumbnails/site-old-bookstore.jpg' },
+          { cat:'SITE', title:'廃校スタジオ 放課後', desc:'廃校を活用したレンタルスタジオ。黒板風デザイン。', tags:['Chalkboard','Nostalgic'], demo:'./web-production/site-closed-school/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/site-closed-school', thumb:'./assets/images/thumbnails/site-closed-school.jpg' },
+        ]
+      },
+      {
+        name: 'ECサイト', color: '#7C3AED', label: 'EC',
+        cards: [
+          { cat:'EC', title:'KURO COFFEE', desc:'スペシャルティコーヒー専門店。定期購入プラン対応。', tags:['Subscription','E-Commerce'], demo:'./web-production/ec-coffee-shop/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/ec-coffee-shop', thumb:'./assets/images/thumbnails/ec-coffee-shop.jpg' },
+          { cat:'EC', title:'AGED - ビスポーク革靴', desc:'経年変化を楽しむ高級革靴。Before/After比較UI搭載。', tags:['Interactive','Luxury'], demo:'./web-production/ec-leather-shoes/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/ec-leather-shoes', thumb:'./assets/images/thumbnails/ec-leather-shoes.jpg' },
+          { cat:'EC', title:'訳あり野菜直売所', desc:'規格外野菜の魅力を伝えるEC。サステナブル志向。', tags:['Organic','Sustainable'], demo:'./web-production/ec-organic-vege/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/ec-organic-vege', thumb:'./assets/images/thumbnails/ec-organic-vege.jpg' },
+          { cat:'EC', title:'鉱物標本コレクション', desc:'鉱物・化石のEC。ホログラム効果で輝きを表現。', tags:['Holographic','Collector'], demo:'./web-production/ec-mineral-specimen/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/ec-mineral-specimen', thumb:'./assets/images/thumbnails/ec-mineral-specimen.jpg' },
+          { cat:'EC', title:'醸 Kamosu - 味噌キット', desc:'発酵過程をスクロールで可視化。ストーリーテリング型EC。', tags:['Scroll Story','Fermentation'], demo:'./web-production/ec-fermented-miso/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/ec-fermented-miso', thumb:'./assets/images/thumbnails/ec-fermented-miso.jpg' },
+          { cat:'EC', title:'月夜のベーカリー', desc:'深夜営業ベーカリー。湯気アニメーションが特徴。', tags:['CSS Animation','Dark Theme'], demo:'./web-production/ec-midnight-bakery/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/ec-midnight-bakery', thumb:'./assets/images/thumbnails/ec-midnight-bakery.jpg' },
+        ]
+      },
+      {
+        name: 'UIコンポーネント', color: '#D97706', label: 'PARTS',
+        cards: [
+          { cat:'PARTS', title:'UI Components Library', desc:'再利用可能なUIパーツ集。ボタン、カード、フォームなど。', tags:['Tailwind CSS','Components'], demo:'./web-production/part-ui-components/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/part-ui-components', thumb:'./assets/images/thumbnails/part-ui-components.jpg' },
+          { cat:'PARTS', title:'インク滲み入力欄', desc:'墨汁のような滲み表現。和風サイト向けインプット。', tags:['CSS Effect','Japanese'], demo:'./web-production/part-ink-input/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/part-ink-input', thumb:'./assets/images/thumbnails/part-ink-input.jpg' },
+          { cat:'PARTS', title:'デジタル印鑑アニメーション', desc:'押印エフェクト。承認・完了時の演出に最適。', tags:['Animation','Seal'], demo:'./web-production/part-hanko-action/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/part-hanko-action', thumb:'./assets/images/thumbnails/part-hanko-action.jpg' },
+          { cat:'PARTS', title:'レコードプレイヤーUI', desc:'アナログレコードの再生UI。回転アニメーション付き。', tags:['Rotation','Audio'], demo:'./web-production/part-analog-record/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/part-analog-record', thumb:'./assets/images/thumbnails/part-analog-record.jpg' },
+          { cat:'PARTS', title:'障子モーダル', desc:'障子が開くようなモーダルUI。和風サイト向け。', tags:['Modal','Japanese'], demo:'./web-production/part-shoji-modal/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/part-shoji-modal', thumb:'./assets/images/thumbnails/part-shoji-modal.jpg' },
+          { cat:'PARTS', title:'カセットテープローディング', desc:'レトロなカセットテープ風ローディングUI。', tags:['Loading','Retro'], demo:'./web-production/part-cassette-tape/index.html', code:'https://github.com/9mak/Portfolio/tree/main/web-production/part-cassette-tape', thumb:'./assets/images/thumbnails/part-cassette-tape.jpg' },
+        ]
+      }
+    ]
+  },
+  {
+    id: 'system-development',
+    title: 'System Development',
+    sub: 'システム開発・アプリケーション',
+    categories: [
+      {
+        name: 'Webアプリケーション', color: '#DC2626', label: 'APP',
+        cards: [
+          { cat:'APP', title:'ポモドーロタイマー', desc:'PWA対応、オフライン動作可能な生産性向上タイマー。統計管理機能付き。', tags:['PWA','Service Worker'], demo:'./system-development/app-pomodoro-timer/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/app-pomodoro-timer', thumb:'./assets/images/thumbnails/app-pomodoro-timer.jpg' },
+          { cat:'APP', title:'タスク管理アプリ', desc:'優先度管理・フィルタ機能・進捗可視化を備えたタスク管理アプリ。', tags:['JavaScript','LocalStorage'], demo:'./system-development/app-task-manager/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/app-task-manager', thumb:'./assets/images/thumbnails/app-task-manager.jpg' },
+          { cat:'APP', title:'家計簿アプリ', desc:'カテゴリ別集計、グラフ表示、CSV/JSONエクスポート機能搭載。', tags:['Chart.js','IndexedDB'], demo:'./system-development/app-expense-tracker/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/app-expense-tracker', thumb:'./assets/images/thumbnails/app-expense-tracker.jpg' },
+        ]
+      },
+      {
+        name: '業務自動化ツール', color: '#6D28D9', label: 'TOOL',
+        cards: [
+          { cat:'TOOL', title:'画像最適化ツール', desc:'ブラウザ上で完結。WebP変換・リサイズ・メタデータ削除。', tags:['Canvas API','File API'], demo:'./system-development/tool-image-optimizer/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/tool-image-optimizer', thumb:'./assets/images/thumbnails/tool-image-optimizer.jpg' },
+          { cat:'TOOL', title:'CSV変換・集計ツール', desc:'CSV/TSV/JSON変換、フィルタリング、集計機能。', tags:['Papa Parse','Encoding.js'], demo:'./system-development/tool-csv-processor/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/tool-csv-processor', thumb:'./assets/images/thumbnails/tool-csv-processor.jpg' },
+          { cat:'TOOL', title:'URL短縮サービス', desc:'カスタムエイリアス、QRコード生成、クリック数カウント。', tags:['QRCode.js','LocalStorage'], demo:'./system-development/tool-url-shortener/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/tool-url-shortener', thumb:'./assets/images/thumbnails/tool-url-shortener.jpg' },
+        ]
+      },
+      {
+        name: 'AI連携ツール', color: '#0891B2', label: 'AI',
+        cards: [
+          { cat:'AI', title:'AI文章作成アシスタント', desc:'複数テンプレート対応の文章生成ツール。ブログ・商品説明・SNS投稿など。', tags:['OpenAI API','GPT-4'], demo:'./system-development/ai-writing-assistant/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/ai-writing-assistant', thumb:'./assets/images/thumbnails/ai-writing-assistant.jpg' },
+          { cat:'AI', title:'テキスト分析ツール', desc:'感情分析、キーワード抽出、可読性評価、改善提案。', tags:['OpenAI API','Claude API'], demo:'./system-development/ai-text-analyzer/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/ai-text-analyzer', thumb:'./assets/images/thumbnails/ai-text-analyzer.jpg' },
+          { cat:'AI', title:'写真で一言ジェネレーター', desc:'画像から面白キャプション生成。いいね機能、ギャラリー表示。', tags:['Vision API','Image Analysis'], demo:'./system-development/ai-photo-comedian/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/ai-photo-comedian', thumb:'./assets/images/thumbnails/ai-photo-comedian.jpg' },
+        ]
+      },
+      {
+        name: '外部API連携', color: '#EA580C', label: 'API',
+        cards: [
+          { cat:'API', title:'天気情報ダッシュボード', desc:'リアルタイム天気情報と5日間予報を表示。位置情報自動取得。', tags:['OpenWeatherMap','Geolocation'], demo:'./system-development/api-weather-dashboard/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/api-weather-dashboard', thumb:'./assets/images/thumbnails/api-weather-dashboard.jpg' },
+          { cat:'API', title:'ニュース集約ダッシュボード', desc:'複数ソース集約、カテゴリ別表示、ブックマーク機能。', tags:['News API','Fetch API'], demo:'./system-development/api-news-aggregator/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/api-news-aggregator', thumb:'./assets/images/thumbnails/api-news-aggregator.jpg' },
+          { cat:'API', title:'GitHub統計ビューアー', desc:'ユーザー統計、リポジトリ一覧、言語統計をグラフ表示。', tags:['GitHub API','Chart.js'], demo:'./system-development/api-github-profile/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/api-github-profile', thumb:'./assets/images/thumbnails/api-github-profile.jpg' },
+        ]
+      }
+    ]
+  }
+];
+
+// ── RENDER ──
+function renderSections() {
+  const container = document.getElementById('sections-container');
+  let html = '';
+  sections.forEach(sec => {
+    html += `<section id="${sec.id}">
+      <div class="section-heading">
+        <h2>${sec.title}</h2>
+        <p>${sec.sub}</p>
+      </div>`;
+    sec.categories.forEach(cat => {
+      html += `<div class="cat-heading">
+        <svg class="cat-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="${cat.color}"/></svg>
+        <h3>${cat.name} (${cat.label})</h3>
+      </div>
+      <div class="cards-grid">`;
+      cat.cards.forEach((c, i) => {
+        html += `<div class="card-wrap" data-category="${c.cat}">
+          <article class="card" style="animation-delay:${i * 80}ms">
+            <div class="card-thumb">
+              <img src="${c.thumb}" alt="${c.title}" loading="lazy">
+              <span class="card-badge" style="background:${cat.color}">${c.cat}</span>
             </div>
-
-            <!-- Category: Landing Pages -->
-            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-blue-600"></span>
-                ランディングページ (LP)
-            </h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-
-                <!-- LP: Camera Koei -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-amber-100 to-amber-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-amber-300 text-6xl group-hover:scale-110 transition">photo_camera</span>
-                        <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-medium px-2 py-1 rounded">LP</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">光影堂 - 中古カメラ買取</h3>
-                        <p class="text-sm text-gray-600 mb-4">信頼感と専門性を重視した、高コンバージョン設計のランディングページ。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Tailwind CSS</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">CTA Design</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/lp-camera-koei/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/lp-camera-koei" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- LP: Pottery Exhibition -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-orange-100 to-red-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-orange-300 text-6xl group-hover:scale-110 transition">gallery_thumbnail</span>
-                        <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-medium px-2 py-1 rounded">LP</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">陶器個展 - 赤土の記憶</h3>
-                        <p class="text-sm text-gray-600 mb-4">和の美しさを表現した、アーティストの作品展示LP。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">CSS Animation</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Gallery</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/lp-pottery-exhibition/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/lp-pottery-exhibition" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- LP: Kominka Cafe -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-green-100 to-emerald-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-green-300 text-6xl group-hover:scale-110 transition">cottage</span>
-                        <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-medium px-2 py-1 rounded">LP</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">古民家カフェ すぎな</h3>
-                        <p class="text-sm text-gray-600 mb-4">古き良き日本の雰囲気を伝える、カフェのLP。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Japanese Style</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Responsive</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/lp-kominka-cafe/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/lp-kominka-cafe" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- LP: Bonfire Gear -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-orange-100 to-yellow-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-orange-400 text-6xl group-hover:scale-110 transition">local_fire_department</span>
-                        <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-medium px-2 py-1 rounded">LP</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">焚き火台 HOKAGE</h3>
-                        <p class="text-sm text-gray-600 mb-4">炎のアニメーションが印象的な、アウトドアギアLP。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">CSS Animation</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Product LP</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/lp-bonfire-gear/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/lp-bonfire-gear" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- LP: Night Radio -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-indigo-100 to-purple-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-indigo-300 text-6xl group-hover:scale-110 transition">radio</span>
-                        <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-medium px-2 py-1 rounded">LP</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">深夜ラジオ番組</h3>
-                        <p class="text-sm text-gray-600 mb-4">深夜の雰囲気を演出した、ラジオ番組のLP。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Dark Theme</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Media</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/lp-night-radio/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/lp-night-radio" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- LP: Midnight Cafe -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-slate-100 to-blue-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-slate-300 text-6xl group-hover:scale-110 transition">nightlight</span>
-                        <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-medium px-2 py-1 rounded">LP</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">深夜喫茶 静寂</h3>
-                        <p class="text-sm text-gray-600 mb-4">夜だけ開く特別なカフェ。モノクロの世界観。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Monochrome</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Minimalist</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/lp-midnight-cafe/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/lp-midnight-cafe" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
+            <div class="card-body">
+              <div class="card-title">${c.title}</div>
+              <p class="card-desc">${c.desc}</p>
+              <div class="card-tags">${c.tags.map(t=>`<span class="card-tag">${t}</span>`).join('')}</div>
+              <div class="card-actions">
+                <a href="${c.demo}" class="btn-demo">Demo</a>
+                <a href="${c.code}" class="btn-code" target="_blank" rel="noopener">Code</a>
+              </div>
             </div>
+          </article>
+        </div>`;
+      });
+      html += `</div>`;
+    });
+    html += `</section>`;
+  });
+  container.innerHTML = html;
+}
+renderSections();
 
-            <!-- Category: Corporate Sites -->
-            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-green-600"></span>
-                企業サイト (SITE)
-            </h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+// ── FILTER ──
+function filterCards(cat) {
+  document.querySelectorAll('.filter-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.filter === cat));
+  document.querySelectorAll('.card-wrap').forEach(w =>
+    w.classList.toggle('hidden', cat !== 'all' && w.dataset.category !== cat));
+}
 
-                <!-- Site: Tech Company -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-blue-100 to-cyan-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-blue-300 text-6xl group-hover:scale-110 transition">rocket_launch</span>
-                        <span class="absolute top-3 left-3 bg-green-600 text-white text-xs font-medium px-2 py-1 rounded">SITE</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">NexTech Solutions</h3>
-                        <p class="text-sm text-gray-600 mb-4">テック企業のコーポレートサイト。モダンなグラデーションデザイン。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Tailwind CSS</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Corporate</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/site-tech-company/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/site-tech-company" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
+// ── SCROLL ANIMATION ──
+function initObserver() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
 
-                <!-- Site: Letterpress Corp -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-stone-100 to-amber-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-stone-400 text-6xl group-hover:scale-110 transition">print</span>
-                        <span class="absolute top-3 left-3 bg-green-600 text-white text-xs font-medium px-2 py-1 rounded">SITE</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">活版印刷所 刻印堂</h3>
-                        <p class="text-sm text-gray-600 mb-4">伝統工芸の活版印刷。テクスチャ表現が特徴。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Texture Design</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Traditional</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/site-letterpress-corp/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/site-letterpress-corp" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
+  document.querySelectorAll('.card').forEach(c => io.observe(c));
 
-                <!-- Site: Mountain Guide -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-teal-100 to-green-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-teal-300 text-6xl group-hover:scale-110 transition">terrain</span>
-                        <span class="absolute top-3 left-3 bg-green-600 text-white text-xs font-medium px-2 py-1 rounded">SITE</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">登山ガイド 山彦</h3>
-                        <p class="text-sm text-gray-600 mb-4">山岳ガイドサービス。視差効果で山の雄大さを表現。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Parallax</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Nature</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/site-mountain-guide/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/site-mountain-guide" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
+  // Fallback: make all cards visible after 2s in case observer misses them
+  setTimeout(() => {
+    document.querySelectorAll('.card:not(.visible)').forEach(c => c.classList.add('visible'));
+  }, 2000);
+}
 
-                <!-- Site: Retro Sento -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-cyan-100 to-blue-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-cyan-300 text-6xl group-hover:scale-110 transition">hot_tub</span>
-                        <span class="absolute top-3 left-3 bg-green-600 text-white text-xs font-medium px-2 py-1 rounded">SITE</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">昭和レトロ銭湯 富士の湯</h3>
-                        <p class="text-sm text-gray-600 mb-4">レトロな銭湯サイト。昭和の雰囲気を再現。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Retro Design</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Japanese</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/site-retro-sento/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/site-retro-sento" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Site: Old Bookstore -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-amber-100 to-yellow-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-amber-400 text-6xl group-hover:scale-110 transition">menu_book</span>
-                        <span class="absolute top-3 left-3 bg-green-600 text-white text-xs font-medium px-2 py-1 rounded">SITE</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">迷宮古書店</h3>
-                        <p class="text-sm text-gray-600 mb-4">古書店サイト。本棚のパララックス効果が特徴。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Scroll Effect</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Vintage</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/site-old-bookstore/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/site-old-bookstore" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Site: Closed School -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-slate-100 to-gray-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-slate-400 text-6xl group-hover:scale-110 transition">school</span>
-                        <span class="absolute top-3 left-3 bg-green-600 text-white text-xs font-medium px-2 py-1 rounded">SITE</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">廃校スタジオ 放課後</h3>
-                        <p class="text-sm text-gray-600 mb-4">廃校を活用したレンタルスタジオ。黒板風デザイン。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Chalkboard</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Nostalgic</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/site-closed-school/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/site-closed-school" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-
-            <!-- Category: E-Commerce -->
-            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-purple-600"></span>
-                ECサイト (E-Commerce)
-            </h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-
-                <!-- EC: Coffee Shop -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-amber-100 to-orange-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-amber-400 text-6xl group-hover:scale-110 transition">coffee</span>
-                        <span class="absolute top-3 left-3 bg-purple-600 text-white text-xs font-medium px-2 py-1 rounded">EC</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">KURO COFFEE</h3>
-                        <p class="text-sm text-gray-600 mb-4">スペシャルティコーヒー専門店。定期購入プラン対応。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Subscription</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">E-Commerce</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/ec-coffee-shop/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/ec-coffee-shop" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- EC: Leather Shoes -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-stone-100 to-amber-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-stone-400 text-6xl group-hover:scale-110 transition">footwear</span>
-                        <span class="absolute top-3 left-3 bg-purple-600 text-white text-xs font-medium px-2 py-1 rounded">EC</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">AGED - ビスポーク革靴</h3>
-                        <p class="text-sm text-gray-600 mb-4">経年変化を楽しむ高級革靴。Before/After比較UI搭載。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Interactive</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Luxury</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/ec-leather-shoes/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/ec-leather-shoes" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- EC: Organic Vege -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-lime-100 to-green-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-lime-400 text-6xl group-hover:scale-110 transition">nutrition</span>
-                        <span class="absolute top-3 left-3 bg-purple-600 text-white text-xs font-medium px-2 py-1 rounded">EC</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">訳あり野菜直売所</h3>
-                        <p class="text-sm text-gray-600 mb-4">規格外野菜の魅力を伝えるEC。サステナブル志向。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Organic</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Sustainable</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/ec-organic-vege/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/ec-organic-vege" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- EC: Mineral Specimen -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-purple-100 to-pink-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-purple-300 text-6xl group-hover:scale-110 transition">diamond</span>
-                        <span class="absolute top-3 left-3 bg-purple-600 text-white text-xs font-medium px-2 py-1 rounded">EC</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">鉱物標本コレクション</h3>
-                        <p class="text-sm text-gray-600 mb-4">鉱物・化石のEC。ホログラム効果で輝きを表現。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Holographic</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Collector</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/ec-mineral-specimen/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/ec-mineral-specimen" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- EC: Fermented Miso -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-orange-100 to-amber-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-orange-400 text-6xl group-hover:scale-110 transition">deployed_code</span>
-                        <span class="absolute top-3 left-3 bg-purple-600 text-white text-xs font-medium px-2 py-1 rounded">EC</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">醸 Kamosu - 味噌キット</h3>
-                        <p class="text-sm text-gray-600 mb-4">発酵過程をスクロールで可視化。ストーリーテリング型EC。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Scroll Story</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Fermentation</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/ec-fermented-miso/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/ec-fermented-miso" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- EC: Midnight Bakery -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-indigo-100 to-blue-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-indigo-300 text-6xl group-hover:scale-110 transition">bakery_dining</span>
-                        <span class="absolute top-3 left-3 bg-purple-600 text-white text-xs font-medium px-2 py-1 rounded">EC</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">月夜のベーカリー</h3>
-                        <p class="text-sm text-gray-600 mb-4">深夜営業ベーカリー。湯気アニメーションが特徴。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">CSS Animation</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Dark Theme</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/ec-midnight-bakery/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/ec-midnight-bakery" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-
-            <!-- Category: UI Components -->
-            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-                UIコンポーネント (PARTS)
-            </h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <!-- Part: UI Components -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-violet-100 to-purple-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-violet-300 text-6xl group-hover:scale-110 transition">widgets</span>
-                        <span class="absolute top-3 left-3 bg-amber-500 text-white text-xs font-medium px-2 py-1 rounded">PARTS</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">UI Components Library</h3>
-                        <p class="text-sm text-gray-600 mb-4">再利用可能なUIパーツ集。ボタン、カード、フォームなど。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Tailwind CSS</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Components</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/part-ui-components/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/part-ui-components" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Part: Ink Input -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-slate-100 to-gray-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-slate-400 text-6xl group-hover:scale-110 transition">edit</span>
-                        <span class="absolute top-3 left-3 bg-amber-500 text-white text-xs font-medium px-2 py-1 rounded">PARTS</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">インク滲み入力欄</h3>
-                        <p class="text-sm text-gray-600 mb-4">墨汁のような滲み表現。和風サイト向けインプット。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">CSS Effect</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Japanese</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/part-ink-input/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/part-ink-input" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Part: Hanko Action -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-red-100 to-orange-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-red-300 text-6xl group-hover:scale-110 transition">approval</span>
-                        <span class="absolute top-3 left-3 bg-amber-500 text-white text-xs font-medium px-2 py-1 rounded">PARTS</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">デジタル印鑑アニメーション</h3>
-                        <p class="text-sm text-gray-600 mb-4">押印エフェクト。承認・完了時の演出に最適。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Animation</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Seal</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/part-hanko-action/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/part-hanko-action" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Part: Analog Record -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-zinc-100 to-stone-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-zinc-400 text-6xl group-hover:scale-110 transition">album</span>
-                        <span class="absolute top-3 left-3 bg-amber-500 text-white text-xs font-medium px-2 py-1 rounded">PARTS</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">レコードプレイヤーUI</h3>
-                        <p class="text-sm text-gray-600 mb-4">アナログレコードの再生UI。回転アニメーション付き。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Rotation</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Audio</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/part-analog-record/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/part-analog-record" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Part: Shoji Modal -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-amber-50 to-yellow-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-amber-300 text-6xl group-hover:scale-110 transition">curtains</span>
-                        <span class="absolute top-3 left-3 bg-amber-500 text-white text-xs font-medium px-2 py-1 rounded">PARTS</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">障子モーダル</h3>
-                        <p class="text-sm text-gray-600 mb-4">障子が開くようなモーダルUI。和風サイト向け。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Modal</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Japanese</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/part-shoji-modal/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/part-shoji-modal" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Part: Cassette Tape -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-gray-100 to-slate-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-gray-400 text-6xl group-hover:scale-110 transition">headphones</span>
-                        <span class="absolute top-3 left-3 bg-amber-500 text-white text-xs font-medium px-2 py-1 rounded">PARTS</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">カセットテープローディング</h3>
-                        <p class="text-sm text-gray-600 mb-4">レトロなカセットテープ風ローディングUI。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Loading</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Retro</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./web-production/part-cassette-tape/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/web-production/part-cassette-tape" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-        </section>
-
-        <!-- System Development Section -->
-        <section id="system-development" class="mb-20">
-            <div class="flex items-center gap-3 mb-8">
-                <span class="material-symbols-outlined text-green-600 text-3xl">code</span>
-                <div>
-                    <h2 class="text-2xl font-bold">System Development</h2>
-                    <p class="text-gray-500 text-sm">システム開発・アプリケーション</p>
-                </div>
-            </div>
-
-            <!-- Category: Web Applications -->
-            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-red-600"></span>
-                Webアプリケーション (APP)
-            </h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-
-                <!-- App: Pomodoro Timer -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-red-100 to-orange-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-red-300 text-6xl group-hover:scale-110 transition">timer</span>
-                        <span class="absolute top-3 left-3 bg-red-600 text-white text-xs font-medium px-2 py-1 rounded">APP</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">ポモドーロタイマー</h3>
-                        <p class="text-sm text-gray-600 mb-4">PWA対応、オフライン動作可能な生産性向上タイマー。統計管理機能付き。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">PWA</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Service Worker</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./system-development/app-pomodoro-timer/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/app-pomodoro-timer" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- App: Task Manager -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-indigo-100 to-blue-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-indigo-300 text-6xl group-hover:scale-110 transition">task_alt</span>
-                        <span class="absolute top-3 left-3 bg-red-600 text-white text-xs font-medium px-2 py-1 rounded">APP</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">タスク管理アプリ</h3>
-                        <p class="text-sm text-gray-600 mb-4">優先度管理・フィルタ機能・進捗可視化を備えたタスク管理アプリ。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">JavaScript</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">LocalStorage</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./system-development/app-task-manager/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/app-task-manager" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- App: Expense Tracker -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-emerald-100 to-green-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-emerald-300 text-6xl group-hover:scale-110 transition">account_balance_wallet</span>
-                        <span class="absolute top-3 left-3 bg-red-600 text-white text-xs font-medium px-2 py-1 rounded">APP</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">家計簿アプリ</h3>
-                        <p class="text-sm text-gray-600 mb-4">カテゴリ別集計、グラフ表示、CSV/JSONエクスポート機能搭載。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Chart.js</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">IndexedDB</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./system-development/app-expense-tracker/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/app-expense-tracker" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-
-            <!-- Category: Automation Tools -->
-            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-purple-600"></span>
-                業務自動化ツール (TOOL)
-            </h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-
-                <!-- Tool: Image Optimizer -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-purple-100 to-pink-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-purple-300 text-6xl group-hover:scale-110 transition">image</span>
-                        <span class="absolute top-3 left-3 bg-purple-600 text-white text-xs font-medium px-2 py-1 rounded">TOOL</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">画像最適化ツール</h3>
-                        <p class="text-sm text-gray-600 mb-4">ブラウザ上で完結。WebP変換・リサイズ・メタデータ削除。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Canvas API</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">File API</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./system-development/tool-image-optimizer/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/tool-image-optimizer" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Tool: CSV Processor -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-orange-100 to-amber-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-orange-300 text-6xl group-hover:scale-110 transition">table_chart</span>
-                        <span class="absolute top-3 left-3 bg-purple-600 text-white text-xs font-medium px-2 py-1 rounded">TOOL</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">CSV変換・集計ツール</h3>
-                        <p class="text-sm text-gray-600 mb-4">CSV/TSV/JSON変換、フィルタリング、集計機能。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Papa Parse</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Encoding.js</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./system-development/tool-csv-processor/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/tool-csv-processor" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Tool: URL Shortener -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-blue-100 to-cyan-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-blue-300 text-6xl group-hover:scale-110 transition">link</span>
-                        <span class="absolute top-3 left-3 bg-purple-600 text-white text-xs font-medium px-2 py-1 rounded">TOOL</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">URL短縮サービス</h3>
-                        <p class="text-sm text-gray-600 mb-4">カスタムエイリアス、QRコード生成、クリック数カウント。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">QRCode.js</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">LocalStorage</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./system-development/tool-url-shortener/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/tool-url-shortener" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-
-            <!-- Category: AI Integration -->
-            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-cyan-600"></span>
-                AI連携ツール (AI)
-            </h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-
-                <!-- AI: Writing Assistant -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-cyan-100 to-blue-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-cyan-300 text-6xl group-hover:scale-110 transition">edit_note</span>
-                        <span class="absolute top-3 left-3 bg-cyan-600 text-white text-xs font-medium px-2 py-1 rounded">AI</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">AI文章作成アシスタント</h3>
-                        <p class="text-sm text-gray-600 mb-4">複数テンプレート対応の文章生成ツール（ブログ、商品説明、SNS投稿など）。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">OpenAI API</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">GPT-4</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./system-development/ai-writing-assistant/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/ai-writing-assistant" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- AI: Text Analyzer -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-teal-100 to-green-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-teal-300 text-6xl group-hover:scale-110 transition">psychology</span>
-                        <span class="absolute top-3 left-3 bg-cyan-600 text-white text-xs font-medium px-2 py-1 rounded">AI</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">テキスト分析ツール</h3>
-                        <p class="text-sm text-gray-600 mb-4">感情分析、キーワード抽出、可読性評価、改善提案。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">OpenAI API</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Claude API</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./system-development/ai-text-analyzer/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/ai-text-analyzer" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- AI: Photo Comedian -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-pink-100 to-rose-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-pink-300 text-6xl group-hover:scale-110 transition">sentiment_very_satisfied</span>
-                        <span class="absolute top-3 left-3 bg-cyan-600 text-white text-xs font-medium px-2 py-1 rounded">AI</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">写真で一言ジェネレーター</h3>
-                        <p class="text-sm text-gray-600 mb-4">画像から面白キャプション生成。いいね機能、ギャラリー表示。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Vision API</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Image Analysis</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./system-development/ai-photo-comedian/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/ai-photo-comedian" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-
-            <!-- Category: External API Integration -->
-            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-orange-600"></span>
-                外部API連携 (API)
-            </h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <!-- API: Weather Dashboard -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-sky-100 to-blue-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-sky-300 text-6xl group-hover:scale-110 transition">wb_sunny</span>
-                        <span class="absolute top-3 left-3 bg-orange-600 text-white text-xs font-medium px-2 py-1 rounded">API</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">天気情報ダッシュボード</h3>
-                        <p class="text-sm text-gray-600 mb-4">リアルタイム天気情報と5日間予報を表示。位置情報自動取得。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">OpenWeatherMap</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Geolocation</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./system-development/api-weather-dashboard/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/api-weather-dashboard" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- API: News Aggregator -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-slate-100 to-gray-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-slate-400 text-6xl group-hover:scale-110 transition">newspaper</span>
-                        <span class="absolute top-3 left-3 bg-orange-600 text-white text-xs font-medium px-2 py-1 rounded">API</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">ニュース集約ダッシュボード</h3>
-                        <p class="text-sm text-gray-600 mb-4">複数ソース集約、カテゴリ別表示、ブックマーク機能。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">News API</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Fetch API</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./system-development/api-news-aggregator/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/api-news-aggregator" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- API: GitHub Profile -->
-                <article class="bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition group">
-                    <div class="aspect-video bg-gradient-to-br from-green-100 to-emerald-50 flex items-center justify-center relative overflow-hidden">
-                        <span class="material-symbols-outlined text-green-400 text-6xl group-hover:scale-110 transition">code</span>
-                        <span class="absolute top-3 left-3 bg-orange-600 text-white text-xs font-medium px-2 py-1 rounded">API</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-lg mb-2">GitHub統計ビューアー</h3>
-                        <p class="text-sm text-gray-600 mb-4">ユーザー統計、リポジトリ一覧、言語統計をグラフ表示。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">GitHub API</span>
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Chart.js</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="./system-development/api-github-profile/index.html" class="flex-1 text-center bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition">Demo</a>
-                            <a href="https://github.com/9mak/Portfolio/tree/main/system-development/api-github-profile" class="flex-1 text-center border border-gray-300 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition">Code</a>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="bg-gray-900 text-white rounded-2xl p-10 text-center">
-            <h2 class="text-2xl font-bold mb-4">お問い合わせ</h2>
-            <p class="text-gray-400 mb-6">ご相談は各プラットフォームのメッセージ機能よりお願いいたします。</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://www.lancers.jp/profile/_9mak___" class="inline-flex items-center gap-2 bg-white text-gray-900 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">
-                    <span>Lancers</span>
-                    <span class="material-symbols-outlined text-lg">open_in_new</span>
-                </a>
-                <a href="https://coconala.com/users/4590843" class="inline-flex items-center gap-2 bg-white text-gray-900 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">
-                    <span>Coconala</span>
-                    <span class="material-symbols-outlined text-lg">open_in_new</span>
-                </a>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t py-8 text-center text-sm text-gray-500">
-        <p>&copy; 2026 9mak Portfolio. All rights reserved.</p>
-    </footer>
-
+// Run after DOM settles
+requestAnimationFrame(() => requestAnimationFrame(initObserver));
+</script>
 </body>
 </html>
