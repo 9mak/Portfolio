@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Specimen | Mineral & Fossil</title>
+    <meta name="description" content="The Specimenの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="The Specimen">
+    <meta property="og:description" content="The Specimenの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body>
+<body id="top">
 
     <header class="py-12 text-center relative z-10">
         <h1 class="text-4xl md:text-5xl text-slate-200 tracking-[0.2em] mb-4 border-b border-slate-700 inline-block pb-4">
@@ -22,7 +32,7 @@
             
             <!-- Item 1 -->
             <div class="specimen-cell" onmousemove="updateLight(event, this)">
-                <img src="../../assets/images/thumbnails/ec-mineral-specimen.jpg" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Amethyst">
+                <img src="../../assets/generated/ec-mineral-specimen-01.svg" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Amethyst">
                 <div class="loupe-mask"></div>
                 <div class="specular-shine"></div>
                 <div class="label-plate">Amethyst / Brazil</div>
@@ -30,7 +40,7 @@
 
             <!-- Item 2 -->
             <div class="specimen-cell" onmousemove="updateLight(event, this)">
-                <img src="../../assets/images/thumbnails/ec-mineral-specimen.jpg" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Pyrite">
+                <img src="../../assets/generated/ec-mineral-specimen-02.svg" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Pyrite">
                 <div class="loupe-mask"></div>
                 <div class="specular-shine"></div>
                 <div class="label-plate">Pyrite / Peru</div>
@@ -38,7 +48,7 @@
 
             <!-- Item 3 -->
             <div class="specimen-cell" onmousemove="updateLight(event, this)">
-                <img src="../../assets/images/thumbnails/ec-mineral-specimen.jpg" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Quartz">
+                <img src="../../assets/generated/ec-mineral-specimen-03.svg" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Quartz">
                 <div class="loupe-mask"></div>
                 <div class="specular-shine"></div>
                 <div class="label-plate">Clear Quartz / USA</div>
@@ -46,21 +56,21 @@
 
             <!-- Item 4 -->
             <div class="specimen-cell" onmousemove="updateLight(event, this)">
-                <img src="../../assets/images/thumbnails/ec-mineral-specimen.jpg" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Malachite">
+                <img src="../../assets/generated/ec-mineral-specimen-04.svg" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Malachite">
                 <div class="loupe-mask"></div>
                 <div class="specular-shine"></div>
                 <div class="label-plate">Malachite / Congo</div>
             </div>
              <!-- Item 5 -->
             <div class="specimen-cell" onmousemove="updateLight(event, this)">
-                <img src="../../assets/images/thumbnails/ec-mineral-specimen.jpg" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Fluorite">
+                <img src="../../assets/generated/ec-mineral-specimen-05.svg" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Fluorite">
                 <div class="loupe-mask"></div>
                 <div class="specular-shine"></div>
                 <div class="label-plate">Fluorite / China</div>
             </div>
              <!-- Item 6 -->
             <div class="specimen-cell" onmousemove="updateLight(event, this)">
-                <img src="../../assets/images/thumbnails/ec-mineral-specimen.jpg" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Ammonite">
+                <img src="../../assets/generated/ec-mineral-specimen-06.svg" class="w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-110" alt="Ammonite">
                 <div class="loupe-mask"></div>
                 <div class="specular-shine"></div>
                 <div class="label-plate">Ammonite / Morocco</div>

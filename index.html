@@ -390,13 +390,19 @@
       .hero-right { writing-mode: horizontal-tb; }
     }
   </style>
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body>
+<body id="top">
 
 <!-- HEADER -->
 <header id="site-header">
   <div class="header-inner">
-    <a href="#" class="logo">9mak <span>Portfolio</span></a>
+    <a href="#top" class="logo">9mak <span>Portfolio</span></a>
     <nav>
       <a href="#web-production">Web制作</a>
       <a href="#system-development">システム開発</a>

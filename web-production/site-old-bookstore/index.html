@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>迷宮古書店 積読 | 本の森を彷徨う</title>
+    <meta name="description" content="迷宮古書店 積読の静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="迷宮古書店 積読">
+    <meta property="og:description" content="迷宮古書店 積読の静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body>
+<body id="top">
 
     <header class="fixed top-0 left-0 p-6 z-40 mix-blend-difference text-white">
         <h1 class="text-3xl font-bold tracking-[0.5em]">積読</h1>
@@ -27,7 +37,7 @@
         <p class="text-sm leading-relaxed" id="book-desc">
             ここに本のあらすじや、店主の気まぐれなコメントが表示されます。古書の匂いが漂ってきそうな一冊です。
         </p>
-        <button class="mt-4 w-full bg-[#3e2723] text-[#fff8e1] py-2 text-xs hover:opacity-80">
+        <button type="button" class="mt-4 w-full bg-[#3e2723] text-[#fff8e1] py-2 text-xs hover:opacity-80">
             購入する
         </button>
     </div>

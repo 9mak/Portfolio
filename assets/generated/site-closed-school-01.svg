@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="旧校舎アーカイブ">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#d9d2bf"/><stop offset="1" stop-color="#5a6b51"/></linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 0.12"/></feComponentTransfer></filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <circle cx="980" cy="160" r="190" fill="#fffaf0" opacity="0.22"/>
+  <path d="M80 600 C240 460 360 720 540 520 S850 400 1120 610" fill="none" stroke="#fffaf0" stroke-width="42" opacity="0.28" stroke-linecap="round"/>
+  <path d="M150 235 H800" stroke="#fffaf0" stroke-width="7" opacity="0.42"/>
+  <text x="150" y="315" fill="#fffaf0" font-family="serif" font-size="74" font-weight="700">旧校舎アーカイブ</text>
+  <rect x="150" y="365" width="360" height="12" fill="#fffaf0" opacity="0.35"/>
+  <rect width="1200" height="800" filter="url(#grain)"/>
+</svg>

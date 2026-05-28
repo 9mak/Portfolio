@@ -93,6 +93,8 @@
 | テキスト分析ツール | 感情分析、キーワード抽出、可読性評価、改善提案のデモ | Vanilla JavaScript, Text Analysis Demo | [Demo](https://9mak.github.io/Portfolio/system-development/ai-text-analyzer/) |
 | 写真で一言ジェネレーター | 画像から面白キャプションを作るUIデモ。いいね機能、ギャラリー表示 | Vanilla JavaScript, Image UI Demo | [Demo](https://9mak.github.io/Portfolio/system-development/ai-photo-comedian/) |
 
+> 公開デモではAPIキー入力・保存・外部AI APIの直接呼び出しを行わず、ブラウザ内で完結するデモロジックとして公開しています。
+
 #### 外部API連携 (API) - 3件
 | プロジェクト | 概要 | 技術 | デモ |
 |------------|------|------|------|
@@ -108,6 +110,22 @@
 - **デザイン**: Figma
 - **バージョン管理**: Git, GitHub
 - **ホスティング**: GitHub Pages
+
+---
+
+## 品質チェック
+
+公開前に以下の監査を実行し、全カード・全HTMLページのリンク、画像参照、本文量、SEOメタ情報、公開デモのセキュリティ条件を確認しています。
+
+```bash
+node scripts/audit-portfolio.mjs
+```
+
+主なチェック項目:
+- 実績カードのデモURL・サムネイル・GitHubリンク
+- 詳細ページのローカル参照切れ、SEO description、OGP
+- 詳細ページ内の仮リンク、古いサムネイル画像の使い回し
+- APIキー入力欄、APIキー保存、公開フロントからの外部AI/API直接呼び出し
 
 ---
 

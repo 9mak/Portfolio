@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>自家製味噌キット 醸 Kamosu</title>
+    <meta name="description" content="自家製味噌キット 醸 Kamosuの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="自家製味噌キット 醸 Kamosu">
+    <meta property="og:description" content="自家製味噌キット 醸 Kamosuの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body>
+<body id="top">
 
     <header class="py-20 text-center wood-texture border-b-8 border-[#5d4037]">
         <p class="text-sm tracking-widest mb-4">HANDMADE MISO KIT</p>
@@ -24,7 +34,7 @@
                 
                 <!-- 味噌の塊（色が変化する） -->
                 <div class="w-64 h-64 mx-auto mb-8 bg-[#f0f4c3] shadow-xl miso-blob flex items-center justify-center overflow-hidden relative" id="miso-visual">
-                    <img src="../../assets/images/thumbnails/ec-fermented-miso.jpg" class="w-full h-full object-cover opacity-50 mix-blend-overlay">
+                    <img src="../../assets/generated/ec-fermented-miso-01.svg" class="w-full h-full object-cover opacity-50 mix-blend-overlay">
                     <div class="absolute inset-0 bg-current opacity-20"></div>
                 </div>
 

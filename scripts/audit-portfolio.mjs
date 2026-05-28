@@ -90,8 +90,39 @@ for (const filePath of htmlFiles) {
   const rel = path.relative(root, filePath);
   const page = fs.readFileSync(filePath, 'utf8');
 
+  if (!/<meta\s+name=["']description["']/i.test(page)) {
+    fail(`${rel}: missing meta description`);
+  }
+
+  if (!/Portfolio QA overflow guard/.test(page)) {
+    fail(`${rel}: missing overflow guard`);
+  }
+
+  if (!/web-production\/part-ui-components\/index\.html$/.test(rel) && /\bhref=["']#["']/.test(page)) {
+    fail(`${rel}: contains inert href="#" links`);
+  }
+
+  if (rel !== 'index.html' && /\bhref=["']#top["']/.test(page)) {
+    fail(`${rel}: contains top-only href="#top" links`);
+  }
+
+  if (/<meta[^>]+content=["'][^"']*["']\s+[^=>\s]+(?:\s|>)/i.test(page)) {
+    fail(`${rel}: may contain malformed meta content quoting`);
+  }
+
   if (/images\.unsplash\.com/.test(page)) {
     fail(`${rel}: uses hotlinked Unsplash image URLs`);
+  }
+
+  const imageSources = [...page.matchAll(/<img\b[^>]*\bsrc=["']([^"']+)["']/gi)].map(match => match[1]);
+  const thumbnailSources = imageSources.filter(src => src.includes('assets/images/thumbnails'));
+  if (rel !== 'index.html' && thumbnailSources.length > 0) {
+    fail(`${rel}: uses portfolio thumbnail as detail-page imagery (${thumbnailSources.join(', ')})`);
+  }
+
+  const repeatedThumbnailSources = new Set(thumbnailSources.filter((src, index) => thumbnailSources.indexOf(src) !== index));
+  if (repeatedThumbnailSources.size > 0) {
+    fail(`${rel}: repeats portfolio thumbnail as page imagery (${[...repeatedThumbnailSources].join(', ')})`);
   }
 
   const minChars = rel.includes('/part-') ? 180 : 220;

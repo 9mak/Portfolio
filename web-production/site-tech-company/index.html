@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexTech Solutions | テクノロジーで未来を創る</title>
+    <meta name="description" content="NexTech Solutionsの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="NexTech Solutions">
+    <meta property="og:description" content="NexTech Solutionsの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
@@ -38,13 +42,19 @@
             background: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%);
         }
     </style>
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body class="font-sans text-gray-900 antialiased">
+<body id="top" class="font-sans text-gray-900 antialiased">
 
     <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+    <header id="home" class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
         <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-            <a href="#" class="text-2xl font-bold">
+            <a href="#home" class="text-2xl font-bold">
                 <span class="gradient-text">NexTech</span>
             </a>
             <nav class="hidden md:flex items-center gap-8">
@@ -325,17 +335,17 @@
                 <div>
                     <p class="font-medium mb-4">サービス</p>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">Webシステム開発</a></li>
-                        <li><a href="#" class="hover:text-white transition">モバイルアプリ開発</a></li>
-                        <li><a href="#" class="hover:text-white transition">クラウド構築</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Webシステム開発</a></li>
+                        <li><a href="#services" class="hover:text-white transition">モバイルアプリ開発</a></li>
+                        <li><a href="#services" class="hover:text-white transition">クラウド構築</a></li>
                     </ul>
                 </div>
                 <div>
                     <p class="font-medium mb-4">会社情報</p>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">会社概要</a></li>
-                        <li><a href="#" class="hover:text-white transition">採用情報</a></li>
-                        <li><a href="#" class="hover:text-white transition">お知らせ</a></li>
+                        <li><a href="#about" class="hover:text-white transition">会社概要</a></li>
+                        <li><a href="#contact" class="hover:text-white transition">採用情報</a></li>
+                        <li><a href="#works" class="hover:text-white transition">お知らせ</a></li>
                     </ul>
                 </div>
                 <div>

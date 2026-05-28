@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bespoke Shoes "Aged" | 時を履く</title>
+    <meta name="description" content="Bespoke Shoes &quot;Aged&quot;の静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="Bespoke Shoes &quot;Aged&quot;">
+    <meta property="og:description" content="Bespoke Shoes &quot;Aged&quot;の静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,22 +31,28 @@
         }
     </script>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body class="leather-texture font-serif selection:bg-gold selection:text-leather-dark">
+<body id="top" class="leather-texture font-serif selection:bg-gold selection:text-leather-dark">
 
     <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference">
         <h1 class="font-display text-3xl text-gold tracking-widest">AGED</h1>
         <div class="flex gap-8 text-xs tracking-widest text-gold/80">
-            <a href="#" class="hover:text-white">COLLECTION</a>
-            <a href="#" class="hover:text-white">PHILOSOPHY</a>
-            <a href="#" class="hover:text-white">BESPOKE</a>
+            <a href="#collection" class="hover:text-white">COLLECTION</a>
+            <a href="#philosophy" class="hover:text-white">PHILOSOPHY</a>
+            <a href="#bespoke" class="hover:text-white">BESPOKE</a>
         </div>
     </nav>
 
     <!-- Hero -->
     <header class="h-screen flex items-center justify-center relative overflow-hidden">
         <div class="absolute inset-0 z-0 opacity-40">
-            <img src="../../assets/images/thumbnails/ec-leather-shoes.jpg" class="w-full h-full object-cover">
+            <img src="../../assets/generated/ec-leather-shoes-01.svg" class="w-full h-full object-cover">
         </div>
         <div class="absolute inset-0 bg-gradient-to-t from-leather-dark via-transparent to-transparent"></div>
         
@@ -61,7 +71,7 @@
     </header>
 
     <!-- Aging Showcase -->
-    <section class="py-24 px-6 md:px-12 bg-[#120c08]">
+    <section id="philosophy" class="py-24 px-6 md:px-12 bg-[#120c08]">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center">
             
             <div class="w-full md:w-1/2 space-y-8">
@@ -82,10 +92,10 @@
             <!-- Before/After Slider -->
             <div class="w-full md:w-1/2 aspect-[4/3] compare-container rounded shadow-2xl border border-white/5 group" id="comparison">
                 <!-- After Image (Background) -->
-                <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('../../assets/images/thumbnails/ec-leather-shoes.jpg'); filter: sepia(0.4) contrast(1.2);"></div>
+                <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('../../assets/generated/ec-leather-shoes-01.svg'); filter: sepia(0.4) contrast(1.2);"></div>
                 
                 <!-- Before Image (Overlay) -->
-                <div class="img-overlay" id="overlay" style="background-image: url('../../assets/images/thumbnails/ec-leather-shoes.jpg'); filter: brightness(1.1);"></div>
+                <div class="img-overlay" id="overlay" style="background-image: url('../../assets/generated/ec-leather-shoes-01.svg'); filter: brightness(1.1);"></div>
                 
                 <!-- Slider Handle -->
                 <div class="compare-slider" id="slider"></div>
@@ -99,7 +109,7 @@
     </section>
 
     <!-- Product Grid -->
-    <section class="py-24 px-6">
+    <section id="collection" class="py-24 px-6">
         <div class="text-center mb-16">
             <h3 class="font-display text-2xl text-gold">Lineup</h3>
         </div>
@@ -108,7 +118,7 @@
             <!-- Item 1 -->
             <div class="group cursor-pointer">
                 <div class="aspect-[3/4] bg-[#0d0905] relative overflow-hidden">
-                    <img src="../../assets/images/thumbnails/ec-leather-shoes.jpg" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
+                    <img src="../../assets/generated/ec-leather-shoes-02.svg" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-leather-dark/90 to-transparent opacity-60"></div>
                     <div class="absolute bottom-6 left-6">
                         <h4 class="font-display text-xl text-white mb-1">Oxford #01</h4>
@@ -120,7 +130,7 @@
             <!-- Item 2 -->
             <div class="group cursor-pointer">
                 <div class="aspect-[3/4] bg-[#0d0905] relative overflow-hidden">
-                    <img src="../../assets/images/thumbnails/ec-leather-shoes.jpg" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
+                    <img src="../../assets/generated/ec-leather-shoes-03.svg" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-leather-dark/90 to-transparent opacity-60"></div>
                     <div class="absolute bottom-6 left-6">
                         <h4 class="font-display text-xl text-white mb-1">Loafer #05</h4>
@@ -132,7 +142,7 @@
             <!-- Item 3 -->
             <div class="group cursor-pointer">
                 <div class="aspect-[3/4] bg-[#0d0905] relative overflow-hidden">
-                    <img src="../../assets/images/thumbnails/ec-leather-shoes.jpg" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
+                    <img src="../../assets/generated/ec-leather-shoes-04.svg" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-leather-dark/90 to-transparent opacity-60"></div>
                     <div class="absolute bottom-6 left-6">
                         <h4 class="font-display text-xl text-white mb-1">Boots #09</h4>
@@ -143,7 +153,7 @@
         </div>
     </section>
 
-    <footer class="py-12 border-t border-white/10 text-center">
+    <footer id="bespoke" class="py-12 border-t border-white/10 text-center">
         <p class="text-xs text-white/30 font-display">&copy; 2025 AGED BESPOKE SHOES.</p>
     </footer>
 

@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>古民家カフェ 木漏れ日 | 時を、味わう。</title>
+    <meta name="description" content="古民家カフェ 木漏れ日の静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="古民家カフェ 木漏れ日">
+    <meta property="og:description" content="古民家カフェ 木漏れ日の静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,9 +39,15 @@
             }
         }
     </script>
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
 
-<body class="text-kogecha font-body leading-relaxed overflow-x-hidden">
+<body id="top" class="text-kogecha font-body leading-relaxed overflow-x-hidden">
 
     <!-- Header / Hero -->
     <header class="relative min-h-screen flex flex-col items-center justify-center p-6 pt-20">
@@ -62,12 +72,12 @@
             <div class="md:col-span-7 relative h-[50vh] md:h-[70vh] w-full">
                 <!-- 写真1: 縁側 -->
                 <div class="absolute top-10 left-0 w-3/4 h-3/4 tape-photo z-10">
-                    <img src="../../assets/images/thumbnails/lp-kominka-cafe.jpg"
+                    <img src="../../assets/generated/lp-kominka-cafe-01.svg"
                         alt="縁側と庭" class="w-full h-full object-cover sepia-[.3]">
                 </div>
                 <!-- 写真2: コーヒー -->
                 <div class="absolute bottom-0 right-0 w-3/5 h-3/5 tape-photo z-20 transform rotate-3 steam-container">
-                    <img src="../../assets/images/thumbnails/lp-kominka-cafe.jpg"
+                    <img src="../../assets/generated/lp-kominka-cafe-02.svg"
                         alt="ハンドドリップコーヒー" class="w-full h-full object-cover">
                     <!-- 湯気 -->
                     <div class="steam"></div>
@@ -112,11 +122,11 @@
 
             <div class="flex justify-center gap-4 mt-8">
                 <div class="w-32 h-32 bg-white p-2 shadow-md transform rotate-2">
-                    <img src="../../assets/images/thumbnails/lp-kominka-cafe.jpg"
+                    <img src="../../assets/generated/lp-kominka-cafe-03.svg"
                         class="w-full h-full object-cover opacity-90">
                 </div>
                 <div class="w-32 h-32 bg-white p-2 shadow-md transform -rotate-3 translate-y-4">
-                    <img src="../../assets/images/thumbnails/lp-kominka-cafe.jpg"
+                    <img src="../../assets/generated/lp-kominka-cafe-04.svg"
                         class="w-full h-full object-cover opacity-90">
                 </div>
             </div>
@@ -209,7 +219,7 @@
             <!-- おすすめ写真 -->
             <div class="mt-16 text-center">
                 <div class="inline-block relative transform rotate-1 hover:rotate-0 transition-transform duration-300">
-                    <img src="../../assets/images/thumbnails/lp-kominka-cafe.jpg"
+                    <img src="../../assets/generated/lp-kominka-cafe-05.svg"
                         alt="プリン" class="w-64 h-auto border-8 border-white shadow-lg">
                     <p
                         class="font-hand absolute -bottom-6 -right-6 text-kogecha bg-kinari px-2 py-1 shadow-sm transform -rotate-6">
@@ -295,7 +305,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#"
+                    <a href="#access"
                         class="block text-center mt-4 font-hand text-sm underline hover:text-maccha">Googleマップで見る</a>
                 </div>
             </div>
@@ -307,8 +317,8 @@
         <div class="relative z-10">
             <h2 class="font-display text-2xl mb-6">木漏れ日</h2>
             <div class="flex justify-center gap-6 mb-8 text-sm font-hand">
-                <a href="#" class="hover:text-maccha transition-colors">いんすたぐらむ</a>
-                <a href="#" class="hover:text-maccha transition-colors">ふぇいすぶっく</a>
+                <a href="#access" class="hover:text-maccha transition-colors">いんすたぐらむ</a>
+                <a href="#access" class="hover:text-maccha transition-colors">ふぇいすぶっく</a>
             </div>
             <p class="text-xs opacity-60 font-body">&copy; 2025 Komorebi Cafe. All Rights Reserved.</p>
         </div>
@@ -319,7 +329,7 @@
 
     <!-- Sticky CTA Button -->
     <div class="fixed bottom-6 right-6 z-50">
-        <button
+        <button type="button" onclick="location.hash='access'"
             class="bg-maccha hover:bg-azuki text-white font-bold px-6 py-4 rounded-lg shadow-2xl transition-all hover:scale-105 border-2 border-white/20 font-hand">
             <span class="block text-xs opacity-90 mb-1">木漏れ日</span>
             <span class="text-base">ご予約</span>

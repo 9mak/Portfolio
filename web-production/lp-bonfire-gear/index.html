@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>静火 SHIZUBI | 闇を愉しむ焚き火台</title>
+    <meta name="description" content="静火 SHIZUBIの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="静火 SHIZUBI">
+    <meta property="og:description" content="静火 SHIZUBIの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body class="selection:bg-orange-900 selection:text-white">
+<body id="top" class="selection:bg-orange-900 selection:text-white">
 
     <!-- 火の粉エフェクト -->
     <canvas id="embers-canvas"></canvas>
@@ -20,7 +30,7 @@
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-[#050505] z-0"></div>
         <!-- 背景動画の代わりに暗い焚き火画像 -->
         <div class="absolute inset-0 z-[-1] opacity-60">
-            <img src="../../assets/images/thumbnails/lp-bonfire-gear.jpg" class="w-full h-full object-cover" alt="焚き火">
+            <img src="../../assets/generated/lp-bonfire-gear-01.svg" class="w-full h-full object-cover" alt="焚き火">
         </div>
 
         <div class="text-center space-y-8 relative z-10 px-4">
@@ -61,7 +71,7 @@
         <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div class="fade-in relative group heated-iron">
                 <div class="aspect-square bg-neutral-900 relative overflow-hidden rounded-sm">
-                    <img src="../../assets/images/thumbnails/lp-bonfire-gear.jpg" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700 mix-blend-lighten" alt="焚き火台ディテール">
+                    <img src="../../assets/generated/lp-bonfire-gear-02.svg" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700 mix-blend-lighten" alt="焚き火台ディテール">
                     <div class="absolute inset-0 bg-gradient-to-t from-orange-900/20 to-transparent mix-blend-overlay"></div>
                 </div>
                 <!-- スペック -->
@@ -104,13 +114,13 @@
     <section class="py-32 px-6 relative z-20">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
             <div class="aspect-[3/4] fade-in relative overflow-hidden group">
-                <img src="../../assets/images/thumbnails/lp-bonfire-gear.jpg" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0">
+                <img src="../../assets/generated/lp-bonfire-gear-03.svg" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0">
             </div>
             <div class="aspect-[3/4] fade-in delay-100 relative overflow-hidden group md:mt-12">
-                <img src="../../assets/images/thumbnails/lp-bonfire-gear.jpg" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0">
+                <img src="../../assets/generated/lp-bonfire-gear-04.svg" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0">
             </div>
             <div class="aspect-[3/4] fade-in delay-200 relative overflow-hidden group">
-                <img src="../../assets/images/thumbnails/lp-bonfire-gear.jpg" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0">
+                <img src="../../assets/generated/lp-bonfire-gear-05.svg" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0">
             </div>
         </div>
     </section>
