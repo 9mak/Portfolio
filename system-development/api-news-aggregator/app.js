@@ -1,22 +1,7 @@
-const API_KEY_STORAGE = 'news-aggregator-api-key';
 const BOOKMARKS_STORAGE = 'news-aggregator-bookmarks';
 
 let articles = [];
 let bookmarks = JSON.parse(localStorage.getItem(BOOKMARKS_STORAGE)) || [];
-
-// 初期化
-document.getElementById('api-key').value = localStorage.getItem(API_KEY_STORAGE) || '';
-
-// APIキー保存
-document.getElementById('save-key').addEventListener('click', () => {
-    const apiKey = document.getElementById('api-key').value;
-    if (!apiKey) {
-        alert('APIキーを入力してください');
-        return;
-    }
-    localStorage.setItem(API_KEY_STORAGE, apiKey);
-    alert('APIキーを保存しました');
-});
 
 // タブ切り替え
 document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -39,46 +24,19 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 
 // ニュース取得
 async function fetchNews() {
-    const apiKey = document.getElementById('api-key').value;
     const category = document.getElementById('category').value;
     const search = document.getElementById('search').value;
 
-    // デモ用のサンプルデータ（APIキーがない場合）
-    if (!apiKey) {
-        articles = generateSampleNews();
-        renderNews(articles);
-        return;
-    }
-
-    try {
-        let url = `https://newsapi.org/v2/top-headlines?country=jp&apiKey=${apiKey}`;
-
-        if (category) {
-            url += `&category=${category}`;
-        }
-
-        if (search) {
-            url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(search)}&language=ja&apiKey=${apiKey}`;
-        }
-
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (data.status === 'ok') {
-            articles = data.articles;
-            renderNews(articles);
-        } else {
-            alert('ニュースの取得に失敗しました: ' + data.message);
-        }
-    } catch (error) {
-        alert('エラーが発生しました: ' + error.message);
-        // フォールバック: サンプルデータ
-        articles = generateSampleNews();
-        renderNews(articles);
-    }
+    articles = generateSampleNews().filter(article => {
+        const matchesCategory = !category || article.category === category;
+        const query = search.trim().toLowerCase();
+        const matchesSearch = !query || `${article.title} ${article.description}`.toLowerCase().includes(query);
+        return matchesCategory && matchesSearch;
+    });
+    renderNews(articles);
 }
 
-// サンプルニュース生成（APIキーがない場合のデモ用）
+// サンプルニュース生成（公開デモ用）
 function generateSampleNews() {
     return [
         {
@@ -86,6 +44,7 @@ function generateSampleNews() {
             description: '人工知能技術が急速に発展し、様々な産業で活用が進んでいます。',
             url: '#',
             urlToImage: null,
+            category: 'technology',
             source: { name: 'テック情報' },
             publishedAt: new Date().toISOString()
         },
@@ -94,6 +53,7 @@ function generateSampleNews() {
             description: '2026年第1四半期のスタートアップ投資額が記録的な水準に達しました。',
             url: '#',
             urlToImage: null,
+            category: 'business',
             source: { name: 'ビジネスニュース' },
             publishedAt: new Date().toISOString()
         },
@@ -102,6 +62,7 @@ function generateSampleNews() {
             description: 'グリーンテックへの投資が増加傾向にあります。',
             url: '#',
             urlToImage: null,
+            category: 'science',
             source: { name: 'エコニュース' },
             publishedAt: new Date().toISOString()
         }

@@ -14,10 +14,7 @@
         </header>
 
         <div class="card api-card">
-            <div class="api-settings">
-                <input type="password" id="api-key" placeholder="News API キーを入力（オプション）">
-                <button class="btn btn-secondary" id="save-key">保存</button>
-            </div>
+            <p>公開デモでは外部APIキーを扱わず、サンプルニュースで検索・カテゴリ・ブックマーク操作を確認できます。</p>
         </div>
 
         <div class="controls">
@@ -47,7 +44,11 @@
             <div id="bookmarks-list" class="news-grid"></div>
         </div>
     </div>
-
-    <script src="app.js"></script>
+<section class="portfolio-context" style="max-width: 880px; margin: 32px auto; padding: 20px; border: 1px solid currentColor; background: rgba(255,255,255,.72); line-height: 1.8; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif;">
+  <h2 style="font-size: 1rem; margin: 0 0 10px;">提案用の見せ方</h2>
+  <p style="margin: 0 0 8px;">複数カテゴリのニュースを検索、保存、絞り込みできるダッシュボードです。情報収集業務や業界ウォッチの効率化デモとして使えます。</p>
+  <p style="margin: 0;">公開版はサンプルデータで体験でき、実運用ではRSSや社内メモとの連携に拡張できます。</p>
+</section>
+<script src="app.js"></script>
 </body>
 </html>

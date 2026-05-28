@@ -14,15 +14,8 @@
         </header>
 
         <div class="card">
-            <h2>API設定</h2>
-            <div class="api-settings">
-                <select id="provider">
-                    <option value="openai">OpenAI GPT-4</option>
-                    <option value="claude">Anthropic Claude</option>
-                </select>
-                <input type="password" id="api-key" placeholder="APIキーを入力">
-                <button class="btn btn-secondary" id="save-key">保存</button>
-            </div>
+            <h2>デモモード</h2>
+            <p>APIキーを入力せず、ブラウザ内の簡易ロジックで分析結果を表示します。</p>
         </div>
 
         <div class="card">
@@ -57,7 +50,11 @@
             </div>
         </div>
     </div>
-
-    <script src="app.js"></script>
+<section class="portfolio-context" style="max-width: 880px; margin: 32px auto; padding: 20px; border: 1px solid currentColor; background: rgba(255,255,255,.72); line-height: 1.8; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif;">
+  <h2 style="font-size: 1rem; margin: 0 0 10px;">提案用の見せ方</h2>
+  <p style="margin: 0 0 8px;">文章の感情、キーワード、読みやすさをまとめて評価し、改善提案まで返す構成です。問い合わせ文、LP文、商品説明の改善提案サービスに転用できます。</p>
+  <p style="margin: 0;">APIキーなしでも診断サンプルを見せ、実運用では社内文書を保存しないブラウザ完結型にできます。</p>
+</section>
+<script src="app.js"></script>
 </body>
 </html>

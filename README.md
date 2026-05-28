@@ -89,9 +89,9 @@
 #### AI連携ツール (AI) - 3件
 | プロジェクト | 概要 | 技術 | デモ |
 |------------|------|------|------|
-| AI文章作成アシスタント | 複数テンプレート対応の文章生成ツール（ブログ、商品説明、SNS投稿など） | OpenAI API, Fetch API | [Demo](https://9mak.github.io/Portfolio/system-development/ai-writing-assistant/) |
-| テキスト分析ツール | 感情分析、キーワード抽出、可読性評価、改善提案 | OpenAI/Claude API | [Demo](https://9mak.github.io/Portfolio/system-development/ai-text-analyzer/) |
-| 写真で一言ジェネレーター | 画像から面白キャプション生成。いいね機能、ギャラリー表示 | OpenAI Vision/Claude Vision API | [Demo](https://9mak.github.io/Portfolio/system-development/ai-photo-comedian/) |
+| AI文章作成アシスタント | 複数テンプレート対応の文章生成デモ（ブログ、商品説明、SNS投稿など） | Vanilla JavaScript, Demo Logic | [Demo](https://9mak.github.io/Portfolio/system-development/ai-writing-assistant/) |
+| テキスト分析ツール | 感情分析、キーワード抽出、可読性評価、改善提案のデモ | Vanilla JavaScript, Text Analysis Demo | [Demo](https://9mak.github.io/Portfolio/system-development/ai-text-analyzer/) |
+| 写真で一言ジェネレーター | 画像から面白キャプションを作るUIデモ。いいね機能、ギャラリー表示 | Vanilla JavaScript, Image UI Demo | [Demo](https://9mak.github.io/Portfolio/system-development/ai-photo-comedian/) |
 
 #### 外部API連携 (API) - 3件
 | プロジェクト | 概要 | 技術 | デモ |

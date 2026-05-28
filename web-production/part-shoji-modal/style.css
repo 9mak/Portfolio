@@ -1,6 +1,6 @@
 body {
     background-color: #333;
-    background-image: url('https://images.unsplash.com/photo-1623860882329-373955639912?q=80&w=1000&auto=format&fit=crop'); /* 和風庭園など */
+    background-image: url('../../assets/images/thumbnails/part-shoji-modal.jpg'); /* 和風庭園など */
     background-size: cover;
     height: 100vh;
     display: flex;
