@@ -1,8 +1,7 @@
 class WeatherDashboard {
     constructor() {
-        // 無料のOpenWeatherMap APIを使用（制限あり）
-        // 実際の使用時はユーザー自身のAPIキーを取得してください
-        this.apiKey = 'demo'; // デモ用（実際には機能しません）
+        // 公開版は外部APIキーを使わないデモモードです。
+        this.apiKey = 'demo';
         this.baseUrl = 'https://api.openweathermap.org/data/2.5';
         this.favorites = JSON.parse(localStorage.getItem('weather_favorites') || '[]');
         this.currentCity = null;

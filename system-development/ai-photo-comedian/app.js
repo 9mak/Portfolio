@@ -1,31 +1,9 @@
-const API_KEY_STORAGE = 'photo-comedian-api-key';
-const PROVIDER_STORAGE = 'photo-comedian-provider';
 const GALLERY_STORAGE = 'photo-comedian-gallery';
 
 let currentImage = null;
 let selectedStyle = 'boke';
-let gallery = JSON.parse(localStorage.getItem(GALLERY_STORAGE)) || [];
+let gallery = [];
 
-// 初期化
-document.getElementById('api-key').value = localStorage.getItem(API_KEY_STORAGE) || '';
-document.getElementById('provider').value = localStorage.getItem(PROVIDER_STORAGE) || 'openai';
-
-// APIキー保存
-document.getElementById('save-key').addEventListener('click', () => {
-    const apiKey = document.getElementById('api-key').value;
-    const provider = document.getElementById('provider').value;
-
-    if (!apiKey) {
-        alert('APIキーを入力してください');
-        return;
-    }
-
-    localStorage.setItem(API_KEY_STORAGE, apiKey);
-    localStorage.setItem(PROVIDER_STORAGE, provider);
-    alert('APIキーを保存しました');
-});
-
-// ファイルアップロード
 const fileInput = document.getElementById('file-input');
 const uploadArea = document.getElementById('upload-area');
 const previewImage = document.getElementById('preview-image');
@@ -70,7 +48,6 @@ function handleImage(file) {
     reader.readAsDataURL(file);
 }
 
-// スタイル選択
 document.querySelectorAll('.style-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.style-btn').forEach(b => b.classList.remove('active'));
@@ -79,16 +56,7 @@ document.querySelectorAll('.style-btn').forEach(btn => {
     });
 });
 
-// 一言生成
-document.getElementById('generate-btn').addEventListener('click', async () => {
-    const apiKey = document.getElementById('api-key').value;
-    const provider = document.getElementById('provider').value;
-
-    if (!apiKey) {
-        alert('APIキーを設定してください');
-        return;
-    }
-
+document.getElementById('generate-btn').addEventListener('click', () => {
     if (!currentImage) {
         alert('画像をアップロードしてください');
         return;
@@ -98,115 +66,23 @@ document.getElementById('generate-btn').addEventListener('click', async () => {
     btn.textContent = '生成中...';
     btn.disabled = true;
 
-    try {
-        const captions = await generateCaptions(currentImage, selectedStyle, apiKey, provider);
+    setTimeout(() => {
+        const captions = generateCaptions(selectedStyle);
         displayCaptions(captions);
         document.getElementById('results').style.display = 'block';
-    } catch (error) {
-        alert('生成に失敗しました: ' + error.message);
-    } finally {
         btn.textContent = '一言生成';
         btn.disabled = false;
-    }
+    }, 350);
 });
 
-async function generateCaptions(imageBase64, style, apiKey, provider) {
-    const stylePrompts = {
-        boke: 'この画像を見て、IPPONグランプリの「写真で一言」のような面白いボケを5つ考えてください。シュールで予想外の発想を。',
-        tsukkomi: 'この画像を見て、写真の矛盾や面白いポイントにツッコミを入れてください。5つのパターンを。',
-        ogiri: 'この画像をお題として、大喜利の秀逸な回答を5つ考えてください。',
-        free: 'この画像を見て、自由に面白い一言を5つ考えてください。ユーモアと創造性を重視して。'
+function generateCaptions(style) {
+    const samples = {
+        boke: ['会議に遅れた未来の自分', '背景だけ先に帰った写真', '説明書を読まなかった世界線', '静止画なのに残業している', '主役より余白が緊張している'],
+        tsukkomi: ['いや、そこが一番目立つんかい', '情報量の置き場所まちがえてる', 'その余白、家賃払ってる？', '真剣な顔で何してんねん', '背景のほうが事情知ってそう'],
+        ogiri: ['新商品の名前を会議で決め損ねた瞬間', '締切5分前のデザイナーの脳内', 'レビューコメント「もう少しだけ派手に」', 'AIに任せたら妙に礼儀正しかった', '採用面接で趣味を聞かれた時の答え'],
+        free: ['ここだけ急にプレゼン資料', '思ったよりプロジェクト感が出た', '余白の圧が強い', 'たぶん前職はバナー', '一言より状況説明が欲しい']
     };
-
-    const prompt = `${stylePrompts[style] || stylePrompts.free}
-
-各一言は30文字以内で。JSON形式で返してください:
-{
-  "captions": ["一言1", "一言2", "一言3", "一言4", "一言5"]
-}`;
-
-    if (provider === 'openai') {
-        return await generateWithOpenAI(imageBase64, prompt, apiKey);
-    } else if (provider === 'claude') {
-        return await generateWithClaude(imageBase64, prompt, apiKey);
-    }
-}
-
-async function generateWithOpenAI(imageBase64, prompt, apiKey) {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-            model: 'gpt-4-vision-preview',
-            messages: [{
-                role: 'user',
-                content: [
-                    { type: 'text', text: prompt },
-                    { type: 'image_url', image_url: { url: imageBase64 } }
-                ]
-            }],
-            max_tokens: 500
-        })
-    });
-
-    if (!response.ok) {
-        throw new Error('API呼び出しに失敗しました');
-    }
-
-    const data = await response.json();
-    const content = data.choices[0].message.content;
-    const jsonMatch = content.match(/\{[\s\S]*\}/);
-    const result = jsonMatch ? JSON.parse(jsonMatch[0]) : JSON.parse(content);
-    return result.captions || [];
-}
-
-async function generateWithClaude(imageBase64, prompt, apiKey) {
-    // Base64からメディアタイプとデータを分離
-    const matches = imageBase64.match(/^data:(.+);base64,(.+)$/);
-    if (!matches) throw new Error('無効な画像形式');
-
-    const mediaType = matches[1];
-    const base64Data = matches[2];
-
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': apiKey,
-            'anthropic-version': '2023-06-01'
-        },
-        body: JSON.stringify({
-            model: 'claude-3-5-sonnet-20241022',
-            max_tokens: 1024,
-            messages: [{
-                role: 'user',
-                content: [
-                    {
-                        type: 'image',
-                        source: {
-                            type: 'base64',
-                            media_type: mediaType,
-                            data: base64Data
-                        }
-                    },
-                    { type: 'text', text: prompt }
-                ]
-            }]
-        })
-    });
-
-    if (!response.ok) {
-        throw new Error('API呼び出しに失敗しました');
-    }
-
-    const data = await response.json();
-    const content = data.content[0].text;
-    const jsonMatch = content.match(/\{[\s\S]*\}/);
-    const result = jsonMatch ? JSON.parse(jsonMatch[0]) : JSON.parse(content);
-    return result.captions || [];
+    return samples[style] || samples.free;
 }
 
 function displayCaptions(captions) {
@@ -238,9 +114,8 @@ function saveToGallery(caption) {
     };
 
     gallery.unshift(item);
-    localStorage.setItem(GALLERY_STORAGE, JSON.stringify(gallery));
     renderGallery();
-    alert('ギャラリーに保存しました！');
+    alert('ギャラリーに保存しました。このデモではブラウザ保存せず、ページを閉じると消えます。');
 }
 
 function renderGallery() {
@@ -263,9 +138,7 @@ function renderGallery() {
 document.getElementById('clear-gallery').addEventListener('click', () => {
     if (!confirm('ギャラリーを全て削除しますか？')) return;
     gallery = [];
-    localStorage.removeItem(GALLERY_STORAGE);
     renderGallery();
 });
 
-// 初期表示
 renderGallery();

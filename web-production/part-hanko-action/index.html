@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Hanko Action</title>
+    <meta name="description" content="Digital Hanko Actionの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="Digital Hanko Action">
+    <meta property="og:description" content="Digital Hanko Actionの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body>
+<body id="top">
 
     <div class="paper-doc">
         <h2 class="text-xl font-bold mb-4 border-b pb-2">稟議書</h2>
@@ -36,7 +46,11 @@
             </div>
         </div>
     </div>
-
-    <script src="script.js"></script>
+<section class="portfolio-context" style="max-width: 880px; margin: 32px auto; padding: 20px; border: 1px solid currentColor; background: rgba(255,255,255,.72); line-height: 1.8; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif;">
+  <h2 style="font-size: 1rem; margin: 0 0 10px;">承認・完了を印象づける捺印UI</h2>
+  <p style="margin: 0 0 8px;">クリックで印影が押されるマイクロインタラクションです。申請、見積承認、フォーム送信完了などの状態変化を直感的に伝えます。</p>
+  <p style="margin: 0;">押印者名、日付、承認ステータスを差し替え、業務アプリの確認画面や電子稟議デモに展開できます。</p>
+</section>
+<script src="script.js"></script>
 </body>
 </html>

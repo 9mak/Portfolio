@@ -5,13 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>純喫茶 琥珀 | 雨と珈琲</title>
+    <meta name="description" content="純喫茶 琥珀の静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="純喫茶 琥珀">
+    <meta property="og:description" content="純喫茶 琥珀の静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&family=Kaisei+Tokumin:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
 
-<body>
+<body id="top">
 
     <div class="neon-bg"></div>
     <canvas id="rain-canvas"></canvas>
@@ -55,7 +65,7 @@
 
                 <div class="menu-card p-6 rounded-lg flex gap-6">
                     <div class="w-20 h-20 rounded-full overflow-hidden border border-white/10 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=400&auto=format&fit=crop"
+                        <img src="../../assets/generated/lp-midnight-cafe-01.svg"
                             class="w-full h-full object-cover opacity-80" alt="カクテル">
                     </div>
                     <div>
@@ -71,7 +81,7 @@
 
                 <div class="menu-card p-6 rounded-lg flex gap-6">
                     <div class="w-20 h-20 rounded-full overflow-hidden border border-white/10 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=400&auto=format&fit=crop"
+                        <img src="../../assets/generated/lp-midnight-cafe-02.svg"
                             class="w-full h-full object-cover opacity-80" alt="バーガー">
                     </div>
                     <div>
@@ -87,7 +97,7 @@
 
                 <div class="menu-card p-6 rounded-lg flex gap-6">
                     <div class="w-20 h-20 rounded-full overflow-hidden border border-white/10 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?q=80&w=400&auto=format&fit=crop"
+                        <img src="../../assets/generated/lp-midnight-cafe-03.svg"
                             class="w-full h-full object-cover opacity-80" alt="珈琲ゼリー">
                     </div>
                     <div>

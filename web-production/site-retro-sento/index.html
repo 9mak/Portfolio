@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>富士見湯 | 昭和レトロ銭湯</title>
+    <meta name="description" content="富士見湯の静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="富士見湯">
+    <meta property="og:description" content="富士見湯の静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body class="tile-bg">
+<body id="top" class="tile-bg">
 
     <!-- 湯気オーバーレイ（スクロールで晴れる） -->
     <div class="steam-overlay" id="steam"></div>
@@ -37,7 +47,7 @@
             </p>
             
             <!-- ボタン -->
-            <a href="#" class="mt-8 inline-block bg-[#fdd835] text-[#1a237e] font-bold px-8 py-4 rounded-full border-2 border-[#1a237e] hover:translate-y-1 transition-transform shadow-[4px_4px_0px_#1a237e]">
+            <a href="#hours" class="mt-8 inline-block bg-[#fdd835] text-[#1a237e] font-bold px-8 py-4 rounded-full border-2 border-[#1a237e] hover:translate-y-1 transition-transform shadow-[4px_4px_0px_#1a237e]">
                 営業案内を見る
             </a>
         </div>
@@ -49,11 +59,11 @@
     </header>
 
     <!-- Content -->
-    <section class="py-24 px-6 bg-[#fff9c4] relative">
+    <section id="hours" class="py-24 px-6 bg-[#fff9c4] relative">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
             <div class="w-full md:w-1/2 relative h-64 bg-blue-200 rounded-lg overflow-hidden border-4 border-white shadow-lg">
                 <!-- 富士山のペンキ絵（プレースホルダー） -->
-                <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
+                <img src="../../assets/generated/site-retro-sento-01.svg" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-white/50 to-transparent"></div>
                 <!-- 波紋 -->
                 <div class="ripple" style="top: 50%; left: 50%;"></div>

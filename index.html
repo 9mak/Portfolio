@@ -390,13 +390,19 @@
       .hero-right { writing-mode: horizontal-tb; }
     }
   </style>
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body>
+<body id="top">
 
 <!-- HEADER -->
 <header id="site-header">
   <div class="header-inner">
-    <a href="#" class="logo">9mak <span>Portfolio</span></a>
+    <a href="#top" class="logo">9mak <span>Portfolio</span></a>
     <nav>
       <a href="#web-production">Web制作</a>
       <a href="#system-development">システム開発</a>
@@ -579,9 +585,9 @@ const sections = [
       {
         name: 'AI連携ツール', color: '#0891B2', label: 'AI',
         cards: [
-          { cat:'AI', title:'AI文章作成アシスタント', desc:'複数テンプレート対応の文章生成ツール。ブログ・商品説明・SNS投稿など。', tags:['OpenAI API','GPT-4'], demo:'./system-development/ai-writing-assistant/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/ai-writing-assistant', thumb:'./assets/images/thumbnails/ai-writing-assistant.jpg' },
-          { cat:'AI', title:'テキスト分析ツール', desc:'感情分析、キーワード抽出、可読性評価、改善提案。', tags:['OpenAI API','Claude API'], demo:'./system-development/ai-text-analyzer/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/ai-text-analyzer', thumb:'./assets/images/thumbnails/ai-text-analyzer.jpg' },
-          { cat:'AI', title:'写真で一言ジェネレーター', desc:'画像から面白キャプション生成。いいね機能、ギャラリー表示。', tags:['Vision API','Image Analysis'], demo:'./system-development/ai-photo-comedian/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/ai-photo-comedian', thumb:'./assets/images/thumbnails/ai-photo-comedian.jpg' },
+          { cat:'AI', title:'AI文章作成アシスタント', desc:'複数テンプレート対応の文章生成デモ。ブログ・商品説明・SNS投稿など。', tags:['Demo Logic','Writing UI'], demo:'./system-development/ai-writing-assistant/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/ai-writing-assistant', thumb:'./assets/images/thumbnails/ai-writing-assistant.jpg' },
+          { cat:'AI', title:'テキスト分析ツール', desc:'感情分析、キーワード抽出、可読性評価、改善提案のデモ。', tags:['Demo Analysis','Text UX'], demo:'./system-development/ai-text-analyzer/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/ai-text-analyzer', thumb:'./assets/images/thumbnails/ai-text-analyzer.jpg' },
+          { cat:'AI', title:'写真で一言ジェネレーター', desc:'画像から面白キャプションを作るUIデモ。いいね機能、ギャラリー表示。', tags:['Demo Vision','Image UX'], demo:'./system-development/ai-photo-comedian/index.html', code:'https://github.com/9mak/Portfolio/tree/main/system-development/ai-photo-comedian', thumb:'./assets/images/thumbnails/ai-photo-comedian.jpg' },
         ]
       },
       {
@@ -617,7 +623,7 @@ function renderSections() {
         html += `<div class="card-wrap" data-category="${c.cat}">
           <article class="card" style="animation-delay:${i * 80}ms">
             <div class="card-thumb">
-              <img src="${c.thumb}" alt="${c.title}" loading="lazy">
+              <img src="${c.thumb}" alt="${c.title}">
               <span class="card-badge" style="background:${cat.color}">${c.cat}</span>
             </div>
             <div class="card-body">

@@ -5,11 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cassette Loader</title>
+    <meta name="description" content="Cassette Loaderの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="Cassette Loader">
+    <meta property="og:description" content="Cassette Loaderの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
 
-<body>
+<body id="top">
 
     <div class="cassette-body">
         <div class="cassette-label">
@@ -42,7 +52,11 @@
             });
         }, 3000); // 3秒後に完了
     </script>
-
+<section class="portfolio-context" style="max-width: 880px; margin: 32px auto; padding: 20px; border: 1px solid currentColor; background: rgba(255,255,255,.72); line-height: 1.8; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif;">
+  <h2 style="font-size: 1rem; margin: 0 0 10px;">レトロ演出のローディング部品</h2>
+  <p style="margin: 0 0 8px;">ブランドサイトやメディアLPで、待ち時間を世界観の一部として見せるためのUIパーツです。完了状態までの遷移を含めて実装しています。</p>
+  <p style="margin: 0;">色、ラベル、完了秒数を差し替えるだけで、音楽、喫茶店、昭和レトロ系のサイトに転用できます。読み込みが長い予約フォームや診断ツールにも合わせやすい構成です。</p>
+</section>
 </body>
 
 </html>

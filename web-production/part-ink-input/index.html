@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ink Input Component</title>
+    <meta name="description" content="Ink Input Componentの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="Ink Input Component">
+    <meta property="og:description" content="Ink Input Componentの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body>
+<body id="top">
 
     <!-- SVG Filters -->
     <svg style="display: none;">
@@ -39,6 +49,10 @@
             <p class="mt-4 text-xs text-gray-400 font-serif text-right">※万年筆 インク色：ミッドナイトブルー</p>
         </div>
     </div>
-
+<section class="portfolio-context" style="max-width: 880px; margin: 32px auto; padding: 20px; border: 1px solid currentColor; background: rgba(255,255,255,.72); line-height: 1.8; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif;">
+  <h2 style="font-size: 1rem; margin: 0 0 10px;">和風フォーム向けインク入力欄</h2>
+  <p style="margin: 0 0 8px;">入力時のにじみ表現で、予約フォームや問い合わせフォームに手書き感を加えるUIパーツです。通常のinput要素を使うため導入しやすい構成です。</p>
+  <p style="margin: 0;">エラー時の赤いにじみ、送信完了時の筆跡アニメーション、複数項目フォームへの展開が可能です。</p>
+</section>
 </body>
 </html>

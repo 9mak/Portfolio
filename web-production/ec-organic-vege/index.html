@@ -4,12 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>訳あり野菜直売所「泥付き」</title>
+    <meta name="description" content="訳あり野菜直売所「泥付き」の静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="訳あり野菜直売所「泥付き」">
+    <meta property="og:description" content="訳あり野菜直売所「泥付き」の静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Yomogi&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body class="overflow-x-hidden">
+<body id="top" class="overflow-x-hidden">
 
     <!-- Header -->
     <header class="p-6 text-center border-b-4 border-dashed border-[#8d6e63]/30 bg-[#fbf8f1]">
@@ -33,7 +43,7 @@
             
             <!-- Item 1 -->
             <div class="vege-card transform rotate-2">
-                <img src="https://images.unsplash.com/photo-1592500823293-9c8df1b5f259?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover sepia-[0.2]">
+                <img src="../../assets/generated/ec-organic-vege-01.svg" class="w-full h-64 object-cover sepia-[0.2]">
                 <h3 class="font-bold text-xl mt-4 hand-font">曲がったキュウリ (5kg)</h3>
                 <p class="text-xs mt-2 text-gray-500">
                     市場には出せないけど、漬物にしたら最高だよ。<br>
@@ -46,7 +56,7 @@
 
             <!-- Item 2 -->
             <div class="vege-card transform -rotate-1 mt-0 md:mt-12">
-                <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover sepia-[0.2]">
+                <img src="../../assets/generated/ec-organic-vege-02.svg" class="w-full h-64 object-cover sepia-[0.2]">
                 <h3 class="font-bold text-xl mt-4 hand-font">泥付き人参 (詰め放題)</h3>
                 <p class="text-xs mt-2 text-gray-500">
                     洗ってないから日持ちするよ。<br>
@@ -59,7 +69,7 @@
 
             <!-- Item 3 -->
             <div class="vege-card transform rotate-3">
-                <img src="https://images.unsplash.com/photo-1528641662-841f4e138a49?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover sepia-[0.2]">
+                <img src="../../assets/generated/ec-organic-vege-03.svg" class="w-full h-64 object-cover sepia-[0.2]">
                 <h3 class="font-bold text-xl mt-4 hand-font">ふぞろいトマト箱</h3>
                 <p class="text-xs mt-2 text-gray-500">
                     大きさバラバラ。<br>
@@ -72,7 +82,7 @@
 
             <!-- Item 4 -->
             <div class="vege-card transform -rotate-2 md:mt-[-40px]">
-                <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover sepia-[0.2]">
+                <img src="../../assets/generated/ec-organic-vege-04.svg" class="w-full h-64 object-cover sepia-[0.2]">
                 <h3 class="font-bold text-xl mt-4 hand-font">双子のじゃがいも</h3>
                 <p class="text-xs mt-2 text-gray-500">
                     くっついちゃったレアな芋。<br>
@@ -85,7 +95,7 @@
 
             <!-- Item 5 -->
             <div class="vege-card transform rotate-1 mt-8">
-                <img src="https://images.unsplash.com/photo-1629831519349-f538d3864016?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover sepia-[0.2]">
+                <img src="../../assets/generated/ec-organic-vege-05.svg" class="w-full h-64 object-cover sepia-[0.2]">
                 <h3 class="font-bold text-xl mt-4 hand-font">巨大かぼちゃ</h3>
                 <p class="text-xs mt-2 text-gray-500">
                     大きすぎてスーパーの棚に入らなかった。<br>

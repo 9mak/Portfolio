@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub Profile Viewer - GitHub統計ビューアー</title>
+    <meta name="description" content="GitHub Profile Viewer - GitHub統計ビューアーの静的デモページ。主要機能、入力操作、結果表示まで確認できるシステム開発実績です。">
+    <meta property="og:title" content="GitHub Profile Viewer - GitHub統計ビューアー">
+    <meta property="og:description" content="GitHub Profile Viewer - GitHub統計ビューアーの静的デモページ。主要機能、入力操作、結果表示まで確認できるシステム開発実績です。">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body>
+<body id="top">
     <div class="container">
         <header>
             <h1>🐙 GitHub Profile Viewer</h1>
@@ -22,7 +32,7 @@
         <div id="profile-section" style="display: none;">
             <div class="profile-card">
                 <div class="profile-header">
-                    <img id="avatar" src="" alt="Avatar">
+                    <img id="avatar" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 320 200%22%3E%3Crect width=%22320%22 height=%22200%22 fill=%22%23eef2f7%22/%3E%3Cpath d=%22M62 140h196L204 82l-38 42-24-28z%22 fill=%22%2394a3b8%22/%3E%3Ccircle cx=%22118%22 cy=%2272%22 r=%2222%22 fill=%22%23cbd5e1%22/%3E%3C/svg%3E" alt="Avatar">
                     <div class="profile-info">
                         <h2 id="name"></h2>
                         <p id="username"></p>
@@ -75,7 +85,11 @@
             </div>
         </div>
     </div>
-
-    <script src="app.js"></script>
+<section class="portfolio-context" style="max-width: 880px; margin: 32px auto; padding: 20px; border: 1px solid currentColor; background: rgba(255,255,255,.72); line-height: 1.8; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif;">
+  <h2 style="font-size: 1rem; margin: 0 0 10px;">提案用の見せ方</h2>
+  <p style="margin: 0 0 8px;">GitHubユーザーの公開情報を取得し、活動量、言語傾向、リポジトリ一覧を可視化するプロフィール分析ツールです。</p>
+  <p style="margin: 0;">採用資料、開発実績ページ、OSS活動の見える化として、表示項目やグラフを追加できます。</p>
+</section>
+<script src="app.js"></script>
 </body>
 </html>

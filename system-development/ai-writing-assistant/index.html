@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI文章作成アシスタント | AI Writing Assistant</title>
+    <meta name="description" content="AI文章作成アシスタントの静的デモページ。主要機能、入力操作、結果表示まで確認できるシステム開発実績です。">
+    <meta property="og:title" content="AI文章作成アシスタント">
+    <meta property="og:description" content="AI文章作成アシスタントの静的デモページ。主要機能、入力操作、結果表示まで確認できるシステム開発実績です。">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body>
+<body id="top">
     <div class="app">
         <header class="header">
             <h1>✍️ AI文章作成アシスタント</h1>
@@ -14,40 +24,14 @@
         </header>
 
         <main class="container">
-            <section class="api-key-section" id="apiKeySection">
-                <div class="api-key-card">
-                    <h2>🔑 APIキー設定</h2>
-                    <p class="info-text">
-                        OpenAI APIキーを入力してください。<br>
-                        キーは安全にブラウザのLocalStorageに保存されます（サーバーには送信されません）
-                    </p>
-                    <div class="api-key-form">
-                        <input
-                            type="password"
-                            id="apiKeyInput"
-                            placeholder="sk-..."
-                            class="api-key-input"
-                        >
-                        <button id="saveApiKey" class="btn btn-primary">
-                            保存
-                        </button>
-                    </div>
-                    <p class="help-text">
-                        APIキーは <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI Platform</a> で取得できます
-                    </p>
-                </div>
-            </section>
-
-            <section class="main-section" id="mainSection" style="display: none;">
+            <section class="main-section" id="mainSection">
                 <div class="settings-bar">
-                    <button id="changeApiKey" class="btn-secondary">
-                        🔑 APIキー変更
-                    </button>
+                    <span class="btn-secondary">🔒 APIキー不要のデモ</span>
                     <div class="model-select">
                         <label for="modelSelect">モデル:</label>
                         <select id="modelSelect" class="select-field">
-                            <option value="gpt-4">GPT-4 (高品質)</option>
-                            <option value="gpt-3.5-turbo" selected>GPT-3.5 Turbo (高速・低コスト)</option>
+                            <option value="demo-balanced" selected>デモ生成 (標準)</option>
+                            <option value="demo-rich">デモ生成 (詳しめ)</option>
                         </select>
                     </div>
                 </div>

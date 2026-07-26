@@ -1,7 +1,6 @@
 class AIWritingAssistant {
     constructor() {
-        this.apiKey = localStorage.getItem('openai_api_key');
-        this.history = JSON.parse(localStorage.getItem('writing_history') || '[]');
+        this.history = [];
         this.currentTemplate = null;
         this.templates = {
             blog: {
@@ -33,22 +32,11 @@ class AIWritingAssistant {
     }
 
     init() {
-        if (this.apiKey) {
-            this.showMainSection();
-        }
         this.setupEventListeners();
         this.renderHistory();
     }
 
     setupEventListeners() {
-        document.getElementById('saveApiKey')?.addEventListener('click', () => {
-            this.saveApiKey();
-        });
-
-        document.getElementById('changeApiKey')?.addEventListener('click', () => {
-            this.changeApiKey();
-        });
-
         document.querySelectorAll('.template-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 this.selectTemplate(e.target.dataset.template);
@@ -66,35 +54,6 @@ class AIWritingAssistant {
         document.getElementById('clearHistory')?.addEventListener('click', () => {
             this.clearHistory();
         });
-    }
-
-    saveApiKey() {
-        const apiKey = document.getElementById('apiKeyInput').value.trim();
-        if (!apiKey) {
-            this.showNotification('APIキーを入力してください', 'error');
-            return;
-        }
-
-        if (!apiKey.startsWith('sk-')) {
-            this.showNotification('有効なAPIキーを入力してください', 'error');
-            return;
-        }
-
-        localStorage.setItem('openai_api_key', apiKey);
-        this.apiKey = apiKey;
-        this.showMainSection();
-        this.showNotification('APIキーを保存しました', 'success');
-    }
-
-    changeApiKey() {
-        document.getElementById('apiKeySection').style.display = 'flex';
-        document.getElementById('mainSection').style.display = 'none';
-        document.getElementById('apiKeyInput').value = '';
-    }
-
-    showMainSection() {
-        document.getElementById('apiKeySection').style.display = 'none';
-        document.getElementById('mainSection').style.display = 'block';
     }
 
     selectTemplate(templateKey) {
@@ -141,7 +100,7 @@ class AIWritingAssistant {
         document.getElementById('generateBtn').disabled = true;
 
         try {
-            const response = await this.callOpenAI(prompt, model);
+            const response = this.generateDemoText(template, inputText, toneMap[tone], lengthMap[length], model);
             this.displayResult(response);
             this.addToHistory(template.name, inputText, response);
             this.showNotification('文章を生成しました', 'success');
@@ -154,37 +113,12 @@ class AIWritingAssistant {
         }
     }
 
-    async callOpenAI(prompt, model) {
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${this.apiKey}`
-            },
-            body: JSON.stringify({
-                model: model,
-                messages: [
-                    {
-                        role: 'system',
-                        content: 'あなたは優秀なライティングアシスタントです。ユーザーの要望に応じて、高品質な文章を作成してください。'
-                    },
-                    {
-                        role: 'user',
-                        content: prompt
-                    }
-                ],
-                temperature: 0.7,
-                max_tokens: 2000
-            })
-        });
+    generateDemoText(template, inputText, tone, length, model) {
+        const extra = model === 'demo-rich'
+            ? '\n\n次の改善では、読み手の不安を先回りして解消するFAQ、具体的な実績、問い合わせ前の流れを追加すると、より行動につながりやすくなります。'
+            : '';
 
-        if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.error?.message || '不明なエラー');
-        }
-
-        const data = await response.json();
-        return data.choices[0].message.content;
+        return `【${template.name}・デモ生成】\n${inputText}について、${tone}表現で${length}文章に整えるなら、まず読み手が最初に知りたい価値を一文目で伝えます。\n\n本文では、課題、解決策、期待できる変化の順に並べると理解しやすくなります。最後に、相談、購入、資料請求など次の行動をひとつに絞って提示します。${extra}`;
     }
 
     displayResult(text) {
@@ -224,7 +158,6 @@ class AIWritingAssistant {
             this.history = this.history.slice(0, 20);
         }
 
-        localStorage.setItem('writing_history', JSON.stringify(this.history));
         this.renderHistory();
     }
 
@@ -266,7 +199,6 @@ class AIWritingAssistant {
     clearHistory() {
         if (confirm('履歴をすべて削除しますか？')) {
             this.history = [];
-            localStorage.removeItem('writing_history');
             this.renderHistory();
             this.showNotification('履歴を削除しました', 'success');
         }

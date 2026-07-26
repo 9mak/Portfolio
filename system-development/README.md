@@ -49,20 +49,20 @@ URL短縮サービス（ローカル版）
 #### 7. ✍️ [ai-writing-assistant](./ai-writing-assistant/)
 AI文章作成アシスタント
 
-**技術スタック**: OpenAI API, Fetch API
-**特徴**: 複数テンプレート、カスタマイズ、履歴管理
+**技術スタック**: Vanilla JavaScript, Demo Logic
+**特徴**: 複数テンプレート、カスタマイズ、APIキー不要のデモ生成
 
 #### 8. 📝 [ai-text-analyzer](./ai-text-analyzer/)
 テキスト分析・インサイトツール
 
-**技術スタック**: OpenAI/Claude API, Fetch API
+**技術スタック**: Vanilla JavaScript, Text Analysis Demo
 **特徴**: 感情分析、キーワード抽出、可読性評価、改善提案
 
 #### 9. 😂 [ai-photo-comedian](./ai-photo-comedian/)
 写真で一言ジェネレーター（IPPONグランプリ風）
 
-**技術スタック**: OpenAI Vision/Claude Vision, Canvas API
-**特徴**: 面白キャプション生成、スタイル選択、いいね機能、ギャラリー
+**技術スタック**: Vanilla JavaScript, Image UI Demo
+**特徴**: サンプルキャプション生成、スタイル選択、いいね機能、一時ギャラリー
 
 ### 外部API統合 (api-)
 
@@ -75,8 +75,8 @@ AI文章作成アシスタント
 #### 11. 📰 [api-news-aggregator](./api-news-aggregator/)
 ニュース集約ダッシュボード
 
-**技術スタック**: News API, Fetch API, LocalStorage
-**特徴**: 複数ソース集約、カテゴリ別表示、ブックマーク、既読管理
+**技術スタック**: Vanilla JavaScript, LocalStorage
+**特徴**: サンプルニュース表示、カテゴリ別表示、ブックマーク、既読管理
 
 #### 12. 🐙 [api-github-profile](./api-github-profile/)
 GitHub統計ビューアー
@@ -99,7 +99,7 @@ Webアプリケーション、PWA（Progressive Web Apps）
 - **tool-url-shortener**: URL短縮サービス
 
 ### AI/機械学習連携 (`ai-`)
-AI APIソリューション（OpenAI、Anthropic Claude、ローカルモデル対応）
+AI連携を想定したUIデモ（公開版はAPIキー不要）
 - **ai-writing-assistant**: AI文章作成
 - **ai-text-analyzer**: テキスト分析・インサイトツール
 - **ai-photo-comedian**: 写真で一言ジェネレーター
@@ -119,8 +119,8 @@ AI APIソリューション（OpenAI、Anthropic Claude、ローカルモデル�
 - **LocalStorage活用**: データ永続化
 
 ### API統合
-- **RESTful API**: OpenAI、OpenWeatherMap
-- **非同期処理**: Fetch API、Promise
+- **公開API利用**: GitHub公開API
+- **デモモード**: 外部キー不要のサンプルデータ表示
 - **エラーハンドリング**: 適切なエラー処理
 
 ### ブラウザAPI
@@ -137,9 +137,9 @@ AI APIソリューション（OpenAI、Anthropic Claude、ローカルモデル�
 - JavaScript (ES6+)
 
 ### API・サービス
-- AI APIs (OpenAI GPT-4/Vision, Anthropic Claude, Google Gemini等)
-- OpenWeatherMap API
+- GitHub API
 - Browser APIs (Canvas, Notification, Geolocation, etc.)
+- APIキー不要の公開デモ設計
 
 ### PWA技術
 - Service Worker
@@ -161,11 +161,11 @@ AI APIソリューション（OpenAI、Anthropic Claude、ローカルモデル�
 | tool-image-optimizer | 4 | Canvas API, File API | ⭐⭐⭐ |
 | tool-csv-processor | 4 | Papa Parse, File API | ⭐⭐⭐ |
 | tool-url-shortener | 4 | QRCode.js, LocalStorage | ⭐⭐ |
-| ai-writing-assistant | 4 | AI API連携 | ⭐⭐⭐ |
-| ai-text-analyzer | 4 | AI API（複数プロバイダー） | ⭐⭐⭐ |
-| ai-photo-comedian | 4 | AI Vision API | ⭐⭐⭐⭐ |
+| ai-writing-assistant | 4 | Demo Logic | ⭐⭐⭐ |
+| ai-text-analyzer | 4 | Text Analysis Demo | ⭐⭐⭐ |
+| ai-photo-comedian | 4 | Image UI Demo | ⭐⭐⭐⭐ |
 | api-weather-dashboard | 4 | REST API | ⭐⭐ |
-| api-news-aggregator | 4 | News API | ⭐⭐ |
+| api-news-aggregator | 4 | Sample Data, LocalStorage | ⭐⭐ |
 | api-github-profile | 4 | GitHub API, Chart.js | ⭐⭐⭐ |
 
 ## 🎨 デザイン原則
@@ -198,18 +198,12 @@ AI APIソリューション（OpenAI、Anthropic Claude、ローカルモデル�
 2. `index.html` をブラウザで開く
 3. すぐに使用開始！
 
-### APIキーが必要なプロジェクト
+### 公開デモのセキュリティ方針
 
-#### ai-writing-assistant
-1. 使用するAI APIプロバイダーでAPIキーを取得
-   - [OpenAI Platform](https://platform.openai.com/api-keys)
-   - [Anthropic Console](https://console.anthropic.com/)
-   - その他対応プロバイダー
-2. アプリ内でAPIキーを設定
-
-#### api-weather-dashboard
-1. [OpenWeatherMap](https://openweathermap.org/api) でAPIキーを取得
-2. `app.js` の `apiKey` を変更
+- 公開版ではAI/APIキーを入力させない
+- APIキーをHTML/JavaScript/READMEに埋め込まない
+- 実API接続が必要な場合はサーバー側にキーを置く
+- 入力内容やアップロード画像を不要に永続保存しない
 
 ## 📱 対応環境
 

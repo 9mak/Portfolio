@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>活版印刷所 文選 BUNSEN | 言葉に、重みを。</title>
+    <meta name="description" content="活版印刷所 文選 BUNSENの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="活版印刷所 文選 BUNSEN">
+    <meta property="og:description" content="活版印刷所 文選 BUNSENの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,8 +34,14 @@
         }
     </script>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body class="font-serif antialiased selection:bg-ink selection:text-paper">
+<body id="top" class="font-serif antialiased selection:bg-ink selection:text-paper">
 
     <!-- SVG Filters (画面には表示しないが参照用) -->
     <svg style="display: none;">
@@ -66,7 +76,7 @@
             </div>
             <h1 class="text-sm tracking-widest font-bold text-ink/80 uppercase">Bunsen Letterpress</h1>
         </div>
-        
+
         <nav class="hidden md:flex gap-8 text-xs tracking-widest font-bold text-ink/60">
             <a href="#about" class="hover:text-ink transition-colors">文選とは</a>
             <a href="#services" class="hover:text-ink transition-colors">制作</a>
@@ -90,7 +100,7 @@
         </div>
 
         <div class="relative z-10 flex flex-col md:flex-row-reverse items-center gap-16 md:gap-32 max-w-6xl w-full">
-            
+
             <!-- Catchcopy (Vertical) -->
             <div class="h-[60vh] flex flex-col justify-center gap-12 md:gap-24 vertical-rl py-10 border-l border-ink/10 md:border-none pl-8 md:pl-0">
                 <h2 class="text-4xl md:text-6xl font-black tracking-widest letterpress-deep leading-relaxed">
@@ -103,7 +113,7 @@
                     <span class="inline-block animate-press" style="animation-delay: 1.2s;">を</span>
                     <span class="inline-block animate-press" style="animation-delay: 1.4s;">。</span>
                 </h2>
-                
+
                 <p class="text-sm md:text-base tracking-widest text-ink/70 leading-loose">
                     デジタル全盛の時代だからこそ、<br>
                     指先で感じる「凹み」に価値がある。<br>
@@ -115,9 +125,9 @@
             <!-- Hero Visual (Paper Card) -->
             <div class="w-full md:w-[500px] aspect-[1/1.4] emboss-paper p-12 md:p-20 flex flex-col justify-between relative transform rotate-1 transition-transform duration-700 hover:rotate-0">
                 <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/40 to-black/5 pointer-events-none mix-blend-overlay"></div>
-                
+
                 <div class="text-xs tracking-[0.4em] text-ink/40 uppercase">Est. 1954<br>Tokyo, Japan</div>
-                
+
                 <div class="space-y-6">
                     <div class="w-16 h-[2px] bg-ink mb-8"></div>
                     <p class="font-serif text-2xl md:text-3xl leading-relaxed text-ink letterpress-deep ink-bleed">
@@ -142,8 +152,8 @@
     <section id="about" class="py-32 px-6 bg-[#e0ded9]">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-16 items-center">
             <div class="w-full md:w-1/2">
-                <img src="https://images.unsplash.com/photo-1598424268686-2a3a5f988891?q=80&w=800&auto=format&fit=crop" 
-                     alt="活版印刷の活字棚" 
+                <img src="../../assets/generated/site-letterpress-corp-01.svg"
+                     alt="活版印刷の活字棚"
                      class="w-full h-auto shadow-[10px_10px_30px_rgba(0,0,0,0.1),-10px_-10px_30px_rgba(255,255,255,0.8)] grayscale contrast-125 rounded-sm filter sepia-[0.2]">
             </div>
             <div class="w-full md:w-1/2 space-y-8">
@@ -158,7 +168,7 @@
                     その全てが計算された時、紙の上に落ちる「0.2ミリの影」が生まれます。<br><br>
                     それは、読む人の指先に触れ、記憶に残る体験となります。
                 </p>
-                <a href="#" class="inline-block mt-4 text-xs tracking-widest border-b border-ink/40 pb-1 hover:border-ink hover:pb-2 transition-all">文選の歴史を読む &rarr;</a>
+                <a href="#services" class="inline-block mt-4 text-xs tracking-widest border-b border-ink/40 pb-1 hover:border-ink hover:pb-2 transition-all">文選の歴史を読む &rarr;</a>
             </div>
         </div>
     </section>
@@ -172,7 +182,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                
+
                 <!-- Service 1 -->
                 <div class="group cursor-pointer">
                     <div class="aspect-square emboss-paper flex items-center justify-center p-12 transition-shadow duration-500 group-hover:shadow-[inset_4px_4px_10px_rgba(0,0,0,0.1),inset_-4px_-4px_10px_rgba(255,255,255,0.8)]">
@@ -236,14 +246,14 @@
                     <span class="text-xs font-bold tracking-[0.2em] text-paper/40">WORKS</span>
                     <h3 class="text-2xl mt-4 font-bold tracking-widest">制作事例</h3>
                 </div>
-                <a href="#" class="text-xs tracking-widest text-paper/60 hover:text-paper mt-4 md:mt-0">All Works &rarr;</a>
+                <a href="#works" class="text-xs tracking-widest text-paper/60 hover:text-paper mt-4 md:mt-0">All Works &rarr;</a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
                 <!-- Work 1 -->
                 <div class="group">
                     <div class="aspect-[4/3] bg-paper relative overflow-hidden rounded-sm cursor-pointer">
-                        <img src="https://images.unsplash.com/photo-1620641320499-d4c382ce18eb?q=80&w=800&auto=format&fit=crop" 
+                        <img src="../../assets/generated/site-letterpress-corp-02.svg"
                              class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 grayscale" alt="名刺事例">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
                     </div>
@@ -259,7 +269,7 @@
                 <!-- Work 2 -->
                 <div class="group md:mt-24">
                     <div class="aspect-[4/3] bg-paper relative overflow-hidden rounded-sm cursor-pointer">
-                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=800&auto=format&fit=crop" 
+                        <img src="../../assets/generated/site-letterpress-corp-03.svg"
                              class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 grayscale" alt="コースター事例">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
                     </div>
@@ -279,7 +289,7 @@
     <section id="contact" class="py-32 px-6">
         <div class="max-w-2xl mx-auto text-center">
             <h3 class="text-2xl font-bold letterpress-deep mb-12">ご相談・お見積り</h3>
-            
+
             <form class="space-y-8 text-left">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>

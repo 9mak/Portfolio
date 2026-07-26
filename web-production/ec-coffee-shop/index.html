@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KURO COFFEE | スペシャルティコーヒー専門店</title>
+    <meta name="description" content="KURO COFFEEの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="KURO COFFEE">
+    <meta property="og:description" content="KURO COFFEEの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
@@ -39,14 +43,20 @@
         }
         html { scroll-behavior: smooth; }
     </style>
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body class="font-sans text-coffee-800 bg-coffee-50">
+<body id="top" class="font-sans text-coffee-800 bg-coffee-50">
 
     <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-coffee-100">
+    <header id="home" class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-coffee-100">
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex items-center justify-between h-16">
-                <a href="#" class="font-serif text-2xl font-bold text-coffee-800">KURO</a>
+                <a href="#home" class="font-serif text-2xl font-bold text-coffee-800">KURO</a>
                 <nav class="hidden md:flex items-center gap-8">
                     <a href="#products" class="text-sm text-coffee-600 hover:text-coffee-800 transition">商品一覧</a>
                     <a href="#about" class="text-sm text-coffee-600 hover:text-coffee-800 transition">私たちについて</a>
@@ -222,7 +232,7 @@
             </div>
 
             <div class="text-center mt-10">
-                <a href="#" class="inline-flex items-center gap-2 text-coffee-600 font-medium hover:text-coffee-800 transition">
+                <a href="#products" class="inline-flex items-center gap-2 text-coffee-600 font-medium hover:text-coffee-800 transition">
                     <span>すべての商品を見る</span>
                     <span class="material-symbols-outlined text-xl">arrow_forward</span>
                 </a>
@@ -270,7 +280,7 @@
     </section>
 
     <!-- Subscription -->
-    <section class="py-20 bg-coffee-100">
+    <section id="subscription" class="py-20 bg-coffee-100">
         <div class="max-w-4xl mx-auto px-6 text-center">
             <span class="material-symbols-outlined text-5xl text-coffee-500 mb-4">autorenew</span>
             <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4">定期便でもっとお得に</h2>
@@ -295,7 +305,7 @@
                     <p class="text-sm text-coffee-500">200g × 3袋</p>
                 </div>
             </div>
-            <a href="#" class="inline-flex items-center gap-2 bg-coffee-800 text-white px-8 py-4 rounded-full font-medium hover:bg-coffee-900 transition">
+            <a href="#subscription" class="inline-flex items-center gap-2 bg-coffee-800 text-white px-8 py-4 rounded-full font-medium hover:bg-coffee-900 transition">
                 <span>定期便を始める</span>
                 <span class="material-symbols-outlined text-xl">arrow_forward</span>
             </a>
@@ -343,7 +353,7 @@
     </section>
 
     <!-- Newsletter -->
-    <section class="py-16 bg-white border-t border-coffee-100">
+    <section id="contact" class="py-16 bg-white border-t border-coffee-100">
         <div class="max-w-xl mx-auto px-6 text-center">
             <h3 class="font-serif text-2xl font-bold mb-4">ニュースレター</h3>
             <p class="text-coffee-500 text-sm mb-6">新商品やセール情報をお届けします</p>
@@ -365,25 +375,25 @@
                 <div>
                     <p class="font-medium mb-4">ショップ</p>
                     <ul class="space-y-2 text-sm text-coffee-400">
-                        <li><a href="#" class="hover:text-white transition">商品一覧</a></li>
-                        <li><a href="#" class="hover:text-white transition">定期便</a></li>
-                        <li><a href="#" class="hover:text-white transition">ギフト</a></li>
+                        <li><a href="#products" class="hover:text-white transition">商品一覧</a></li>
+                        <li><a href="#subscription" class="hover:text-white transition">定期便</a></li>
+                        <li><a href="#products" class="hover:text-white transition">ギフト</a></li>
                     </ul>
                 </div>
                 <div>
                     <p class="font-medium mb-4">サポート</p>
                     <ul class="space-y-2 text-sm text-coffee-400">
-                        <li><a href="#" class="hover:text-white transition">ご利用ガイド</a></li>
-                        <li><a href="#" class="hover:text-white transition">よくある質問</a></li>
-                        <li><a href="#" class="hover:text-white transition">お問い合わせ</a></li>
+                        <li><a href="#guide" class="hover:text-white transition">ご利用ガイド</a></li>
+                        <li><a href="#guide" class="hover:text-white transition">よくある質問</a></li>
+                        <li><a href="#contact" class="hover:text-white transition">お問い合わせ</a></li>
                     </ul>
                 </div>
                 <div>
                     <p class="font-medium mb-4">会社情報</p>
                     <ul class="space-y-2 text-sm text-coffee-400">
-                        <li><a href="#" class="hover:text-white transition">私たちについて</a></li>
-                        <li><a href="#" class="hover:text-white transition">特定商取引法</a></li>
-                        <li><a href="#" class="hover:text-white transition">プライバシーポリシー</a></li>
+                        <li><a href="#about" class="hover:text-white transition">私たちについて</a></li>
+                        <li><a href="#guide" class="hover:text-white transition">特定商取引法</a></li>
+                        <li><a href="#contact" class="hover:text-white transition">プライバシーポリシー</a></li>
                     </ul>
                 </div>
             </div>

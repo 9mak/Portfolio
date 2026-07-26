@@ -47,51 +47,10 @@ body {
     padding: 2rem 1rem;
 }
 
-.api-key-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 60vh;
-}
-
-.api-key-card {
-    background: var(--card-bg);
-    padding: 3rem;
-    border-radius: 16px;
-    box-shadow: var(--shadow-lg);
-    max-width: 600px;
-    width: 100%;
-    text-align: center;
-}
-
-.api-key-card h2 {
-    margin-bottom: 1rem;
-    font-size: 1.75rem;
-}
-
 .info-text {
     color: var(--text-secondary);
     margin-bottom: 2rem;
     line-height: 1.8;
-}
-
-.api-key-form {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.api-key-input {
-    flex: 1;
-    padding: 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 1rem;
-}
-
-.api-key-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
 }
 
 .help-text {

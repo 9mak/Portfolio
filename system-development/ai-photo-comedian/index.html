@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Photo Comedian - 写真で一言ジェネレーター</title>
+    <meta name="description" content="AI Photo Comedian - 写真で一言ジェネレーターの静的デモページ。主要機能、入力操作、結果表示まで確認できるシステム開発実績です。">
+    <meta property="og:title" content="AI Photo Comedian - 写真で一言ジェネレーター">
+    <meta property="og:description" content="AI Photo Comedian - 写真で一言ジェネレーターの静的デモページ。主要機能、入力操作、結果表示まで確認できるシステム開発実績です。">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body>
+<body id="top">
     <div class="container">
         <header>
             <h1>😂 AI Photo Comedian</h1>
@@ -14,15 +24,8 @@
         </header>
 
         <div class="card">
-            <h2>API設定</h2>
-            <div class="api-settings">
-                <select id="provider">
-                    <option value="openai">OpenAI Vision (GPT-4V)</option>
-                    <option value="claude">Claude Vision</option>
-                </select>
-                <input type="password" id="api-key" placeholder="APIキーを入力">
-                <button class="btn btn-secondary" id="save-key">保存</button>
-            </div>
+            <h2>デモモード</h2>
+            <p>APIキーや外部送信なしで、アップロード画像のプレビューとサンプル一言生成を試せます。</p>
         </div>
 
         <div class="card upload-card">
@@ -36,7 +39,7 @@
                     <p>画像をドラッグ&ドロップ</p>
                     <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">ファイルを選択</button>
                 </div>
-                <img id="preview-image" style="display: none; max-width: 100%; border-radius: 8px;">
+                <img id="preview-image" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 320 200%22%3E%3Crect width=%22320%22 height=%22200%22 fill=%22%23eef2f7%22/%3E%3Cpath d=%22M62 140h196L204 82l-38 42-24-28z%22 fill=%22%2394a3b8%22/%3E%3Ccircle cx=%22118%22 cy=%2272%22 r=%2222%22 fill=%22%23cbd5e1%22/%3E%3C/svg%3E" style="display: none; max-width: 100%; border-radius: 8px;">
             </div>
 
             <div class="style-selector">

@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analog Record Player UI</title>
+    <meta name="description" content="Analog Record Player UIの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:title" content="Analog Record Player UI">
+    <meta property="og:description" content="Analog Record Player UIの静的デモページ。世界観、導線、商品・店舗情報まで確認できるWeb制作実績です。">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Portfolio QA overflow guard */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, canvas, video { max-width: 100%; }
+    </style>
 </head>
-<body>
+<body id="top">
 
     <div class="player-base">
         <div class="record-disk" id="disk">
@@ -24,7 +34,11 @@
         <div class="status-light" id="led"></div>
         <p class="instruction">Drag the arm to the record.</p>
     </div>
-
-    <script src="script.js"></script>
+<section class="portfolio-context" style="max-width: 880px; margin: 32px auto; padding: 20px; border: 1px solid currentColor; background: rgba(255,255,255,.72); line-height: 1.8; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif;">
+  <h2 style="font-size: 1rem; margin: 0 0 10px;">音楽・店舗サイト向け再生UI</h2>
+  <p style="margin: 0 0 8px;">回転するレコード盤と操作状態を組み合わせ、音楽イベント、バー、レコードショップの雰囲気づくりに使えるUIです。</p>
+  <p style="margin: 0;">実音源の再生、曲名表示、プレイリスト切替、モバイル用ミニプレイヤーに拡張できます。店舗の雰囲気を短時間で伝えるファーストビュー部品としても使えます。</p>
+</section>
+<script src="script.js"></script>
 </body>
 </html>
