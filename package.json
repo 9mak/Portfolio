@@ -1,0 +1,24 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "エンジニアリングとデザインの両面から、ビジネスの課題を解決するソリューションを提供します。 本リポジトリでは、Web制作およびシステム開発の実績を公開しています。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/9mak/Portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/9mak/Portfolio/issues"
+  },
+  "homepage": "https://github.com/9mak/Portfolio#readme",
+  "dependencies": {
+    "puppeteer": "^24.37.5"
+  }
+}
